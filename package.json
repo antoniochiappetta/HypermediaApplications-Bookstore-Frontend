@@ -1,0 +1,24 @@
+{
+  "name": "e-commerce-repo",
+  "version": "1.0.0",
+  "description": "Project of a book e-commerce for the course Hypermedia Applications @Polimi A.Y. 2018/19",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoniochiappetta/Hypermedia-eCommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antoniochiappetta/Hypermedia-eCommerce/issues"
+  },
+  "homepage": "https://github.com/antoniochiappetta/Hypermedia-eCommerce#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  }
+}

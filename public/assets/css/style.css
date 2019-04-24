@@ -1,0 +1,124 @@
+/*General*/
+body {
+    color: #1e1f26;
+    font-size: 1em;
+    font-family: 'Nunito', sans-serif;
+}
+
+h1{
+    font-weight: 800;
+}
+
+h2, h5 {
+    font-weight: 700;
+}
+
+
+footer{
+    background-color: #1e1f26;
+}
+
+
+
+/*Link color and size*/
+a {
+    display: block;
+    color: #1e1f26;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+
+
+/*Navbar*/
+.navbar {
+    background-color: #283655;
+    width: 100%;
+}
+
+/*Pagination*/
+.myPageLink{
+    color: #1e1f26;
+}
+
+
+/*Content*/
+.carousel-item {
+    margin: auto;
+    height: 60vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.myCard , .myBreadcrumb {
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 30px;
+    margin: 15px 25px 25px 25px;
+    -webkit-box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+    -moz-box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+    box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+}
+
+.myButton {
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 30px;
+    margin: 25px 25px 25px 0px;
+    -webkit-box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+    -moz-box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+    box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+}
+
+.myCard .card-img-top {
+    margin: 10px auto 10px auto;
+    height: 80px;
+    width: 80px;
+}
+
+.myCard .bookCover{
+    height: 200px;
+    width: 140px;
+    -webkit-box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+    -moz-box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+    box-shadow: 1px 10px 20px 2px rgba(240, 240, 240, 1);
+}
+
+.horizontalScroll{
+    overflow: auto;
+}
+
+.textVariant1{
+    color: #283655;
+}
+
+.textVariant2{
+    color: #4d648d;
+}
+
+.right-rounded{
+    border-radius: 0px 30px 30px 0px ;
+}
+
+.left-rounded{
+    border-radius: 30px 0px 0px 30px ;
+}
+
+
+.shoppingCard {
+    width: 100%;
+}
+
+#ourFavouritesReadings_b, #allEvents{
+    color: white;
+    background-color: #283655;
+}
+
+#bestSellerThisMonth_b, #eventsInThisMonth{
+    color: white;
+    background-color: #4d648d;
+}
