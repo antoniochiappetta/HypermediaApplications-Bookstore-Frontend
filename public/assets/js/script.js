@@ -72,6 +72,45 @@ $(document).ready(function() {
         window.location.href = "search.html";
     });
 
+    //Dropdown value update onClick
+    $(".dropdown-item").on('click', function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        //(... rest of your JS code)
+
+        //Case: Search Bar
+        if($(this).hasClass("dropdown-item-search")){
+            $(".dropdown-toggle-search").text($(this).text());
+            $(".dropdown-menu-search").removeClass("show");
+        }
+
+        //Case: Book Version
+        if($(this).hasClass("dropdown-item-bookversion")) {
+
+            //Different behaviour since different elements with book version can be in the same page
+            $(this).parent().parent().children('button').text($(this).text());
+            $(".dropdown-menu-bookversion").removeClass("show");
+        }
+
+        //Case: Book Theme
+        if($(this).hasClass("dropdown-item-booktheme")) {
+            $(".dropdown-toggle-booktheme").text($(this).text());
+            $(".dropdown-menu-booktheme").removeClass("show");
+        }
+
+        //Case: Book Genre
+        if($(this).hasClass("dropdown-item-bookgenre")) {
+            $(".dropdown-toggle-bookgenre").text($(this).text());
+            $(".dropdown-menu-bookgenre").removeClass("show");
+        }
+
+        //Case: Show Order (in Search page)
+        if($(this).hasClass("dropdown-item-showorder")) {
+            $(".dropdown-toggle-showorder").text($(this).text());
+            $(".dropdown-menu-showorder").removeClass("show");
+        }
+
+    });
 
 
 })

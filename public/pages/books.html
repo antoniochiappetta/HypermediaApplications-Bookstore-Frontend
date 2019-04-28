@@ -40,11 +40,11 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Books</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Events</a>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <div class="dropdown-menu dropdown-menu-search">
+                        <a class="dropdown-item dropdown-item-search">Books</a>
+                        <a class="dropdown-item dropdown-item-search">Authors</a>
+                        <a class="dropdown-item dropdown-item-search">Events</a>
                     </div>
                 </div>
                 <input id="navbarSearchField" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="What are you searching for?">
@@ -154,15 +154,15 @@
                             <h5>Themes</h5>
 
                             <div class="dropdown">
-                                <button class="btn btn-outline-secondary btn-block dropdown-toggle myButton selectpicker" type="button" id="dropdownMenuButtonTheme" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-dropup-auto="false">
+                                <button class="btn btn-outline-secondary btn-block dropdown-toggle dropdown-toggle-booktheme myButton selectpicker" type="button" id="dropdownMenuButtonTheme" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-dropup-auto="false">
                                     All
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">All</a>
-                                    <a class="dropdown-item" href="#">Theme 1</a>
-                                    <a class="dropdown-item" href="#">Theme 2</a>
-                                    <a class="dropdown-item" href="#">Theme 3</a>
-                                    <a class="dropdown-item" href="#">Theme 4</a>
+                                <div class="dropdown-menu dropdown-menu-booktheme" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item dropdown-item-booktheme">All</a>
+                                    <a class="dropdown-item dropdown-item-booktheme">Theme 1</a>
+                                    <a class="dropdown-item dropdown-item-booktheme">Theme 2</a>
+                                    <a class="dropdown-item dropdown-item-booktheme">Theme 3</a>
+                                    <a class="dropdown-item dropdown-item-booktheme">Theme 4</a>
                                 </div>
                             </div>
 
@@ -175,15 +175,15 @@
                             <h5>Genres</h5>
 
                             <div class="dropdown">
-                                <button class="btn btn-outline-secondary btn-block dropdown-toggle myButton selectpicker" type="button" id="dropdownMenuButtonGenre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-dropup-auto="false">
+                                <button class="btn btn-outline-secondary btn-block dropdown-toggle dropdown-toggle-bookgenre myButton selectpicker" type="button" id="dropdownMenuButtonGenre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-dropup-auto="false">
                                     All
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">All</a>
-                                    <a class="dropdown-item" href="#">Genre 1</a>
-                                    <a class="dropdown-item" href="#">Genre 2</a>
-                                    <a class="dropdown-item" href="#">Genre 3</a>
-                                    <a class="dropdown-item" href="#">Genre 4</a>
+                                <div class="dropdown-menu dropdown-menu-bookgenre" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item dropdown-item-bookgenre">All</a>
+                                    <a class="dropdown-item dropdown-item-bookgenre">Genre 1</a>
+                                    <a class="dropdown-item dropdown-item-bookgenre">Genre 2</a>
+                                    <a class="dropdown-item dropdown-item-bookgenre">Genre 3</a>
+                                    <a class="dropdown-item dropdown-item-bookgenre">Genre 4</a>
                                 </div>
                             </div>
 
@@ -285,18 +285,15 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
-        <div class="col co-md-8"></div>
-        <div class="col col-md-6 col-lg-4">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item myPageItem left-rounded"><a class="page-link myPageLink" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">Next</a></li>
-                </ul>
-            </nav>
+    <div class="row text-right">
+        <div class="col">
+            <button id="previouspage-button" class="btn btn-outline-secondary myButton">
+                Previous page
+            </button>
+
+            <button id="nextpage-button" class="btn btn-outline-secondary myButton">
+                Next page
+            </button>
         </div>
     </div>
 
