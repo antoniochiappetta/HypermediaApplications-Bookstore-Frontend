@@ -123,7 +123,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb myBreadcrumb">
           <li class="breadcrumb-item"><a href="books.html">Books</a></li>
-          <li class="breadcrumb-item active" aria-current="page">BookTitle</li>
+          <li id="breadcrumbtitle" class="breadcrumb-item active" aria-current="page">BookTitle</li>
         </ol>
       </nav>
     </div>
@@ -140,7 +140,7 @@
         <div class="card myCard">
           <div class="card-body m-lg-2 mx-auto">
             <div>
-              <img src="../assets/img/bookfront.jpg" height="360" width="240" alt="Book cover">
+              <img id="picture" src="../assets/img/bookfront.jpg" height="360" width="240" alt="Book cover">
             </div>
           </div>
         </div>
@@ -151,27 +151,27 @@
 
         <div class="row">
           <div class="col-8 col-sm-6 my-auto">
-            <h2>Book Title</h2>
+            <h2 id="title">Book Title</h2>
           </div>
           <div class="col col-sm-6 text-right my-auto">
-            <h3 class="textVariant2">29,99$</h3>
+            <h3 class="textVariant2" id="price">29,99$</h3>
           </div>
         </div>
 
         <div class="row">
           <div class="col">
-            <h5 class="textVariant1"> Author: <a href="author.html" class="textVariant1"> Name LastName </a> </h5>
+            <h5 class="textVariant1"> Author: <a href="author.html" class="textVariant1" id="author"> Name LastName </a> </h5>
           </div>
         </div>
 
         <div class="row">
           <div class="col">
-            <h5 class="textVariant1"> Presentation event: <a href="event.html" class="textVariant1"> Event </a> </h5>
+            <h5 class="textVariant1"> Presentation event: <a href="event.html" class="textVariant1" id="event"> Event </a> </h5>
           </div>
         </div>
 
         <div class="row">
-          <div class="col">
+          <div class="col" id="factSheet">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
@@ -197,11 +197,11 @@
 
 
           <div class="col-5 col-md-3 my-auto">
-            <button class="btn-light">Quantity:</button><input class="rounded" type="number" value="1" min="1" max="10" step="1"/>
+            <button class="btn-light">Quantity:</button><input id="quantity" class="rounded" type="number" value="1" min="1" max="10" step="1"/>
           </div>
 
           <div class="col-5 col-sm-6 text-right">
-            <button type="button" class="btn btn-warning myButton ml-auto">Add to Shopping Bag</button>
+            <button id="buy" type="button" class="btn btn-warning myButton ml-auto">Add to Shopping Bag</button>
           </div>
 
         </div>
@@ -214,7 +214,7 @@
 
 
     <div class="row">
-      <div class="col">
+      <div class="col" id="abstract">
         <h2>Abstract</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
@@ -295,7 +295,7 @@
 
 
     <div class="row">
-      <div class="col">
+      <div class="col" id="interview">
         <h2>Interview with the author</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
@@ -398,6 +398,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-book.js"></script>
 
 </body>
 
