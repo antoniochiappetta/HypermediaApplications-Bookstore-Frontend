@@ -91,6 +91,7 @@ a {
 
 .horizontalScroll{
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .textVariant1{
