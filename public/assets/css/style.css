@@ -3,6 +3,7 @@ body {
     color: #1e1f26;
     font-size: 1em;
     font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
 }
 
 h1{
@@ -90,6 +91,7 @@ a {
 
 .horizontalScroll{
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .textVariant1{

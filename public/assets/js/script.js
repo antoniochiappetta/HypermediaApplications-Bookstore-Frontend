@@ -72,6 +72,67 @@ $(document).ready(function() {
         window.location.href = "search.html";
     });
 
+    //Dropdown value update onClick
+    $(".dropdown-item").on('click', function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        //(... rest of your JS code)
+
+        //Case: Search Bar
+        if($(this).hasClass("dropdown-item-search")){
+            $(".dropdown-toggle-search").text($(this).text());
+            $(".dropdown-menu-search").removeClass("show");
+        }
+
+        //Case: Book Version
+        if($(this).hasClass("dropdown-item-bookversion")) {
+
+            //Different behaviour since different elements with book version can be in the same page
+            $(this).parent().parent().children('button').text($(this).text());
+            $(".dropdown-menu-bookversion").removeClass("show");
+        }
+
+        //Case: Book Theme
+        if($(this).hasClass("dropdown-item-booktheme")) {
+            $(".dropdown-toggle-booktheme").text($(this).text());
+            $(".dropdown-menu-booktheme").removeClass("show");
+        }
+
+        //Case: Book Genre
+        if($(this).hasClass("dropdown-item-bookgenre")) {
+            $(".dropdown-toggle-bookgenre").text($(this).text());
+            $(".dropdown-menu-bookgenre").removeClass("show");
+        }
+
+        //Case: Show Order (in Search page)
+        if($(this).hasClass("dropdown-item-showorder")) {
+            $(".dropdown-toggle-showorder").text($(this).text());
+            $(".dropdown-menu-showorder").removeClass("show");
+        }
+
+    });
+
+    //Dynamic hide of buttons for swipe left and right for touchscreens sizes
+    $(window).resize(function() {
+        // This will fire each time the window is resized:
+        if($(window).width() <= 768) {
+            $('#left-button').hide();
+            $('#left-button2').hide();
+            $('#right-button').hide();
+            $('#right-button2').hide();
+        }
+    }).resize();
+
+    //Dynamic show of buttons for swipe left and right for non-touchscreens sizes
+    $(window).resize(function() {
+        // This will fire each time the window is resized:
+        if($(window).width() > 768) {
+            $('#left-button').show();
+            $('#left-button2').show();
+            $('#right-button').show();
+            $('#right-button2').show();
+        }
+    }).resize();
 
 
 })

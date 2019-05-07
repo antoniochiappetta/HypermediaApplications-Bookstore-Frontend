@@ -40,11 +40,11 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Books</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Events</a>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <div class="dropdown-menu dropdown-menu-search">
+                        <a class="dropdown-item dropdown-item-search">Books</a>
+                        <a class="dropdown-item dropdown-item-search">Authors</a>
+                        <a class="dropdown-item dropdown-item-search">Events</a>
                     </div>
                 </div>
                 <input id="navbarSearchField" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="What are you searching for?">
@@ -133,13 +133,13 @@
         <div class="col col-md-6 text-right">
             <div class="dropdown">
                 Sort by:
-                <button class="btn btn-outline-secondary dropdown-toggle right-rounded" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-showorder right-rounded" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Alphabetical Order
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Alphabetical Order</a>
-                    <a class="dropdown-item" href="#">Price: Low to Hight</a>
-                    <a class="dropdown-item" href="#">Price: High to Low</a>
+                <div class="dropdown-menu dropdown-menu-showorder" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item dropdown-item-showorder" href="#">Alphabetical Order</a>
+                    <a class="dropdown-item dropdown-item-showorder" href="#">Price: Low to High</a>
+                    <a class="dropdown-item dropdown-item-showorder" href="#">Price: High to Low</a>
                 </div>
             </div>
         </div>
@@ -238,18 +238,15 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
-        <div class="col co-md-8"></div>
-        <div class="col col-md-6 col-lg-4">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item myPageItem left-rounded"><a class="page-link myPageLink" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">Next</a></li>
-                </ul>
-            </nav>
+    <div class="row text-right">
+        <div class="col">
+            <button id="previouspage-button" class="btn btn-outline-secondary myButton">
+                Previous page
+            </button>
+
+            <button id="nextpage-button" class="btn btn-outline-secondary myButton">
+                Next page
+            </button>
         </div>
     </div>
 
