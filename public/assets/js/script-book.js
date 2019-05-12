@@ -64,6 +64,9 @@ $.urlParam = function(name){
 
 var isbnRead = $.urlParam('isbn');
 
+$("#showMoreReviews").remove();
+$("#showMoreBooks").attr("href", "./books.html?q=similarto&isbn="+isbnRead);
+
 console.log(isbnRead);
 var book;
 
@@ -198,7 +201,7 @@ var response = $.ajax({
         var responseReviews = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/books/?ISBN="+isbnRead+"/reviews/?limit=5",
+            url: apiurl+"/books/?ISBN="+isbnRead+"/reviews/",//?limit=5",
             success : function() {
 
                 //responseReviews = {responseJSON: [reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest]}
@@ -238,12 +241,12 @@ $("#buy").click(function(){
         ver = "PAPER";
     }
     let qua = parseInt($("#quantity").val());
-    alert(ver + " " + qua);
+    //alert(ver + " " + qua);
     var userID; //MAGICAMENTE OTTIENI DAL REGNO DELLE FATE L'ID DELL'UTENTE
     var responsePost = $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: apiurl+"/user/?ID="+userID+"/shoppingBag/",
+        url: apiurl+"/user/"+8+"/shoppingBag/",
         data: {
             U_ID: userID,
             B_ISBN: isbnRead,

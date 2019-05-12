@@ -84,10 +84,16 @@ $.justSearch = function(data){
                         $("#nextpage-button").remove();
                     }
                 }
+                else{
+                    $("#nextpage-button").remove();
+                }
+            }
+            else{
+                $("#nextpage-button").remove();
             }
         },
         failure: function () {
-            return [];
+            $("#nextpage-button").remove();
         }
     });
 }
@@ -106,6 +112,8 @@ var q = $.urlParam('q');
 var page = $.urlParam('page');
 var genre = $.urlParam('genre');
 var theme = $.urlParam('theme');
+
+var isbn = $.urlParam("isbn");
 
 var notFirstEnter = false;
 
@@ -234,6 +242,34 @@ if (q != null){
     else if (q == "bestSellers"){
         data.order_type = "sold_copies";
         $.justSearch(data);
+    }
+    else if (q == "similarto"){
+        let responseSimilarTo = $.ajax({
+            type: "GET",
+            contentType: "application/x-www-form-urlencoded",
+            url: apiurl+"/books/?ISBN="+isbn+"/similarTo",
+            data: data,
+            success : function() {
+                if (responseSimilarTo!= undefined){
+                    if (responseSimilarTo.responseJSON.content != undefined){
+                        $.showBooks(responseSimilarTo.responseJSON.content);
+                        if (responseSimilarTo.responseJSON.content.length < MAX_BOOKS){
+                            $("#nextpage-button").remove();
+                        }
+                    }
+                    else{
+                        $("#nextpage-button").remove();
+                    }
+                }
+                else{
+                    $("#nextpage-button").remove();
+                }
+            },
+            error : function(){
+                $("#nextpage-button").remove();
+            }
+        });
+
     }
 }
 else{

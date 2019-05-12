@@ -30,26 +30,36 @@ var eventTest = {
 
 var userTest = {
     body:{
-    email: "testhash44@gmail.com",
+    email: "testhash444@gmail.com",
     password: "unapassword",
-    name: "antoniocopia",
-    lastName: "chiappettacopia",
+    name: "antoniocopwia",
+    lastName: "chiappekttacopia",
     isAdmin: "true",
-    ID: "4",}
+    ID: "111",}
 };
 
-/*//TRYING TO POST
-
+//TRYING TO POST
+/*
 var responseEV = $.ajax({
     type: "POST",
     contentType: "application/x-www-form-urlencoded",
     url: apiurl+"/user",
-    data: JSON.stringify(userTest),
+    email: userTest.email,
+    password: userTest.password,
+    name: userTest.name,
+    lastName: userTest.lastName,
+    isAdmin: userTest.isAdmin,
+    ID: userTest.ID,
+    //data: JSON.stringify(userTest),
     success : function() {
 
         console.log("ciao");
+        console.log(responseEV);
         
     },
+    error : function(){
+        console.log("errore");
+    }
 });*/
 
 //FAVOURITE READINGS
