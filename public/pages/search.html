@@ -57,7 +57,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-auto py-2">
                     <div class="btn">
-                        <a class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
+                        <a id="user" class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
 
                     </div>
 
@@ -127,7 +127,7 @@
     <!-- Intro Content -->
     <div class="row">
         <div class="col-8 col-md-6">
-            <h2 class="textVariant1">Results for "..."</h2>
+            <h2 class="textVariant1" id="resultText">Results for "..."</h2>
         </div>
 
         <div class="col col-md-6 text-right">
@@ -137,9 +137,9 @@
                     Alphabetical Order
                 </button>
                 <div class="dropdown-menu dropdown-menu-showorder" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item dropdown-item-showorder" href="#">Alphabetical Order</a>
-                    <a class="dropdown-item dropdown-item-showorder" href="#">Price: Low to High</a>
-                    <a class="dropdown-item dropdown-item-showorder" href="#">Price: High to Low</a>
+                    <a id="alpha" class="dropdown-item dropdown-item-showorder" href="#">Alphabetical Order</a>
+                    <a id="LotHi" class="dropdown-item dropdown-item-showorder" href="#">Price: Low to High</a>
+                    <a id="HitLo" class="dropdown-item dropdown-item-showorder" href="#">Price: High to Low</a>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@
     </div>
 
     <!-- Content -->
-    <div class="row">
+    <div class="row" id ="searchContent">
 
         <!-- Case: Books -->
         <div class="card myCard shoppingCard">
@@ -276,6 +276,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-search.js"></script>
 
 </body>
 

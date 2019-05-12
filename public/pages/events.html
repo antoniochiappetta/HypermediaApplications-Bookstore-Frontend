@@ -57,7 +57,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-auto py-2">
                     <div class="btn">
-                        <a class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
+                        <a id="user" class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
 
                     </div>
 
@@ -143,8 +143,12 @@
                     <div class="row">
                         <div class="col">
                             <h5>Categories</h5>
-                            <button id="allEvents" class="btn myButton btn-block" type="submit">All events</button>
-                            <button id="eventsInThisMonth" class="btn  myButton btn-block" type="submit">Events in this month</button>
+                            <a href="events.html?q=all" style="display: inline-block">
+                                <button id="allEvents" class="btn myButton btn-block" type="submit">All events</button>
+                            </a>
+                            <a href="events.html?q=current" style="display: inline-block">
+                                <button id="eventsInThisMonth" class="btn  myButton btn-block" type="submit">Events in this month</button>
+                            </a>
                         </div>
 
                     </div>
@@ -156,7 +160,7 @@
 
 
 
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-6 col-lg-8" id="events">
 
             <div class="card myCard ">
                 <div class="card-body">
@@ -231,6 +235,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-events.js"></script>
 
 </body>
 
