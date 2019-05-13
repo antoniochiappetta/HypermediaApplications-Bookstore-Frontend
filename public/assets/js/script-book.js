@@ -1,11 +1,6 @@
-/*
-ATTENTION PLEASE: THE FOLLOWING VARIABLE WILLHAVE TO BE CHANGED FOR THE GREATER GOOD LATER
-*/
-var apiurl = "https://bookstore-hypermedia-be.herokuapp.com/api"
+
+var apiurl = "https://bookstore-hypermedia-be.herokuapp.com/api";
 //var apiurl = "http://localhost:8080/api"
-/*
-THANK YOU FOR YOUR ATTENTION
-*/
 
 var bookTest = {
     isbn: "1234123412",
@@ -51,32 +46,39 @@ var userTest =  {
 var eventTest = {
     ID: 17,
     B_ISBN: "1234123412",
-    starting_date: "10-04-2096",
-    ending_date: "11-04-2094",
+    startingDate: "10-04-2096",
+    endingDate: "11-04-2094",
     venue: "venutaDelVenuitore",
     address: "addressico",
     city: "cittàSenzaNome"
 }
 
-/*
+
 $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results[1] || 0;
+    if (results != null){
+        return results[1];
+    }
+    return null;
 }
 
 var isbnRead = $.urlParam('isbn');
 
+$("#showMoreReviews").remove();
+$("#showMoreBooks").attr("href", "./books.html?q=similarto&isbn="+isbnRead);
+
 console.log(isbnRead);
+var book;
 
 var response = $.ajax({
     type: "GET",
-    contentTpe: "application/json",
-    //contentType: "application/x-www-form-urlencoded",
+    //contentType: "application/json",
+    contentType: "application/x-www-form-urlencoded",
     url: apiurl+"/books/?ISBN="+isbnRead,
     success : function() {
-        var book = response.responseJSON.content[0];
-*/
-        var book = bookTest;
+        book = response.responseJSON.content[0];
+
+        //var book = bookTest;
 
         //console.log(response);
         $("#picture").attr("href", book.picture);
@@ -92,7 +94,7 @@ var response = $.ajax({
         str = book.interview.split("\n").join("<br/>");
         $("#interview").html("<h2>Interview with the author</h2><p>"+str+"</p>")
 
-/*
+
         var responseEvent = $.ajax({
             type: "GET",
             //contentType: "application/json",
@@ -103,10 +105,10 @@ var response = $.ajax({
             success : function() {
                 console.log(responseEvent);
                 var event = responseEvent.respondeJSON[0];
-*/
-                var event = eventTest;
+
+                //var event = eventTest;
                 $("#event").attr("href", "event.html?id="+event.ID);
-/*
+
             },
             failure: function () {
                 alert("Couldn't load event");
@@ -122,9 +124,9 @@ var response = $.ajax({
             url: apiurl+"/authors/?bookISBN="+isbnRead,
             success : function() {
                 console.log(responseAuthor);
-*/
 
-                responseAuthor = {responseJSON: [authorTest]};
+
+                //responseAuthor = {responseJSON: [authorTest]};
 
                 if (responseAuthor.responseText != "{}"){
 
@@ -138,7 +140,7 @@ var response = $.ajax({
                 } else {
                     alert("Couldn't load author");
                 }
-/*
+
             },
             failure: function () {
                 alert("Couldn't load author");
@@ -150,14 +152,14 @@ var response = $.ajax({
             contentType: "application/x-www-form-urlencoded",
             url: apiurl+"/books/?ISBN="+isbnRead+"/similarTo/?limit=5",
             success : function() {
-*/
-                responseSimilarTo = {responseJSON: [bookTest, bookTest, bookTest, bookTest]}
+
+                //responseSimilarTo = {responseJSON: [bookTest, bookTest, bookTest, bookTest]}
                 //console.log(responseSimilarTo);
                 var similars = responseSimilarTo.responseJSON;
                 $("#content").empty();
                 for (var sim in similars){
                     //RESEARCH FOR AUTHOR AS WELL!!
-/*
+
                     var responseAuthorSimilar = $.ajax({
                         type: "GET",
                         //contentType: "application/json",
@@ -169,8 +171,8 @@ var response = $.ajax({
 
                             console.log(responseAuthorSimilar);
                             let authorSim = responseAuthorSimilar.responseJSON[0];
-*/
-                            let authorSim = authorTest;
+
+                            //let authorSim = authorTest;
                             $("#content").append(`
                                 <div class="card myCard col-8 col-md-4 col-lg-3">
                                 <img class="card-img-top bookCover my-3" src="`+similars[sim].picture+`" alt="Book cover">
@@ -180,29 +182,29 @@ var response = $.ajax({
                                 <p class="textVariant2">`+similars[sim].price+`$</p>
                                 </div>
                                 </div>`);
-/*
+
                         },
                         failure: function () {
                             alert("Couldn't load AN author (of the similars)");
                         }
                     });
-*/
+
     
                 }
                 $("#content").append(`<!-- Eventually another card-->
                     <div class="col-1 col-sm-1">
                     </div>`);
-/*
+
             }
         });
 
         var responseReviews = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/books/?ISBN="+isbnRead+"/reviews/?limit=5",
+            url: apiurl+"/books/?ISBN="+isbnRead+"/reviews/",//?limit=5",
             success : function() {
-*/
-                responseReviews = {responseJSON: [reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest]}
+
+                //responseReviews = {responseJSON: [reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest]}
                 //console.log(responseSimilarTo);
                 var reviews = responseReviews.responseJSON;
                 $("#content2").empty();
@@ -220,7 +222,7 @@ var response = $.ajax({
                         </div>`);
 
                 }
-/*
+
             }
         });
 
@@ -230,34 +232,29 @@ var response = $.ajax({
     }
 });
 
-*/
-
-$(function () {
-
-
-    /*
-    var data = {};
-    data.title = "title";
-    data.message = "message";
-
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: 'http://localhost:3000/endpoint',
-        success: function(data) {
-            console.log('success');
-            console.log(JSON.stringify(data));
+$("#buy").click(function(){
+    let ver = $("#dropdownMenuButton").text();
+    if (ver == "Digital Version"){
+        ver = "DIGITAL";
+    }
+    else{
+        ver = "PAPER";
+    }
+    let qua = parseInt($("#quantity").val());
+    //alert(ver + " " + qua);
+    var userID; //MAGICAMENTE OTTIENI DAL REGNO DELLE FATE L'ID DELL'UTENTE
+    var responsePost = $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: apiurl+"/user/"+8+"/shoppingBag/",
+        data: {
+            U_ID: userID,
+            B_ISBN: isbnRead,
+            quantity: qua,
+            version: ver
+        },
+        success : function() {
+            alert("item succesfully added");
         }
-
-    $('#address').keyup(function () {
-        var url = "http://example.com/?page_id=156"; // url to thank you page
-        url += '&property=' + this.value //append the value
-        $('#thank_you_page_field').val(encodeURIComponent(url)) // update the value
-        });
-
-
-    $("#content").load(pageurl)
-    */
-
-})
+    });
+});

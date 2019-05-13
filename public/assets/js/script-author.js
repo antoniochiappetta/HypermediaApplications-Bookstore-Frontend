@@ -32,7 +32,10 @@ var authorTest = {
 
 $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results[1] || 0;
+    if (results != null){
+        return results[1];
+    }
+    return null;
 }
 
 var idRead = $.urlParam('id');
@@ -42,8 +45,8 @@ console.log(idRead);
 /*
 var response = $.ajax({
     type: "GET",
-    contentTpe: "application/json",
-    url: apiurl+"/authors/?id="+idRead,
+    contentType: "application/json",
+    url: apiurl+"/authors/?id="+idRead+"&limit=4",
     success : function() {
 */
         var response = {responseJSON: {content: [authorTest]}};

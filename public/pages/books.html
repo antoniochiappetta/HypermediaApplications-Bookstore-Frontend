@@ -57,7 +57,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-auto py-2">
                     <div class="btn">
-                        <a class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
+                        <a id="user" class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
 
                     </div>
 
@@ -127,7 +127,7 @@
     <!-- Intro Content -->
     <div class="row">
         <div class="col-8 col-md-6">
-            <h2 class="textVariant1">Books</h2>
+            <h2 class="textVariant1" id="pageTitle">Books</h2>
         </div>
 
     </div>
@@ -143,8 +143,12 @@
                     <div class="row">
                         <div class="col">
                             <h5>Charts</h5>
-                            <button id="ourFavouritesReadings_b" class="btn myButton btn-block" type="submit">Our favourite readings</button>
-                            <button id="bestSellerThisMonth_b" class="btn  myButton btn-block" type="submit">Best sellers this month</button>
+                            <a href="books.html?q=favourite" style="display: inline-block">
+                                <button id="ourFavouritesReadings_b" class="btn myButton btn-block" type="submit">Our favourite readings</button>
+                            </a>
+                            <a href="books.html?q=bestSellers" style="display: inline-block">
+                                <button id="bestSellerThisMonth_b" class="btn  myButton btn-block" type="submit">Best sellers this month</button>
+                            </a>
                         </div>
 
                     </div>
@@ -157,7 +161,7 @@
                                 <button class="btn btn-outline-secondary btn-block dropdown-toggle dropdown-toggle-booktheme myButton selectpicker" type="button" id="dropdownMenuButtonTheme" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-dropup-auto="false">
                                     All
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-booktheme" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu dropdown-menu-booktheme" aria-labelledby="dropdownMenuButton" id="themes">
                                     <a class="dropdown-item dropdown-item-booktheme">All</a>
                                     <a class="dropdown-item dropdown-item-booktheme">Theme 1</a>
                                     <a class="dropdown-item dropdown-item-booktheme">Theme 2</a>
@@ -178,7 +182,7 @@
                                 <button class="btn btn-outline-secondary btn-block dropdown-toggle dropdown-toggle-bookgenre myButton selectpicker" type="button" id="dropdownMenuButtonGenre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-dropup-auto="false">
                                     All
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-bookgenre" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu dropdown-menu-bookgenre" aria-labelledby="dropdownMenuButton" id="genres">
                                     <a class="dropdown-item dropdown-item-bookgenre">All</a>
                                     <a class="dropdown-item dropdown-item-bookgenre">Genre 1</a>
                                     <a class="dropdown-item dropdown-item-bookgenre">Genre 2</a>
@@ -198,7 +202,7 @@
 
 
 
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-6 col-lg-8" id="books">
 
             <div class="card myCard ">
                 <div class="card-body">
@@ -323,6 +327,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-books.js"></script>
 
 </body>
 
