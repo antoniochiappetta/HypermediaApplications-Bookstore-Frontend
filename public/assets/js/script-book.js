@@ -88,7 +88,7 @@ var response = $.ajax({
         $("#price").text(book.price+"$");
         str = book.abstract.split("\n").join("<br/>");
         $("#abstract").html("<h2>Abstract</h2><p>"+str+"</p>");
-        //console.log(book);
+        console.log(book);
         str = book.fact_sheet.split("\n").join("<br/>");
         $("#factSheet").html("<p>"+str+"</p>");
         str = book.interview.split("\n").join("<br/>");
@@ -111,7 +111,7 @@ var response = $.ajax({
 
             },
             failure: function () {
-                alert("Couldn't load event");
+                //alert("Couldn't load event");
             }
         });
 
