@@ -1,6 +1,6 @@
 
-var apiurl = "https://bookstore-hypermedia-be.herokuapp.com/api";
-//var apiurl = "http://localhost:8080/api"
+// var apiurl = "http://bookstore-hypermedia-be.herokuapp.com/api";
+var apiurl = "http://localhost:8081/api"
 
 var bookTest = {
     isbn: "1234123412",
@@ -243,18 +243,30 @@ $("#buy").click(function(){
     let qua = parseInt($("#quantity").val());
     //alert(ver + " " + qua);
     var userID; //MAGICAMENTE OTTIENI DAL REGNO DELLE FATE L'ID DELL'UTENTE
+    let data = JSON.stringify({
+        U_ID: 8,
+        B_ISBN: isbnRead,
+        quantity: qua,
+        version: ver
+    })
+    console.log(data)
     var responsePost = $.ajax({
         type: "POST",
-        contentType: "application/json",
-        url: apiurl+"/user/"+8+"/shoppingBag/",
-        data: {
-            U_ID: userID,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        crossDomain: true,
+        dataType: "json",
+        url: apiurl+"/user/shoppingBag",
+        data: JSON.stringify({
+            U_ID: 11,
             B_ISBN: isbnRead,
             quantity: qua,
             version: ver
-        },
-        success : function() {
-            alert("item succesfully added");
+        }),
+        success : function(data) {
+            alert(JSON.stringify(data));
         }
     });
 });
