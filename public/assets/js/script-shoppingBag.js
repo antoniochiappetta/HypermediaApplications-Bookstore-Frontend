@@ -42,7 +42,6 @@ $.showBooks = function(booksArray){
             async: false,
             url: apiurl+"/book/?ISBN="+booksArray[i].B_ISBN,
         });
-        book = bookResponse.responseJSON.content[0];
 
         var booksAuthor = $.ajax({
             type: "GET",
@@ -50,7 +49,6 @@ $.showBooks = function(booksArray){
             async: false,
             url: apiurl+"/books/"+booksArray[i].B_ISBN+"/authors",
         });
-        author = booksAuthor.responseJSON.content;
 
         var booksEvent = $.ajax({
             type: "GET",
@@ -58,6 +56,8 @@ $.showBooks = function(booksArray){
             async: false,
             url: apiurl+"/events/?bookISBN="+booksArray[i].B_ISBN,
         });
+        book = bookResponse.responseJSON.content[0];
+        author = booksAuthor.responseJSON.content;
         event = booksEvent.responseJSON[0];
         let authorsHTML = "";
         for (j in author){
