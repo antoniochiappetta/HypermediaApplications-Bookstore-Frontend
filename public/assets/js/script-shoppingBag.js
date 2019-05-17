@@ -42,6 +42,8 @@ $.showBooks = function(booksArray){
             async: false,
             url: apiurl+"/book/?ISBN="+booksArray[i].B_ISBN,
         });
+        console.log(apiurl+"/book/?ISBN="+booksArray[i].B_ISBN);
+        console.log(bookResponse);
 
         var booksAuthor = $.ajax({
             type: "GET",
@@ -49,6 +51,8 @@ $.showBooks = function(booksArray){
             async: false,
             url: apiurl+"/books/"+booksArray[i].B_ISBN+"/authors",
         });
+        console.log(apiurl+"/books/"+booksArray[i].B_ISBN+"/authors");
+        console.log(booksAuthor);
 
         var booksEvent = $.ajax({
             type: "GET",
@@ -56,6 +60,8 @@ $.showBooks = function(booksArray){
             async: false,
             url: apiurl+"/events/?bookISBN="+booksArray[i].B_ISBN,
         });
+        console.log(apiurl+"/events/?bookISBN="+booksArray[i].B_ISBN);
+        console.log(booksEvent);
         book = bookResponse.responseJSON.content[0];
         author = booksAuthor.responseJSON.content;
         event = booksEvent.responseJSON[0];
