@@ -40,9 +40,9 @@ $.showBooks = function(booksArray){
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             async: false,
-            url: apiurl+"/book/?ISBN="+booksArray[i].B_ISBN,
+            url: apiurl+"/books/?ISBN="+booksArray[i].B_ISBN,
         });
-        console.log(apiurl+"/book/?ISBN="+booksArray[i].B_ISBN);
+        console.log(apiurl+"/books/?ISBN="+booksArray[i].B_ISBN);
         console.log(bookResponse);
 
         var booksAuthor = $.ajax({
