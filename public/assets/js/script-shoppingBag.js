@@ -69,7 +69,7 @@ $.showBooks = function(booksArray){
         for (j in author){
             authorsHTML = authorsHTML + `<a href="author.html?id=`+author[j].ID+`" class="textVariant1"> `+author[j].name+` `+author[j].last_name+` </a> `;
         }
-        $("#content").append(newcard+`<div class="card myCard shoppingCard">
+        $("#content").append(`<div class="card myCard shoppingCard">
             <div class="card-body">
                 <div class="row">
                     <div class="col-2 col-md-2">
