@@ -8,28 +8,35 @@ const MAX_BOOKS = 3;
 
 $.showBooks = function(booksArray){
     $("#books").empty();
-    for (i in booksArray){
+    for (let i in booksArray){
         console.log(booksArray[i]);
-        let author = {ID: -1, name: "not", last_name: "found"};
+        let author = [{ID: -1, name: "not", last_name: "found"}];
         let event = {ID: -1};
         var booksAuthor = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             async: false,
-            url: apiurl+"/authors/?bookISBN="+booksArray[i].ISBN,
-            success : function() {
-                author = booksAuthor.responseJSON.content[0];
-            }
+            url: apiurl+"/books/"+booksArray[i].ISBN+"/authors",
         });
+        if (booksAuthor!= undefined){
+            if (booksAuthor.responseJSON!= undefined && booksAuthor.responseJSON.content!= undefined)
+                author = booksAuthor.responseJSON.content;
+        }
+        console.log(author);
+
         var booksEvent = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            async: false,
             url: apiurl+"/events/?bookISBN="+booksArray[i].ISBN,
-            success : function() {
-                event = booksEvent.responseJSON.content[0];
-            }
+            async: false,
         });
+        event = booksEvent.responseJSON[0];
+
+        let authorHTML = "";
+        for (l in author){
+            authorHTML = authorHTML + `<a href="author.html?id=`+author[l].ID+`" class="textVariant1">`+author[l].name+" "+author[l].last_name+`</a>`;
+        }
+
         $("#books").append(`
             <div class="card myCard ">
                 <div class="card-body">
@@ -49,7 +56,7 @@ $.showBooks = function(booksArray){
 
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="textVariant1"> Author: <a href="author.html?id=`+author.ID+`" class="textVariant1">'`+author.name+" "+author.last_name+`</a> </h5>
+                                    <h5 class="textVariant1"> Author: `+authorHTML+` </h5>
                                 </div>
                             </div>
 
@@ -114,6 +121,7 @@ var genre = $.urlParam('genre');
 var theme = $.urlParam('theme');
 
 var isbn = $.urlParam("isbn");
+var id = $.urlParam('id');
 
 var notFirstEnter = false;
 
@@ -244,15 +252,16 @@ if (q != null){
         $.justSearch(data);
     }
     else if (q == "similarto"){
-        let responseSimilarTo = $.ajax({
+        var responseSimilarTo = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/books/?ISBN="+isbn+"/similarTo",
+            url: apiurl+"/books/"+isbn+"/similarTo",
             data: data,
             success : function() {
                 if (responseSimilarTo!= undefined){
                     if (responseSimilarTo.responseJSON.content != undefined){
                         $.showBooks(responseSimilarTo.responseJSON.content);
+                        console.log(responseSimilarTo.responseJSON.content);
                         if (responseSimilarTo.responseJSON.content.length < MAX_BOOKS){
                             $("#nextpage-button").remove();
                         }
@@ -271,8 +280,30 @@ if (q != null){
         });
 
     }
+    else if (q == "fromauthor"){
+        var responseFromAuthor = $.ajax({
+            type: "GET",
+            contentType: "application/x-www-form-urlencoded",
+            url: apiurl+"/authors/"+id+"/books",
+            data: data,
+            success : function() {
+                if (responseFromAuthor!=undefined){
+                    $.showBooks(responseFromAuthor.responseJSON.content);
+                    if (responseFromAuthor.responseJSON.content.length < MAX_BOOKS){
+                        $("#nextpage-button").remove();
+                    }
+                }
+                else{
+                    $("#nextpage-button").remove();
+                }
+            },
+            error : function(){
+                $("#nextpage-button").remove();
+            }
+        });
+    }
 }
-else{
+else {
     //only if the book page has not been just opened
     if (notFirstEnter){
         //normal filtering
