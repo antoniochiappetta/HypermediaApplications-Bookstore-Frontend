@@ -40,9 +40,9 @@ $.showBooks = function(booksArray){
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             async: false,
-            url: apiurl+"/books/?ISBN="+booksArray[i].B_ISBN,
+            url: apiurl+"/book/?ISBN="+booksArray[i].B_ISBN,
         });
-        console.log(apiurl+"/books/?ISBN="+booksArray[i].B_ISBN);
+        console.log(apiurl+"/book/?ISBN="+booksArray[i].B_ISBN);
         console.log(bookResponse);
 
         var booksAuthor = $.ajax({
@@ -183,7 +183,7 @@ $(".btn-light").click(function(){
                 url: apiurl+"/user/shoppingBag/",
                 data: {
                     U_ID: uID,
-                    B_ISBN: $(this).attr(data-internalid),
+                    B_ISBN: $(this).attr("data-internalid"),
                     quantity: $(this).siblings().filter("input").val(),
                     version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
                 },
@@ -209,7 +209,7 @@ $(".dropdown-item-bookversion").click(function(){
                 url: apiurl+"/user/shoppingBag/",
                 data: {
                     U_ID: uID,
-                    B_ISBN: $(this).attr(data-internalid),
+                    B_ISBN: $(this).attr("data-internalid"),
                     quantity: $(this).parent().parent().parent().parent().find("input").val(),
                     version: $.translateVersion($(this).parent().sibling().filter("button").text())
                 },
@@ -227,7 +227,7 @@ $(".btn-danger").click(function(){
     let deletion = $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
+        url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
         success : function() {
             alert("book deleted");
             $.setup();
