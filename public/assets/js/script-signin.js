@@ -3,48 +3,64 @@ var apiurl = "https://bookstore-hypermedia-be.herokuapp.com/api"
 
 $("#sign-up").click(function(){
 
-    var email = $("#inputEmailSignUp").val();
-    var password1 = $("#inputPasswordSignUp").val();
-    var password2 = $("#inputPasswordSignUpAgain").val();
+    let email = $("#inputEmailSignUp").val();
+    let password1 = $("#inputPasswordSignUp").val();
+    let password2 = $("#inputPasswordSignUpAgain").val();
+    let name = $("#inputNameSignUp").val();
+    let lastName = $("#inputLastNameSignUp").val();
 
     //NEEDS NAME & LAST NAME!
 
     if (password1 == password2){
+
+        let user = {
+            email: email,
+            password: password1,
+            name: name,
+            lastName: lastName
+        }
+        console.log(user);
+
         var responseEV = $.ajax({
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
             url: apiurl+"/user",
             async: false,
-            data: JSON.stringify({email: email, password: password1}),
-            success : function() {
-        
-                console.log("ciao");
-
-                var responseUS = $.ajax({
-                    type: "POST",
-                    contentType: "application/x-www-form-urlencoded",
-                    url: apiurl+"/user/login",
-                    data: {email: email, password: password1},
-                    async: false,
-                    success : function() {
-                
-                        console.log(document.cookie);
-            
-                        alert("login successful");
-                        console.log("ciaoLOGGED");
-                        
-                    },
-                    error: function(){
-                        alert("nologin");
-                    }
-                });
-                //alert( $.cookie("example") );
-                
+            data: user,
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
             },
             error: function(){
-                alert("noregistration");
+                alert("Registration unsuccessful");
             }
         });
+
+        var responseUS = $.ajax({
+            type: "POST",
+            contentType: "application/x-www-form-urlencoded",
+            url: apiurl+"/user/login",
+            data: {email: email, password: password1},
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true
+            },
+            async: false,
+            error: function(){
+                console.log("no-login");
+            }
+        });
+
+                $("#inputEmailSignUp").val("");
+                $("#inputPasswordSignUp").val("");
+                $("#inputPasswordSignUpAgain").val("");
+                $("#inputNameSignUp").val("");
+                $("#inputLastNameSignUp").val("");
+        
+                console.log(document.cookie);
+    
+                //alert("User Registered Successfully");
+                //console.log("User-Logged");
     }
     
 });

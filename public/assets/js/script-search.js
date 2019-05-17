@@ -83,21 +83,21 @@ $("#nextpage-button").wrap( '<a href="'+window.location.href.split("page="+page)
 //READY CONTENT
 
 $("#searchContent").empty();
-if (searchTerm == ""){
+/*if (searchTerm == ""){
     searchTerm = undefined;
 }
 else{
     searchTerm = searchTerm.split("%20").join(" ");
-}
+}*/
 
 //prepare queries:
 
 //possible book search (except with author: user will open author's profile for those) //those books will be added after every found author)
-var bookTitle= {title: searchTerm, order_type: orderType, limit: MAX_BOOKS, page: page};
+var bookTitle= {title: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookISBN=  {ISBN: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
-var bookGenre= {genre: searchTerm, page: page, limit: MAX_BOOKS, order_type: orderType};
-var bookTheme= {theme: searchTerm, page: page, limit: MAX_BOOKS, order_type: orderType};
-var bookReleaseDate= {release_date: searchTerm, order_type: orderType, limit: MAX_BOOKS, page: page};
+var bookGenre= {genre: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
+var bookTheme= {theme: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
+var bookReleaseDate= {release_date: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 
 var booksSearches= [bookTitle, bookGenre, bookTheme, bookReleaseDate];
 console.log(booksSearches);
@@ -138,7 +138,6 @@ $.checkIfContent = function(type, producedContent){
             $("#nextpage-button").remove();
             /*if ($("searchContent").text() == ""){
                 $("#searchContent").append('<h3 class="textVariant1">No Results :(</h3>');
-                $("#searchContent").append('</br></br></br></br></br></br></br></br></br></br></br></br></br>');
             }*/
         }
     }
@@ -164,7 +163,7 @@ $.showBooks = function(booksArray){
         if (doesNotContainBook(booksArray[i], shownBooks)){
             shownBooks.push(booksArray[i]);
             console.log(booksArray[i]);
-            let author = {ID: -1, name: "not", last_name: "found"};
+            let author = [{ID: -1, name: "not", last_name: "found"}];
             let event = {ID: -1};
             var booksAuthor = $.ajax({
                 type: "GET",
@@ -183,12 +182,12 @@ $.showBooks = function(booksArray){
                 contentType: "application/x-www-form-urlencoded",
                 async: false,
                 url: apiurl+"/events/?bookISBN="+booksArray[i].ISBN,
-                success : function() {
-                    if (booksEvent!=undefined){
-                        event = booksEvent.responseJSON.content[0];
-                    }
-                }
             });
+            event = booksEvent.responseJSON[0];
+            let authorsHTML = "";
+            for (j in author){
+                authorsHTML = authorsHTML + `<a href="author.html?id=`+author[j].ID+`" class="textVariant1"> `+author[j].name+" "+author[j].last_name+` </a> </h5>`;
+            }
             $("#searchContent").append(`
                 <div class="card myCard shoppingCard">
                     <div class="card-body">
@@ -208,9 +207,8 @@ $.showBooks = function(booksArray){
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col">
-                                                <h5 class="textVariant1"> Author: <a href="author.html?id=`+author.ID+`" class="textVariant1"> `+author.name+" "+author.last_name+` </a> </h5>
-                                            </div>
+                                            <div class="col">`+authorsHTML+
+                                            `</div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
@@ -262,13 +260,7 @@ $.justSearchBooks = function(dataB){
         }
     });
 }
-/*
-$.justSearchBooks(bookTheme);
-$.justSearchBooks(bookGenre);
-$.justSearchBooks(bookTitle);
-$.justSearchBooks(bookReleaseDate);
 
-if (page == 1) $.justSearchBooks(bookISBN);*/
 for (i in booksSearches){
     $.justSearchBooks(booksSearches[i]);
 }
@@ -310,7 +302,6 @@ $.showAuthors = function(authorsArray){
                     </div>
                 </div>
             `);
-            //justSearchBooks({author: authorsArray[i], page: page, limit: 2});
         }
     }
 }
@@ -323,7 +314,6 @@ $.justSearchAuthors = function(dataA){
         url: apiurl+"/authors/",
         data: dataA,
         success : function() {
-            //console.log(authorsResponse);
             if (authorsResponse!=undefined){
                 if (authorsResponse.responseJSON.content!=undefined){
                     console.log("AUTHORS "+JSON.stringify(dataA) + "     ");
@@ -349,11 +339,9 @@ $.justSearchAuthors = function(dataA){
         }
     });
 }
-console.log("perkele");
 for (i in authorsSearches){
     $.justSearchAuthors(authorsSearches[i]);
 }
-console.log("perkele");
 //EVENTS SEARCH-------------------------------------------------------------------------------------------------------------------
 
 var shownEvents= [];
@@ -439,19 +427,3 @@ $.justSearchEvents = function(dataE){
 for (i in eventsSearches){
     $.justSearchEvents(eventsSearches[i]);
 }
-
-console.log("perkele");
-//IN CASE NO RESULTS WERE PRODUCED  
-
-//HOW TO CHECK WITHOUT MAKING EVERYTHING SYNCHRONOUS??????
-
-/*
-if ($("#searchContent").text()== ""){
-    $("#searchContent").append('<h3 class="textVariant1">Nothing here :(</h3>');
-    $("#searchContent").append('</br></br></br></br></br></br></br></br></br></br></br></br></br>');
-    $("#nextpage-button").remove();
-}
-else {
-    //console.log ("contentText = "+)
-}
-*/

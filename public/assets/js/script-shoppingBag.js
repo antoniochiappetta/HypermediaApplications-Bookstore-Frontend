@@ -7,6 +7,15 @@ if (nonseiloggato){
 }
 */
 
+$.ajaxSetup({
+    crossDomain: true,
+    xhrFields: {
+        withCredentials: true
+    }
+});
+
+
+
 $.translateVersion = function(ver){
     if(ver == "DIGITAL") return "Digital Version";
     if(ver == "PAPER") return "Paper Version";
@@ -16,12 +25,13 @@ $.translateVersion = function(ver){
 
 var NothingHere = true;
 var shoppingBag = undefined;
+var uID;
 
 $.showBooks = function(booksArray){
     shoppingBag = booksArray;
     for (i in booksArray){
         console.log(booksArray[i]);
-        let author = {ID: -1, name: "not", last_name: "found"};
+        let author = [{ID: -1, name: "not", last_name: "found"}];
         let event = {ID: -1}
         let book = {title: "title", ISBN: -1, price: -1}
         let version = $.translateVersion(booksArray[i].version);
@@ -31,60 +41,49 @@ $.showBooks = function(booksArray){
             contentType: "application/x-www-form-urlencoded",
             async: false,
             url: apiurl+"/book/?ISBN="+booksArray[i].B_ISBN,
-            success : function() {
-                if (bookResponse!=undefined){
-                    if (bookResponse.responseJSON.content!=undefined)
-                        book = bookResponse.responseJSON.content[0];
-                }
-            }
         });
+        book = bookResponse.responseJSON.content[0];
+
         var booksAuthor = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             async: false,
-            url: apiurl+"/authors/?bookISBN="+booksArray[i].B_ISBN,
-            success : function() {
-                if (booksAuthor!=undefined){
-                    if (booksAuthor.responseJSON.content!=undefined)
-                        author = booksAuthor.responseJSON.content[0];
-                }
-            }
+            url: apiurl+"/books/"+booksArray[i].B_ISBN+"/authors",
         });
+        author = booksAuthor.responseJSON.content;
+
         var booksEvent = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             async: false,
             url: apiurl+"/events/?bookISBN="+booksArray[i].B_ISBN,
-            success : function() {
-                if (booksEvent!=undefined){
-                    if (booksEvent.responseJSON.content!= undefined){
-                        event = booksEvent.responseJSON.content[0];
-                    }
-                }
-            }
         });
-        $("#content").append(`
-            <div class="card myCard shoppingCard">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2 col-md-2">
-                            <img src="`+book.picture+`" height="200" width="140" alt="Book cover">
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-10 mt-3">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-6 my-auto">
-                                            <a href="book.html?isbn=`+book.ISBN+`"><h2>`+book.title+`</h2></a>
-                                        </div>
-                                        <div class="col col-sm-6 text-right my-auto mr-0">
-                                            <h3 class="textVariant2">`+book.price+`$</h3>
-                                        </div>
+        event = booksEvent.responseJSON[0];
+        let authorsHTML = "";
+        for (j in author){
+            authorsHTML = authorsHTML + `<a href="author.html?id=`+author[j].ID+`" class="textVariant1"> `+author[j].name+` `+author[j].last_name+` </a> `;
+        }
+        $("#content").append(newcard+`<div class="card myCard shoppingCard">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2 col-md-2">
+                        <img src="`+book.picture+`" height="200" width="140" alt="Book cover">
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-10 mt-3">
+                        <div class="row">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-8 col-sm-6 my-auto">
+                                        <a href="book.html?isbn=`+book.ISBN+`"><h2>`+book.title+`</h2></a>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="textVariant1"> Author: <a href="author.html?id=`+author.ID+`" class="textVariant1"> `+author.name+` `+author.last_name+` </a> </h5>
-                                        </div>
+                                    <div class="col col-sm-6 text-right my-auto mr-0">
+                                        <h3 class="textVariant2">`+book.price+`$</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                    <h5 class="textVariant1"> Author: `+authorsHTML+`</h5>
+                                </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
@@ -129,12 +128,14 @@ $.justSearchShoppingBags = function(userID){
     let shoppingResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/"+uID+"/shoppingBag",
+        xhrFields: {withCredentials: true},
+        url: apiurl+"/user/shoppingBag",
         success : function() {
+            console.log(shoppingResponse);
             if (shoppingResponse!=undefined){
                 if (shoppingResponse.responseJSON.content!= undefined){
                     if(shoppingResponse.responseJSON.content.length > 0){
-                        console.log(shoppingResponse.responseJSON.content);
+                        uID = shoppingResponse.responseJSON.content[0].U_ID;
                         $.showBooks(shoppingResponse.responseJSON.content);
                         NothingHere = false;
                     }
@@ -156,24 +157,24 @@ $.justSearchShoppingBags = function(userID){
 
 //PREPARE-------------------------------------------------------------
 //FIND A WAY TO OBTAIN THE USER ID...?
-var uID = 8;
+//var uID = 8;
 
 $.setup = function(){
     $("#content").html('<div class="col"> <h2>Shopping Bag</h2> </div>');
-    $.justSearchShoppingBags(uID);
+    $.justSearchShoppingBags();
 }
 
 
 $(".btn-light").click(function(){
     let deletion = $.ajax({
         type: "DELETE",
-        contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/"+uID+"/shoppingBag/"+$(this).attr(data-internalid),
+        contentType: "application/json",
+        url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
         success : function() {
             let fixing = $.ajax({
                 type: "POST",
-                contentType: "application/x-www-form-urlencoded",
-                url: apiurl+"/user/"+uID+"/shoppingBag/",
+                contentType: "application/json",
+                url: apiurl+"/user/shoppingBag/",
                 data: {
                     U_ID: uID,
                     B_ISBN: $(this).attr(data-internalid),
@@ -194,12 +195,12 @@ $(".dropdown-item-bookversion").click(function(){
     let deletion = $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/"+uID+"/shoppingBag/"+$(this).attr(data-internalid),
+        url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
         success : function() {
             let fixing = $.ajax({
                 type: "POST",
                 contentType: "application/x-www-form-urlencoded",
-                url: apiurl+"/user/"+uID+"/shoppingBag/",
+                url: apiurl+"/user/shoppingBag/",
                 data: {
                     U_ID: uID,
                     B_ISBN: $(this).attr(data-internalid),
@@ -220,7 +221,7 @@ $(".btn-danger").click(function(){
     let deletion = $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/"+uID+"/shoppingBag/"+$(this).attr(data-internalid),
+        url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
         success : function() {
             alert("book deleted");
             $.setup();
@@ -238,7 +239,7 @@ $("#checkout").click(function(){
         let deletion = $.ajax({
             type: "DELETE",
             contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/user/"+uID+"/shoppingBag/"+shoppingBag[i].B_ISBN,
+            url: apiurl+"/user/shoppingBag/"+shoppingBag[i].B_ISBN,
             success : function(){
                 tot = tot+1;
             }

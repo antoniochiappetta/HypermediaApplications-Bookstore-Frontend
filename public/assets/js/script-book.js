@@ -1,58 +1,6 @@
 
-// var apiurl = "http://bookstore-hypermedia-be.herokuapp.com/api";
-var apiurl = "http://localhost:8081/api"
-
-var bookTest = {
-    isbn: "1234123412",
-    title:"BookTest", 
-    picture:"https://www.engineyard.com/hs-fs/hubfs/Blog%20Images/Jquery.jpg?width=450&name=Jquery.jpg", 
-    abstract:"1\n2\n3\n4 parole", 
-    fact_sheet:"unacosa\nunaltracosa\nunaterzacosa",
-    genre:"sci-fi",
-    release_date:"1913-01-02",
-    sold_copies:4,
-    theme: "intergalactic war",
-    price: 299.97,
-    interview: "giantrallal\nlallerol\nlà"
-}
-
-var authorTest = {
-    ID: 17,
-    name: "porziuncolo",
-    last_name: "dellePareti",
-    short_bio: "un\nbel\ngiorno\ndi\ngianluigi",
-    picture: "https://upload.wikimedia.org/wikipedia/commons/6/64/Douglas_adams_portrait.jpg",
-}
-
-var reviewTest = {
-    ID: 9,
-    B_ISBN: "1234123412",
-    rating: "4.25",
-    description: "tutto\nmolto\nbeoutifoulewr",
-    date: "11-24-2024",
-    U_ID: 33
-
-}
-
-var userTest =  {
-    ID: 197,
-    email: "alfio@degiorgi.conigliamento",
-    password: "passwordonamegasicurissimadellesistenzaintergalattica",
-    name: "giorgio",
-    last_name: "vannuccio",
-    is_admin: false
-}
-
-var eventTest = {
-    ID: 17,
-    B_ISBN: "1234123412",
-    startingDate: "10-04-2096",
-    endingDate: "11-04-2094",
-    venue: "venutaDelVenuitore",
-    address: "addressico",
-    city: "cittàSenzaNome"
-}
-
+var apiurl = "http://bookstore-hypermedia-be.herokuapp.com/api";
+//var apiurl = "http://localhost:8081/api"
 
 $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -84,6 +32,7 @@ var response = $.ajax({
         $("#picture").attr("href", book.picture);
         $("#picture").attr("src", book.picture);
         $("#title").text(book.title);
+        $("#event").text('Presentation for "'+book.title+'"');
         $("#breadcrumbtitle").text(book.title);
         $("#price").text(book.price+"$");
         str = book.abstract.split("\n").join("<br/>");
@@ -94,25 +43,18 @@ var response = $.ajax({
         str = book.interview.split("\n").join("<br/>");
         $("#interview").html("<h2>Interview with the author</h2><p>"+str+"</p>")
 
-
         var responseEvent = $.ajax({
             type: "GET",
             //contentType: "application/json",
             contentType: "application/x-www-form-urlencoded",
             crossDomain: true,
             dataType: "json",
-            url: apiurl+"/events/?bookISBN="+isbnRead,
+            url: apiurl+"/events?bookISBN="+isbnRead,
             success : function() {
-                console.log(responseEvent);
-                var event = responseEvent.respondeJSON[0];
-
-                //var event = eventTest;
+                var event = responseEvent.responseJSON[0];
                 $("#event").attr("href", "event.html?id="+event.ID);
 
             },
-            failure: function () {
-                //alert("Couldn't load event");
-            }
         });
 
         var responseAuthor = $.ajax({
@@ -121,92 +63,119 @@ var response = $.ajax({
             contentType: "application/x-www-form-urlencoded",
             crossDomain: true,
             dataType: "json",
-            url: apiurl+"/authors/?bookISBN="+isbnRead,
+            url: apiurl+"/books/"+isbnRead+"/authors",
             success : function() {
                 console.log(responseAuthor);
 
 
                 //responseAuthor = {responseJSON: [authorTest]};
 
-                if (responseAuthor.responseText != "{}"){
+                if (responseAuthor!= undefined){
 
-                    var author = responseAuthor.responseJSON[0];
-                    console.log(author.name);
-                    $("#author").attr("href", "author.html?id="+author.ID);
-                    $("#author").text(author.name+" "+author.last_name);
-                    str = author.short_bio.split("\n").join("<br />");
-                    $("#descriptionauthor").html("<h2>About the Author</h2><p>"+str+"</p>");
+                    $("#authors").html ("Author:");
+
+                    var author = responseAuthor.responseJSON.content;
+                    console.log(author);
+                    if (author.length > 1){
+                        $("#authors").html ("Authors:");
+                    }
+                    for (let j in author){
+                        console.log(j);
+                        $("#authors").append(`<a href="author.html?id=`+author[j].ID+`" class="textVariant1" >`+author[j].name+` `+author[j].last_name+`. </a>`);
+                    }
+                    console.log(author[0].name);
                     
                 } else {
-                    alert("Couldn't load author");
+                    //alert("Couldn't load author");
                 }
 
             },
             failure: function () {
-                alert("Couldn't load author");
+                //alert("Couldn't load author");
             }
         });
 
+        var similars;
         var responseSimilarTo = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/books/?ISBN="+isbnRead+"/similarTo/?limit=5",
+            url: apiurl+"/books/"+isbnRead+"/similarTo/",
+            async: false,
             success : function() {
 
-                //responseSimilarTo = {responseJSON: [bookTest, bookTest, bookTest, bookTest]}
-                //console.log(responseSimilarTo);
-                var similars = responseSimilarTo.responseJSON;
-                $("#content").empty();
-                for (var sim in similars){
-                    //RESEARCH FOR AUTHOR AS WELL!!
-
-                    var responseAuthorSimilar = $.ajax({
-                        type: "GET",
-                        //contentType: "application/json",
-                        contentType: "application/x-www-form-urlencoded",
-                        crossDomain: true,
-                        dataType: "json",
-                        url: apiurl+"/authors/?bookISBN="+isbnRead,
-                        success : function() {
-
-                            console.log(responseAuthorSimilar);
-                            let authorSim = responseAuthorSimilar.responseJSON[0];
-
-                            //let authorSim = authorTest;
-                            $("#content").append(`
-                                <div class="card myCard col-8 col-md-4 col-lg-3">
-                                <img class="card-img-top bookCover my-3" src="`+similars[sim].picture+`" alt="Book cover">
-                                <div class="card-body text-center">
-                                <h5>`+similars[sim].title+`</h5>
-                                <p><a href="author.html?id=`+authorSim.ID+`">Name `+authorSim.name+" "+authorSim.last_name+`Surname</a></p>
-                                <p class="textVariant2">`+similars[sim].price+`$</p>
-                                </div>
-                                </div>`);
-
-                        },
-                        failure: function () {
-                            alert("Couldn't load AN author (of the similars)");
-                        }
-                    });
-
-    
-                }
-                $("#content").append(`<!-- Eventually another card-->
-                    <div class="col-1 col-sm-1">
-                    </div>`);
-
+                console.log(responseSimilarTo);
+                similars = responseSimilarTo.responseJSON.content;
+                console.log("similars");
+                console.log(similars);
+                
             }
         });
+        similars = responseSimilarTo.responseJSON.content;
+
+        $("#content").empty();
+
+        var authorSim;
+        for (sim in similars){
+
+            console.log(apiurl+"/books/"+similars[sim].ISBN+"/authors");
+
+            var responseAuthorSimilar = $.ajax({
+                type: "GET",
+                //contentType: "application/json",
+                contentType: "application/x-www-form-urlencoded",
+                url: apiurl+"/books/"+similars[sim].ISBN+"/authors",
+                async: false,
+                success : function() {
+
+                    console.log("authorssimilar");
+
+                    console.log(responseAuthorSimilar);
+                    
+                    
+                },
+                failure: function () {
+                    alert("Couldn't load AN author (of the similars)");
+                }
+            });
+
+            //let authorSim; 
+            if (responseAuthorSimilar!= undefined && responseAuthorSimilar.responseJSON != undefined){
+                authorSim = responseAuthorSimilar.responseJSON.content;
+            }
+            else{
+                authorSim = [{ID: -1, name: "not", last_name: "found"}];
+            }
+            let authorHTML = "";
+            for (k in authorSim){
+                authorHTML = authorHTML + `<a href="author.html?id=`+authorSim[k].ID+`">`+authorSim[k].name+" "+authorSim[k].last_name+`. </a>`
+            }
+            $("#content").append(`
+                <div class="card myCard col-8 col-md-4 col-lg-3">
+                <img class="card-img-top bookCover my-3" src="`+similars[sim].picture+`" alt="Book cover">
+                <div class="card-body text-center">
+                <h5><a href="./book.html?isbn=`+similars[sim].ISBN+`">`+similars[sim].title+`</a></h5>
+                <p>`+authorHTML+`</p>
+                <p class="textVariant2">`+similars[sim].price+`$</p>
+                </div>
+                </div>`);
+
+            console.log(responseAuthorSimilar.responseJSON.content);
+
+
+        }
+        $("#content").append(`<!-- Eventually another card-->
+            <div class="col-1 col-sm-1">
+            </div>`);
+
 
         var responseReviews = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/books/?ISBN="+isbnRead+"/reviews/",//?limit=5",
+            url: apiurl+"/books/"+isbnRead+"/reviews/",//?limit=5",
             success : function() {
 
-                //responseReviews = {responseJSON: [reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest, reviewTest]}
-                //console.log(responseSimilarTo);
-                var reviews = responseReviews.responseJSON;
+                console.log(responseReviews);
+                var reviews = responseReviews.responseJSON.content;
                 $("#content2").empty();
                 for (var i in reviews){
 
@@ -241,32 +210,46 @@ $("#buy").click(function(){
         ver = "PAPER";
     }
     let qua = parseInt($("#quantity").val());
-    //alert(ver + " " + qua);
-    var userID; //MAGICAMENTE OTTIENI DAL REGNO DELLE FATE L'ID DELL'UTENTE
-    let data = JSON.stringify({
-        U_ID: 8,
-        B_ISBN: isbnRead,
-        quantity: qua,
-        version: ver
-    })
-    console.log(data)
+    
+    
+    //OBTAIN USER ID, or save it somehow
+    var userID = 13;
+
+    var responseUser = $.ajax({
+        type: "GET",
+        contentType: "application/x-www-form-urlencoded",
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        url: apiurl+"/user",
+        async: false
+    });
+
+    if (responseUser == undefined || responseUser.responseJSON.content.length == 0){
+        alert("item not added: log in first");
+    }
+
+    userID = responseUser.responseJSON.content[0].id
+
     var responsePost = $.ajax({
         type: "POST",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        xhrFields: {withCredentials: true},
         crossDomain: true,
         dataType: "json",
         url: apiurl+"/user/shoppingBag",
         data: JSON.stringify({
-            U_ID: 11,
+            U_ID: userID,
             B_ISBN: isbnRead,
             quantity: qua,
             version: ver
         }),
         success : function(data) {
-            alert(JSON.stringify(data));
+            alert("Item added correctly");
         }
     });
+    console.log("QVI");
+    console.log(responsePost);
 });
