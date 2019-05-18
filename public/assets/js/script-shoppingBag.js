@@ -69,7 +69,8 @@ $.showBooks = function(booksArray){
         for (j in author){
             authorsHTML = authorsHTML + `<a href="author.html?id=`+author[j].ID+`" class="textVariant1"> `+author[j].name+` `+author[j].last_name+` </a> `;
         }
-        $("#content").append(`<div class="card myCard shoppingCard">
+        $("#content").append(`
+        <div class="card myCard shoppingCard">
             <div class="card-body">
                 <div class="row">
                     <div class="col-2 col-md-2">
@@ -107,13 +108,13 @@ $.showBooks = function(booksArray){
                                                     `+version+`
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-bookversion" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item dropdown-item-bookversion" data-internalid="`+book.ISBN+`>Paper Version</a>
-                                                    <a class="dropdown-item dropdown-item-bookversion" data-internalid="`+book.ISBN+`>Digital Version</a>
+                                                    <a class="dropdown-item dropdown-item-bookversion" data-internalid="`+book.ISBN+`">Paper Version</a>
+                                                    <a class="dropdown-item dropdown-item-bookversion" data-internalid="`+book.ISBN+`">Digital Version</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-6 col-md-3 my-auto">
-                                            <button class="btn-light" data-internalid="`+book.ISBN+`>Quantity:</button><input class="rounded" type="number" value="`+booksArray[i].quantity+`" min="1" max="10" step="1"/>
+                                            <button class="btn-light" data-internalid="`+book.ISBN+`">Quantity:</button><input class="rounded" type="number" value="`+booksArray[i].quantity+`" min="1" max="10" step="1"/>
                                         </div>
                                         <div class="col-9 col-md-6 text-right ml-auto">
                                             <button type="button" class="btn btn-danger myButton mr-0" data-internalid="`+book.ISBN+`">Delete from shopping bag</button>
