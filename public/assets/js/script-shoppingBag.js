@@ -18,9 +18,9 @@ $.updateQua = function(item){
     console.log("updating quantity");
     console.log(item.attr("data-internalid"));
     console.log({
-        U_ID: uID,
+        U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
-        quantity: item.siblings().filter("input").val(),
+        quantity: parseInt(item.siblings().filter("input").val()),
         version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
     });
     var deletion = $.ajax({
@@ -29,12 +29,12 @@ $.updateQua = function(item){
         xhrFields: {withCredentials: true},
         crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
-        data: JSON.stringify({
-            U_ID: uID,
+        data: {
+            U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
-            quantity: item.siblings().filter("input").val(),
+            quantity: parseInt(item.siblings().filter("input").val()),
             version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
-        }),
+        },
         success : function() {
             alert("quantity updated");
             $.setup();
@@ -48,9 +48,9 @@ $.updateVer = function(item){
     console.log("updating version");
     console.log(item.attr("data-internalid"));
     console.log({
-        U_ID: uID,
+        U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
-        quantity: item.parent().parent().parent().parent().find("input").val(),
+        quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
         version: $.translateVersion(item.parent().siblings().filter("button").text())
     });
     var deletion = $.ajax({
@@ -59,12 +59,12 @@ $.updateVer = function(item){
         xhrFields: {withCredentials: true},
         crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
-        data: JSON.stringify({
-            U_ID: uID,
+        data: {
+            U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
-            quantity: item.parent().parent().parent().parent().find("input").val(),
+            quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
             version: $.translateVersion(item.parent().siblings().filter("button").text())
-        }),
+        },
         success : function() {
             console.log("success");
             $.setup();
