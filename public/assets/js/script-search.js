@@ -263,17 +263,22 @@ $.justSearchBooks = function(dataB){
             $.checkIfContent(0,1);
         }
     });
-    if (booksResponse!=undefined){
-        if (booksResponse.responseJSON.content!= undefined){
-            console.log("BOOKS ");
-            console.log(booksResponse);
-            console.log(booksResponse.responseJSON.content);
-            $.showBooks(booksResponse.responseJSON.content);
-            if (booksResponse.responseJSON.content.length < MAX_BOOKS){
-                $.checkIfContent(0, 1);
+    if (booksResponse!=undefined ){
+        if (booksResponse.responseJSON!= undefined){
+            if (booksResponse.responseJSON.content!= undefined){
+                console.log("BOOKS ");
+                console.log(booksResponse);
+                console.log(booksResponse.responseJSON.content);
+                $.showBooks(booksResponse.responseJSON.content);
+                if (booksResponse.responseJSON.content.length < MAX_BOOKS){
+                    $.checkIfContent(0, 1);
+                }
+                else{
+                    $.checkIfContent(0, 2);
+                }
             }
             else{
-                $.checkIfContent(0, 2);
+                $.checkIfContent(0, 1);
             }
         }
         else{
@@ -347,14 +352,19 @@ $.justSearchAuthors = function(dataA){
             $.checkIfContent(1,1);
         }
     });
-    if (authorsResponse!=undefined){
-        if (authorsResponse.responseJSON.content!=undefined){
-            console.log("AUTHORS ");
-            console.log(authorsResponse);
-            console.log(authorsResponse.responseJSON.content);
-            $.showAuthors(authorsResponse.responseJSON.content);
-            if (authorsResponse.responseJSON.content.length < MAX_AUTHORS){
-                $.checkIfContent(1, 1);
+    if (authorsResponse!=undefined ){
+        if (authorsResponse!=undefined){
+            if (authorsResponse.responseJSON.content!=undefined){
+                console.log("AUTHORS ");
+                console.log(authorsResponse);
+                console.log(authorsResponse.responseJSON.content);
+                $.showAuthors(authorsResponse.responseJSON.content);
+                if (authorsResponse.responseJSON.content.length < MAX_AUTHORS){
+                    $.checkIfContent(1, 1);
+                }
+                else{
+                    $.checkIfContent(1, 2);
+                }
             }
             else{
                 $.checkIfContent(1, 2);
@@ -438,7 +448,7 @@ $.justSearchEvents = function(dataE){
         }
     });
     if (eventsResponse != undefined){
-        if (eventsResponse.responseJSON.content != undefined){
+        if (eventsResponse.responseJSON != undefined){
             console.log("EVENTS ");
             console.log(eventsResponse);
             console.log(eventsResponse.responseJSON);

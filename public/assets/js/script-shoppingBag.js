@@ -204,9 +204,9 @@ $.showBooks = function(booksArray){
                 </div>
             </div>
         `);
-        $("button.btn-danger").click($.delItem($(this)));
-        $("button.btn-light").click($.updateQua($(this)));
-        $("a.dropdown-item-bookversion").click($.updateVer($(this)));
+        $("button.btn-danger").click(function(){$.delItem($(this));});
+        $("button.btn-light").click(function(){$.updateQua($(this));});
+        $("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
     }
 }
 
