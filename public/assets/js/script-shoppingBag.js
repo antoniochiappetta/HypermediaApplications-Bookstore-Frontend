@@ -49,6 +49,7 @@ $.updateQua = function(item){
         }),
         success : function(data) {
             alert("Item changed correctly");
+            $.setup();
         }
     });
     /*var deletion = $.ajax({
@@ -108,6 +109,7 @@ $.updateVer = function(item){
         }),
         success : function(data) {
             alert("Item changed correctly");
+            $.setup();
         }
     });
 /*
