@@ -101,14 +101,6 @@ var response = $.ajax({
             contentType: "application/x-www-form-urlencoded",
             url: apiurl+"/books/"+isbnRead+"/similarTo/",
             async: false,
-            success : function() {
-
-                console.log(responseSimilarTo);
-                similars = responseSimilarTo.responseJSON.content;
-                console.log("similars");
-                console.log(similars);
-                
-            }
         });
         similars = responseSimilarTo.responseJSON.content;
 

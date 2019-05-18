@@ -59,21 +59,23 @@ $(document).ready(function() {
         window.location.href = "pages/search.html";
     });
 
+    $.search = function(){
+        if ($.trim($("#navbarSearchField").val()).length > 0){
+            window.location.href = "search.html?search="+$("#navbarSearchField").val().split(" ").join("%20")+"&type="+$(".dropdown-toggle-search").text();
+        }
+    }
+
 
     //Search with enter button
     $('#navbarSearchField').on('keypress',function(e){
         if(e.which == 13) {
-            if ($.trim($("#navbarSearchField").val()).length > 0){
-                window.location.href = "search.html?search="+$("#navbarSearchField").val().split(" ").join("%20");
-            }
+            $.search();
         }
     });
 
     //Search with click on the button
     $('#searchButton').click(function() {
-        if ($.trim($("#navbarSearchField").val()).length > 0){
-            window.location.href = "search.html?search="+$("#navbarSearchField").val().split(" ").join("%20");
-        }
+        $.search();
     });
 
     //Dropdown value update onClick

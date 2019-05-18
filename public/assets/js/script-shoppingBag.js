@@ -172,7 +172,7 @@ $.setup = function(){
 }
 
 
-$("button.btn-light").click(function(){
+$("button.btn-light").live("click", function(){
     console.log("updating quantity");
     console.log($(this).attr("data-internalid"));
     console.log({
@@ -201,7 +201,7 @@ $("button.btn-light").click(function(){
     });
 });
 
-$("a.dropdown-item-bookversion").click(function(){
+$("a.dropdown-item-bookversion").live("click", function(){
     console.log("updating version");
     console.log($(this).attr("data-internalid"));
     console.log({
@@ -230,7 +230,7 @@ $("a.dropdown-item-bookversion").click(function(){
     });
 });
 
-$("button.btn-danger").click(function(){
+$("button.btn-danger").live("click", function(){
     console.log("deleting item");
     console.log($(this).attr("data-internalid"));
     $.ajax({

@@ -19,6 +19,7 @@ $.urlParam = function(name){
 var searchTerm = $.urlParam('search');
 var page = $.urlParam("page");
 var order = $.urlParam("order");
+var type = $.urlParam("type");
 
 if(searchTerm == null && page == null && order == null){
     window.location.href = window.location.href + "?page=1";
@@ -261,8 +262,10 @@ $.justSearchBooks = function(dataB){
     });
 }
 
-for (i in booksSearches){
-    $.justSearchBooks(booksSearches[i]);
+if (type == "Books" || type == "all"){
+    for (i in booksSearches){
+        $.justSearchBooks(booksSearches[i]);
+    }
 }
 
 //AUTHORS SEARCHES----------------------------------------------------------------------------------------------------------------
@@ -339,8 +342,11 @@ $.justSearchAuthors = function(dataA){
         }
     });
 }
-for (i in authorsSearches){
-    $.justSearchAuthors(authorsSearches[i]);
+
+if (type == "Authors" || type == "all"){
+    for (i in authorsSearches){
+        $.justSearchAuthors(authorsSearches[i]);
+    }
 }
 //EVENTS SEARCH-------------------------------------------------------------------------------------------------------------------
 
@@ -424,6 +430,8 @@ $.justSearchEvents = function(dataE){
     });
 }
 
-for (i in eventsSearches){
-    $.justSearchEvents(eventsSearches[i]);
+if (type == "Events" || type == "all"){
+    for (i in eventsSearches){
+        $.justSearchEvents(eventsSearches[i]);
+    }
 }
