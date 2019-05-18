@@ -150,7 +150,7 @@ $(document).ready(function() {
         url: apiurl+"/user",
         success: function(){
             userID = responseUser.responseJSON.content.name;
-            $("a.nav-link a[href=login&registration.html").text(userID);
+            $("#user").text(userID);
         }
     });
 });

@@ -14,6 +14,83 @@ $.ajaxSetup({
     }
 });
 
+$.updateQua = function(item){
+    console.log("updating quantity");
+    console.log(item.attr("data-internalid"));
+    console.log({
+        U_ID: uID,
+        B_ISBN: item.attr("data-internalid"),
+        quantity: item.siblings().filter("input").val(),
+        version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+    });
+    var deletion = $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        xhrFields: {withCredentials: true},
+        url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
+        data: {
+            U_ID: uID,
+            B_ISBN: item.attr("data-internalid"),
+            quantity: item.siblings().filter("input").val(),
+            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+        },
+        success : function() {
+            alert("quantity updated");
+            $.setup();
+        },
+        error : function(){
+        }
+    });
+});
+
+$.updateVer = function(item){
+    console.log("updating version");
+    console.log(item.attr("data-internalid"));
+    console.log({
+        U_ID: uID,
+        B_ISBN: item.attr("data-internalid"),
+        quantity: item.parent().parent().parent().parent().find("input").val(),
+        version: $.translateVersion(item.parent().sibling().filter("button").text())
+    });
+    var deletion = $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        xhrFields: {withCredentials: true},
+        url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
+        data: {
+            U_ID: uID,
+            B_ISBN: item.attr("data-internalid"),
+            quantity: item.parent().parent().parent().parent().find("input").val(),
+            version: $.translateVersion(item.parent().sibling().filter("button").text())
+        },
+        success : function() {
+            console.log("success");
+            $.setup();
+        },
+        error : function(){
+        }
+    });
+};
+
+$.delItem = function(item){
+    console.log("deleting item");
+    console.log(item.attr("data-internalid"));
+    $.ajax({
+        type: "DELETE",
+        contentType: "application/x-www-form-urlencoded",
+        xhrFields: {withCredentials: true},
+        url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
+        success : function() {
+            alert("book deleted");
+            $.setup();
+        },
+        error : function(){
+            alert("deletion failed");
+            $.setup();
+        }
+    });
+};
+
 
 
 $.translateVersion = function(ver){
@@ -127,6 +204,9 @@ $.showBooks = function(booksArray){
                 </div>
             </div>
         `);
+        $("button.btn-danger").click($.delItem($(this)));
+        $("button.btn-light").click($.updateQua($(this)));
+        $("a.dropdown-item-bookversion").click($.updateVer($(this)));
     }
 }
 
@@ -198,83 +278,3 @@ $("#checkout").click(function(){
 
 
 $.setup();
-
-$(function(){
-    $("button.btn-light").on("click", function(){
-        console.log("updating quantity");
-        console.log($(this).attr("data-internalid"));
-        console.log({
-            U_ID: uID,
-            B_ISBN: $(this).attr("data-internalid"),
-            quantity: $(this).siblings().filter("input").val(),
-            version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
-        });
-        var deletion = $.ajax({
-            type: "PUT",
-            contentType: "application/json",
-            xhrFields: {withCredentials: true},
-            url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
-            data: {
-                U_ID: uID,
-                B_ISBN: $(this).attr("data-internalid"),
-                quantity: $(this).siblings().filter("input").val(),
-                version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
-            },
-            success : function() {
-                alert("quantity updated");
-                $.setup();
-            },
-            error : function(){
-            }
-        });
-    });
-
-    $("a.dropdown-item-bookversion").on("click", function(){
-        console.log("updating version");
-        console.log($(this).attr("data-internalid"));
-        console.log({
-            U_ID: uID,
-            B_ISBN: $(this).attr("data-internalid"),
-            quantity: $(this).parent().parent().parent().parent().find("input").val(),
-            version: $.translateVersion($(this).parent().sibling().filter("button").text())
-        });
-        var deletion = $.ajax({
-            type: "PUT",
-            contentType: "application/json",
-            xhrFields: {withCredentials: true},
-            url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
-            data: {
-                U_ID: uID,
-                B_ISBN: $(this).attr("data-internalid"),
-                quantity: $(this).parent().parent().parent().parent().find("input").val(),
-                version: $.translateVersion($(this).parent().sibling().filter("button").text())
-            },
-            success : function() {
-                console.log("success");
-                $.setup();
-            },
-            error : function(){
-            }
-        });
-    });
-
-    $("button.btn-danger").on("click", function(){
-        console.log("deleting item");
-        console.log($(this).attr("data-internalid"));
-        $.ajax({
-            type: "DELETE",
-            contentType: "application/x-www-form-urlencoded",
-            xhrFields: {withCredentials: true},
-            url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
-            success : function() {
-                alert("book deleted");
-                $.setup();
-            },
-            error : function(){
-                alert("deletion failed");
-                $.setup();
-            }
-        });
-    });
-
-});

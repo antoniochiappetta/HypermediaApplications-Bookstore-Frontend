@@ -104,7 +104,7 @@ var booksSearches= [bookTitle, bookGenre, bookTheme, bookReleaseDate];
 console.log(booksSearches);
 
 //possible author searches
-var authorID = {ID: $.parseInt(searchTerm), limit: MAX_AUTHORS, page: page};
+var authorID = {ID: parseInt(searchTerm), limit: MAX_AUTHORS, page: page};
 var authorName = {name: searchTerm, limit: MAX_AUTHORS, page: page};
 var authorLastName = {last_name: searchTerm, limit: MAX_AUTHORS, page: page};
 
@@ -112,7 +112,7 @@ var authorsSearches = [authorName, authorLastName];
 
 //possible event searches
 
-var eventID = {ID: $.parseInt(searchTerm), page: page, limit: MAX_EVENTS};
+var eventID = {ID: parseInt(searchTerm), page: page, limit: MAX_EVENTS};
 var eventVenue = {venue: searchTerm, page: page, limit: MAX_EVENTS};
 var eventAddress = {address: searchTerm, page: page, limit: MAX_EVENTS};
 var eventCity = {city: searchTerm, page: page, limit: MAX_EVENTS}
