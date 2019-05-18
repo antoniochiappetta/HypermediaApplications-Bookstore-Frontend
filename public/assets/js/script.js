@@ -150,7 +150,7 @@ $(document).ready(function() {
         url: apiurl+"/user",
         success: function(){
             userID = responseUser.responseJSON.content.name;
-            $("#user").text(userID);
+            $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+userID);
         }
     });
 });
