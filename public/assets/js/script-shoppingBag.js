@@ -28,11 +28,11 @@ $.updateQua = function(item){
         contentType: "application/json",
         xhrFields: {withCredentials: true},
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
-        data: {
+        data: {item: {
             U_ID: uID,
             B_ISBN: item.attr("data-internalid"),
             quantity: item.siblings().filter("input").val(),
-            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())}
         },
         success : function() {
             alert("quantity updated");
@@ -50,18 +50,18 @@ $.updateVer = function(item){
         U_ID: uID,
         B_ISBN: item.attr("data-internalid"),
         quantity: item.parent().parent().parent().parent().find("input").val(),
-        version: $.translateVersion(item.parent().sibling().filter("button").text())
+        version: $.translateVersion(item.parent().siblings().filter("button").text())
     });
     var deletion = $.ajax({
         type: "PUT",
         contentType: "application/json",
         xhrFields: {withCredentials: true},
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
-        data: {
+        data: {item:{
             U_ID: uID,
             B_ISBN: item.attr("data-internalid"),
             quantity: item.parent().parent().parent().parent().find("input").val(),
-            version: $.translateVersion(item.parent().sibling().filter("button").text())
+            version: $.translateVersion(item.parent().sibling().filter("button").text())}
         },
         success : function() {
             console.log("success");

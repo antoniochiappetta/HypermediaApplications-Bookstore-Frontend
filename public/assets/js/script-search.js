@@ -192,12 +192,13 @@ $.showBooks = function(booksArray){
                 async: false,
                 url: apiurl+"/authors/?bookISBN="+booksArray[i].ISBN,
                 success : function() {
-                    if (booksAuthor!=undefined){
-                        if (booksAuthor.responseJSON.content!=undefined)
-                            author = booksAuthor.responseJSON.content[0];
-                    }
+                    
                 }
             });
+            if (booksAuthor!=undefined){
+                if (booksAuthor.responseJSON.content!=undefined)
+                    author = booksAuthor.responseJSON.content[0];
+            }
             var booksEvent = $.ajax({
                 type: "GET",
                 contentType: "application/x-www-form-urlencoded",
