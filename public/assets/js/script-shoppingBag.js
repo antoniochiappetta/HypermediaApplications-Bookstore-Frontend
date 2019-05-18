@@ -41,7 +41,7 @@ $.updateQua = function(item){
         error : function(){
         }
     });
-});
+};
 
 $.updateVer = function(item){
     console.log("updating version");
