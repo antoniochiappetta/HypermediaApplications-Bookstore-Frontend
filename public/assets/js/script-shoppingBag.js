@@ -27,13 +27,14 @@ $.updateQua = function(item){
         type: "PUT",
         contentType: "application/json",
         xhrFields: {withCredentials: true},
+        crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
-        data: {item: {
+        data: JSON.stringify({
             U_ID: uID,
             B_ISBN: item.attr("data-internalid"),
             quantity: item.siblings().filter("input").val(),
-            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())}
-        },
+            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+        }),
         success : function() {
             alert("quantity updated");
             $.setup();
@@ -56,13 +57,14 @@ $.updateVer = function(item){
         type: "PUT",
         contentType: "application/json",
         xhrFields: {withCredentials: true},
+        crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
-        data: {item:{
+        data: JSON.stringify({
             U_ID: uID,
             B_ISBN: item.attr("data-internalid"),
             quantity: item.parent().parent().parent().parent().find("input").val(),
-            version: $.translateVersion(item.parent().siblings().filter("button").text())}
-        },
+            version: $.translateVersion(item.parent().siblings().filter("button").text())
+        }),
         success : function() {
             console.log("success");
             $.setup();
@@ -79,6 +81,7 @@ $.delItem = function(item){
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
         xhrFields: {withCredentials: true},
+        crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
         success : function() {
             alert("book deleted");
