@@ -172,7 +172,7 @@ $.setup = function(){
 }
 
 
-$(".btn-light").click(function(){
+$("button.btn-light").click(function(){
     console.log("updating quantity");
     console.log($(this).attr("data-internalid"));
     console.log({
@@ -201,7 +201,7 @@ $(".btn-light").click(function(){
     });
 });
 
-$(".dropdown-item-bookversion").click(function(){
+$("a.dropdown-item-bookversion").click(function(){
     console.log("updating version");
     console.log($(this).attr("data-internalid"));
     console.log({
@@ -230,8 +230,9 @@ $(".dropdown-item-bookversion").click(function(){
     });
 });
 
-$(".btn-danger").click(function(){
+$("button.btn-danger").click(function(){
     console.log("deleting item");
+    console.log($(this).attr("data-internalid"));
     $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",

@@ -88,25 +88,3 @@ var responseEV = $.ajax({
         alert("Couldn't load events");
     }
 });
-
-$("#cookiereader").click(function(){
-
-    //console.log(responseUS);
-    console.log(document.cookie);
-    var responseshoppingbag = $.ajax({
-        type: "GET",
-        url: apiurl+"/user/shoppingBag",
-        success: function(){
-            console.log(responseshoppingbag);
-        }
-    });
-    console.log("------------");
-    var responseshopping = $.ajax({
-        type: "GET",
-        url: apiurl+"/user",
-        success: function(){
-            console.log(responseshopping);
-        }
-    });
-
-});

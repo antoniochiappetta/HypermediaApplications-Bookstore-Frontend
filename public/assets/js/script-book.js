@@ -1,5 +1,5 @@
 
-var apiurl = "http://bookstore-hypermedia-be.herokuapp.com/api";
+var apiurl = "https://bookstore-hypermedia-be.herokuapp.com/api";
 //var apiurl = "http://localhost:8081/api"
 
 $.urlParam = function(name){
@@ -213,7 +213,7 @@ $("#buy").click(function(){
     
     
     //OBTAIN USER ID, or save it somehow
-    var userID = 13;
+    var userID;
 
     var responseUser = $.ajax({
         type: "GET",
@@ -224,11 +224,11 @@ $("#buy").click(function(){
         async: false
     });
 
-    if (responseUser == undefined || responseUser.responseJSON.content.length == 0){
+    if (responseUser == undefined || responseUser.responseJSON == undefined){
         alert("item not added: log in first");
     }
 
-    userID = responseUser.responseJSON.content[0].id
+    userID = responseUser.responseJSON.userId;
 
     var responsePost = $.ajax({
         type: "POST",
