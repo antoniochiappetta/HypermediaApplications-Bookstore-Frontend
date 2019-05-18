@@ -174,26 +174,27 @@ $.setup = function(){
 
 $(".btn-light").click(function(){
     console.log("updating quantity");
+    console.log($(this).attr("data-internalid"));
+    console.log({
+        U_ID: uID,
+        B_ISBN: $(this).attr("data-internalid"),
+        quantity: $(this).siblings().filter("input").val(),
+        version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
+    });
     var deletion = $.ajax({
-        type: "DELETE",
+        type: "PUT",
         contentType: "application/json",
-        url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
+        xhrFields: {withCredentials: true},
+        url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
+        data: {
+            U_ID: uID,
+            B_ISBN: $(this).attr("data-internalid"),
+            quantity: $(this).siblings().filter("input").val(),
+            version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
+        },
         success : function() {
-            var fixing = $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: apiurl+"/user/shoppingBag/",
-                data: {
-                    U_ID: uID,
-                    B_ISBN: $(this).attr("data-internalid"),
-                    quantity: $(this).siblings().filter("input").val(),
-                    version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
-                },
-                success : function() {
-                    alert("quantity updated");
-                    $.setup();
-                }
-            });
+            alert("quantity updated");
+            $.setup();
         },
         error : function(){
         }
@@ -202,27 +203,27 @@ $(".btn-light").click(function(){
 
 $(".dropdown-item-bookversion").click(function(){
     console.log("updating version");
+    console.log($(this).attr("data-internalid"));
+    console.log({
+        U_ID: uID,
+        B_ISBN: $(this).attr("data-internalid"),
+        quantity: $(this).parent().parent().parent().parent().find("input").val(),
+        version: $.translateVersion($(this).parent().sibling().filter("button").text())
+    });
     var deletion = $.ajax({
-        type: "DELETE",
-        contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
+        type: "PUT",
+        contentType: "application/json",
+        xhrFields: {withCredentials: true},
+        url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
+        data: {
+            U_ID: uID,
+            B_ISBN: $(this).attr("data-internalid"),
+            quantity: $(this).parent().parent().parent().parent().find("input").val(),
+            version: $.translateVersion($(this).parent().sibling().filter("button").text())
+        },
         success : function() {
-            console.log("success deleting");
-            var fixing = $.ajax({
-                type: "POST",
-                contentType: "application/x-www-form-urlencoded",
-                url: apiurl+"/user/shoppingBag/",
-                data: {
-                    U_ID: uID,
-                    B_ISBN: $(this).attr("data-internalid"),
-                    quantity: $(this).parent().parent().parent().parent().find("input").val(),
-                    version: $.translateVersion($(this).parent().sibling().filter("button").text())
-                },
-                success : function() {
-                    alert("version updated");
-                    $.setup();
-                }
-            });
+            console.log("success");
+            $.setup();
         },
         error : function(){
         }
@@ -234,6 +235,7 @@ $(".btn-danger").click(function(){
     $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
+        xhrFields: {withCredentials: true},
         url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
         success : function() {
             alert("book deleted");
@@ -249,20 +251,23 @@ $(".btn-danger").click(function(){
 $("#checkout").click(function(){
     //deletes all shoping bag elements from user's shopping bag
     let tot = 0;
-    for (i in shoppingBag){
-        let deletion = $.ajax({
+    console.log(shoppingBag);
+    for (var i in shoppingBag){
+        var deletion = $.ajax({
             type: "DELETE",
-            contentType: "application/x-www-form-urlencoded",
+            contentType: "application/json",
             url: apiurl+"/user/shoppingBag/"+shoppingBag[i].B_ISBN,
+            async: false,
+            xhrFields: {withCredentials: true},
             success : function(){
                 tot = tot+1;
             }
         });
-        if(tot != shoppingBag.length){
-            alert("errors were incountered while deleting the shopping Bag");
-        }
-        $.setup();
     }
+    if(tot != shoppingBag.length){
+        alert("errors were incountered while deleting the shopping Bag");
+    }
+    $.setup();
 });
 
 
