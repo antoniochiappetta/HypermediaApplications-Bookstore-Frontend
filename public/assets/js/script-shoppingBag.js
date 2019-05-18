@@ -173,12 +173,13 @@ $.setup = function(){
 
 
 $(".btn-light").click(function(){
-    let deletion = $.ajax({
+    console.log("updating quantity");
+    var deletion = $.ajax({
         type: "DELETE",
         contentType: "application/json",
         url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
         success : function() {
-            let fixing = $.ajax({
+            var fixing = $.ajax({
                 type: "POST",
                 contentType: "application/json",
                 url: apiurl+"/user/shoppingBag/",
@@ -190,6 +191,7 @@ $(".btn-light").click(function(){
                 },
                 success : function() {
                     alert("quantity updated");
+                    $.setup();
                 }
             });
         },
@@ -199,12 +201,14 @@ $(".btn-light").click(function(){
 });
 
 $(".dropdown-item-bookversion").click(function(){
-    let deletion = $.ajax({
+    console.log("updating version");
+    var deletion = $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/user/shoppingBag/"+$(this).attr(data-internalid),
         success : function() {
-            let fixing = $.ajax({
+            console.log("success deleting");
+            var fixing = $.ajax({
                 type: "POST",
                 contentType: "application/x-www-form-urlencoded",
                 url: apiurl+"/user/shoppingBag/",
@@ -216,6 +220,7 @@ $(".dropdown-item-bookversion").click(function(){
                 },
                 success : function() {
                     alert("version updated");
+                    $.setup();
                 }
             });
         },
@@ -225,7 +230,8 @@ $(".dropdown-item-bookversion").click(function(){
 });
 
 $(".btn-danger").click(function(){
-    let deletion = $.ajax({
+    console.log("deleting item");
+    $.ajax({
         type: "DELETE",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
@@ -235,6 +241,7 @@ $(".btn-danger").click(function(){
         },
         error : function(){
             alert("deletion failed");
+            $.setup();
         }
     });
 });
