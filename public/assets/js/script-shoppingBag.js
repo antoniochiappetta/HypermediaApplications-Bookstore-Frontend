@@ -172,82 +172,7 @@ $.setup = function(){
 }
 
 
-$("button.btn-light").live("click", function(){
-    console.log("updating quantity");
-    console.log($(this).attr("data-internalid"));
-    console.log({
-        U_ID: uID,
-        B_ISBN: $(this).attr("data-internalid"),
-        quantity: $(this).siblings().filter("input").val(),
-        version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
-    });
-    var deletion = $.ajax({
-        type: "PUT",
-        contentType: "application/json",
-        xhrFields: {withCredentials: true},
-        url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
-        data: {
-            U_ID: uID,
-            B_ISBN: $(this).attr("data-internalid"),
-            quantity: $(this).siblings().filter("input").val(),
-            version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
-        },
-        success : function() {
-            alert("quantity updated");
-            $.setup();
-        },
-        error : function(){
-        }
-    });
-});
 
-$("a.dropdown-item-bookversion").live("click", function(){
-    console.log("updating version");
-    console.log($(this).attr("data-internalid"));
-    console.log({
-        U_ID: uID,
-        B_ISBN: $(this).attr("data-internalid"),
-        quantity: $(this).parent().parent().parent().parent().find("input").val(),
-        version: $.translateVersion($(this).parent().sibling().filter("button").text())
-    });
-    var deletion = $.ajax({
-        type: "PUT",
-        contentType: "application/json",
-        xhrFields: {withCredentials: true},
-        url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
-        data: {
-            U_ID: uID,
-            B_ISBN: $(this).attr("data-internalid"),
-            quantity: $(this).parent().parent().parent().parent().find("input").val(),
-            version: $.translateVersion($(this).parent().sibling().filter("button").text())
-        },
-        success : function() {
-            console.log("success");
-            $.setup();
-        },
-        error : function(){
-        }
-    });
-});
-
-$("button.btn-danger").live("click", function(){
-    console.log("deleting item");
-    console.log($(this).attr("data-internalid"));
-    $.ajax({
-        type: "DELETE",
-        contentType: "application/x-www-form-urlencoded",
-        xhrFields: {withCredentials: true},
-        url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
-        success : function() {
-            alert("book deleted");
-            $.setup();
-        },
-        error : function(){
-            alert("deletion failed");
-            $.setup();
-        }
-    });
-});
 
 $("#checkout").click(function(){
     //deletes all shoping bag elements from user's shopping bag
@@ -273,13 +198,83 @@ $("#checkout").click(function(){
 
 
 $.setup();
-/*
-var booksEvent = $.ajax({
-    type: "GET",
-    contentType: "application/x-www-form-urlencoded",
-    async: false,
-    url: apiurl+"/events/?bookISBN="+booksArray[i].ISBN,
-    success : function() {
-        event = booksEvent.responseJSON.content[0];
-    }
-});*/
+
+$(function(){
+    $("button.btn-light").on("click", function(){
+        console.log("updating quantity");
+        console.log($(this).attr("data-internalid"));
+        console.log({
+            U_ID: uID,
+            B_ISBN: $(this).attr("data-internalid"),
+            quantity: $(this).siblings().filter("input").val(),
+            version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
+        });
+        var deletion = $.ajax({
+            type: "PUT",
+            contentType: "application/json",
+            xhrFields: {withCredentials: true},
+            url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
+            data: {
+                U_ID: uID,
+                B_ISBN: $(this).attr("data-internalid"),
+                quantity: $(this).siblings().filter("input").val(),
+                version: $.translateVersion($(this).parent().parent().find(".dropdown-toggle-bookversion").text())
+            },
+            success : function() {
+                alert("quantity updated");
+                $.setup();
+            },
+            error : function(){
+            }
+        });
+    });
+
+    $("a.dropdown-item-bookversion").on("click", function(){
+        console.log("updating version");
+        console.log($(this).attr("data-internalid"));
+        console.log({
+            U_ID: uID,
+            B_ISBN: $(this).attr("data-internalid"),
+            quantity: $(this).parent().parent().parent().parent().find("input").val(),
+            version: $.translateVersion($(this).parent().sibling().filter("button").text())
+        });
+        var deletion = $.ajax({
+            type: "PUT",
+            contentType: "application/json",
+            xhrFields: {withCredentials: true},
+            url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
+            data: {
+                U_ID: uID,
+                B_ISBN: $(this).attr("data-internalid"),
+                quantity: $(this).parent().parent().parent().parent().find("input").val(),
+                version: $.translateVersion($(this).parent().sibling().filter("button").text())
+            },
+            success : function() {
+                console.log("success");
+                $.setup();
+            },
+            error : function(){
+            }
+        });
+    });
+
+    $("button.btn-danger").on("click", function(){
+        console.log("deleting item");
+        console.log($(this).attr("data-internalid"));
+        $.ajax({
+            type: "DELETE",
+            contentType: "application/x-www-form-urlencoded",
+            xhrFields: {withCredentials: true},
+            url: apiurl+"/user/shoppingBag/"+$(this).attr("data-internalid"),
+            success : function() {
+                alert("book deleted");
+                $.setup();
+            },
+            error : function(){
+                alert("deletion failed");
+                $.setup();
+            }
+        });
+    });
+
+});

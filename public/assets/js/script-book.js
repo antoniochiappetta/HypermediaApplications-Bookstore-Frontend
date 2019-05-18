@@ -220,7 +220,7 @@ $("#buy").click(function(){
         alert("item not added: log in first");
     }
 
-    userID = responseUser.responseJSON.userId;
+    userID = responseUser.responseJSON.content.ID;
 
     var responsePost = $.ajax({
         type: "POST",

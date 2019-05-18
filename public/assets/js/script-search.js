@@ -88,11 +88,11 @@ $("#searchContent").empty();
     searchTerm = undefined;
 }
 else{
-    searchTerm = searchTerm.split("%20").join(" ");
+    
 }*/
 
 //prepare queries:
-
+searchTerm = searchTerm.split("%20").join(" ");
 //possible book search (except with author: user will open author's profile for those) //those books will be added after every found author)
 var bookTitle= {title: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookISBN=  {ISBN: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
@@ -104,7 +104,7 @@ var booksSearches= [bookTitle, bookGenre, bookTheme, bookReleaseDate];
 console.log(booksSearches);
 
 //possible author searches
-var authorID = {ID: searchTerm, limit: MAX_AUTHORS, page: page};
+var authorID = {ID: $.parseInt(searchTerm), limit: MAX_AUTHORS, page: page};
 var authorName = {name: searchTerm, limit: MAX_AUTHORS, page: page};
 var authorLastName = {last_name: searchTerm, limit: MAX_AUTHORS, page: page};
 
@@ -112,7 +112,7 @@ var authorsSearches = [authorName, authorLastName];
 
 //possible event searches
 
-var eventID = {ID: searchTerm, page: page, limit: MAX_EVENTS};
+var eventID = {ID: $.parseInt(searchTerm), page: page, limit: MAX_EVENTS};
 var eventVenue = {venue: searchTerm, page: page, limit: MAX_EVENTS};
 var eventAddress = {address: searchTerm, page: page, limit: MAX_EVENTS};
 var eventCity = {city: searchTerm, page: page, limit: MAX_EVENTS}
@@ -253,34 +253,36 @@ $.justSearchBooks = function(dataB){
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/books/",
+        async: false,
         data: dataB,
         success : function() {
             //console.log(booksResponse);
-            if (booksResponse!=undefined){
-                if (booksResponse.responseJSON.content!= undefined){
-                    console.log("BOOKS ");
-                    console.log(booksResponse);
-                    console.log(booksResponse.responseJSON.content);
-                    $.showBooks(booksResponse.responseJSON.content);
-                    if (booksResponse.responseJSON.content.length < MAX_BOOKS){
-                        $.checkIfContent(0, 1);
-                    }
-                    else{
-                        $.checkIfContent(0, 2);
-                    }
-                }
-                else{
-                    $.checkIfContent(0, 1);
-                }
-            }
-            else{
-                $.checkIfContent(0, 1);
-            }
+            
         },
         error : function(){
             $.checkIfContent(0,1);
         }
     });
+    if (booksResponse!=undefined){
+        if (booksResponse.responseJSON.content!= undefined){
+            console.log("BOOKS ");
+            console.log(booksResponse);
+            console.log(booksResponse.responseJSON.content);
+            $.showBooks(booksResponse.responseJSON.content);
+            if (booksResponse.responseJSON.content.length < MAX_BOOKS){
+                $.checkIfContent(0, 1);
+            }
+            else{
+                $.checkIfContent(0, 2);
+            }
+        }
+        else{
+            $.checkIfContent(0, 1);
+        }
+    }
+    else{
+        $.checkIfContent(0, 1);
+    }
 }
 
 if (type == "Books" || type == "all"){
@@ -337,32 +339,34 @@ $.justSearchAuthors = function(dataA){
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/authors/",
         data: dataA,
+        async: false,
         success : function() {
-            if (authorsResponse!=undefined){
-                if (authorsResponse.responseJSON.content!=undefined){
-                    console.log("AUTHORS ");
-                    console.log(authorsResponse);
-                    console.log(authorsResponse.responseJSON.content);
-                    $.showAuthors(authorsResponse.responseJSON.content);
-                    if (authorsResponse.responseJSON.content.length < MAX_AUTHORS){
-                        $.checkIfContent(1, 1);
-                    }
-                    else{
-                        $.checkIfContent(1, 2);
-                    }
-                }
-                else{
-                    $.checkIfContent(1, 1);
-                }
-            }
-            else{
-                $.checkIfContent(1, 1);
-            }
+            
         },
         error : function(){
-            $.checkIfContent(1,2);
+            $.checkIfContent(1,1);
         }
     });
+    if (authorsResponse!=undefined){
+        if (authorsResponse.responseJSON.content!=undefined){
+            console.log("AUTHORS ");
+            console.log(authorsResponse);
+            console.log(authorsResponse.responseJSON.content);
+            $.showAuthors(authorsResponse.responseJSON.content);
+            if (authorsResponse.responseJSON.content.length < MAX_AUTHORS){
+                $.checkIfContent(1, 1);
+            }
+            else{
+                $.checkIfContent(1, 2);
+            }
+        }
+        else{
+            $.checkIfContent(1, 1);
+        }
+    }
+    else{
+        $.checkIfContent(1, 1);
+    }
 }
 
 if (type == "Authors" || type == "all"){
@@ -424,33 +428,35 @@ $.justSearchEvents = function(dataE){
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/events/",
         data: dataE,
+        async: false,
         success : function() {
             //console.log(eventsResponse);
-            if (eventsResponse != undefined){
-                if (eventsResponse.responseJSON.content != undefined){
-                    console.log("EVENTS ");
-                    console.log(eventsResponse);
-                    console.log(eventsResponse.responseJSON.content);
-                    $.showEvents(eventsResponse.responseJSON.content);
-                    if (eventsResponse.responseJSON.content.length < MAX_EVENTS){
-                        $.checkIfContent(2, 1);
-                    }
-                    else{
-                        $.checkIfContent(2, 2);
-                    }
-                }
-                else{
-                    $.checkIfContent(2, 1);
-                }
-            }
-            else{
-                $.checkIfContent(2, 1);
-            }
+            
         },
         error : function(){
-            $.checkIfContent(2,2);
+            $.checkIfContent(2,1);
         }
     });
+    if (eventsResponse != undefined){
+        if (eventsResponse.responseJSON.content != undefined){
+            console.log("EVENTS ");
+            console.log(eventsResponse);
+            console.log(eventsResponse.responseJSON);
+            $.showEvents(eventsResponse.responseJSON);
+            if (eventsResponse.responseJSON.length < MAX_EVENTS){
+                $.checkIfContent(2, 1);
+            }
+            else{
+                $.checkIfContent(2, 2);
+            }
+        }
+        else{
+            $.checkIfContent(2, 1);
+        }
+    }
+    else{
+        $.checkIfContent(2, 1);
+    }
 }
 
 if (type == "Events" || type == "all"){

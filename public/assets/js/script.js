@@ -140,45 +140,17 @@ $(document).ready(function() {
         }
     }).resize();
 
-    //USER-LOGGED PART
-/*
-    function readCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    var apiurl = "https://bookstore-hypermedia-be.herokuapp.com/api";
-    //FIX FINDING USER ID
-    var responseLogin = $.ajax({
-        type: "POST",
-        contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/login",
-        data: {email: "antonioc@gmail.com", password: "unapassword" },
-        async: false,
-        success : function() {
-            console.log(readCookie("session"));
-            console.log(readCookie("session.sig"));
-            console.log("cookies: "+document.cookie);
-        },
-    })
-
-    var responseUSER = $.ajax({
+    //IF USER IS LOGGED...
+    var userID;
+    var responseUser = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
-        url: apiurl+"/user/8",
-        async: false,
-        success : function() {
-    
-            console.log(responseUSER);
-            console.log("cookies: "+document.cookie);
-            //$("#user").text();
-            
-        },
-    });*/
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        url: apiurl+"/user",
+        success: function(){
+            userID = responseUser.responseJSON.content.name;
+            $("a.nav-link a[href=login&registration.html").text(userID);
+        }
+    });
 });
