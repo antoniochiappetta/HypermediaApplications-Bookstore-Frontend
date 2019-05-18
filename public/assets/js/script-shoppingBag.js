@@ -23,7 +23,35 @@ $.updateQua = function(item){
         quantity: parseInt(item.siblings().filter("input").val()),
         version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
     });
-    var deletion = $.ajax({
+    $.ajax({
+        type: "DELETE",
+        contentType: "application/x-www-form-urlencoded",
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        async: false,
+        url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
+    });
+    var responsePost = $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        dataType: "json",
+        url: apiurl+"/user/shoppingBag",
+        data: JSON.stringify({
+            U_ID: parseInt(uID),
+            B_ISBN: item.attr("data-internalid"),
+            quantity: parseInt(item.siblings().filter("input").val()),
+            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+        }),
+        success : function(data) {
+            alert("Item changed correctly");
+        }
+    });
+    /*var deletion = $.ajax({
         type: "PUT",
         contentType: "application/json",
         xhrFields: {withCredentials: true},
@@ -41,7 +69,7 @@ $.updateQua = function(item){
         },
         error : function(){
         }
-    });
+    });*/
 };
 
 $.updateVer = function(item){
@@ -53,6 +81,36 @@ $.updateVer = function(item){
         quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
         version: $.translateVersion(item.parent().siblings().filter("button").text())
     });
+
+    $.ajax({
+        type: "DELETE",
+        contentType: "application/x-www-form-urlencoded",
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        async: false,
+        url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
+    });
+    var responsePost = $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        dataType: "json",
+        url: apiurl+"/user/shoppingBag",
+        data: JSON.stringify({
+            U_ID: parseInt(uID),
+            B_ISBN: item.attr("data-internalid"),
+            quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
+            version: $.translateVersion(item.parent().siblings().filter("button").text())
+        }),
+        success : function(data) {
+            alert("Item changed correctly");
+        }
+    });
+/*
     var deletion = $.ajax({
         type: "PUT",
         contentType: "application/json",
@@ -71,7 +129,7 @@ $.updateVer = function(item){
         },
         error : function(){
         }
-    });
+    });*/
 };
 
 $.delItem = function(item){
