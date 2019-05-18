@@ -128,12 +128,32 @@ if (page == 1){
 var wastherecontent = 1;
 var countqueries = [0, 0, 0];
 
+var typ;
+if (type == "Books"){
+    countqueries[1] = authorsSearches.length;
+    countqueries[2] = eventsSearches.length;
+    typ = 0;
+}
+else if (type == "Authors"){
+    countqueries[0] = booksSearches.length;
+    countqueries[2] = eventsSearches.length;
+    typ = 1;
+}
+else if (type == "Events"){
+    countqueries[0] = booksSearches.length;
+    countqueries[1] = authorsSearches.length;
+    typ = 2;
+}
+
 //check if this is the last page
-$.checkIfContent = function(type, producedContent){
+$.checkIfContent = function(num, producedContent){
+    if (type == "all") typ = num;
+    
+    console.log("p: "+producedContent);
     wastherecontent = wastherecontent*producedContent;
     console.log(wastherecontent);
     if (wastherecontent == 1){
-        countqueries[type] = countqueries[type] + 1;
+        countqueries[typ] = countqueries[typ] + 1;
         console.log(countqueries);
         if(countqueries[0]==booksSearches.length && countqueries[1]==authorsSearches.length && countqueries[2]==eventsSearches.length){
             $("#nextpage-button").remove();
@@ -238,7 +258,8 @@ $.justSearchBooks = function(dataB){
             //console.log(booksResponse);
             if (booksResponse!=undefined){
                 if (booksResponse.responseJSON.content!= undefined){
-                    console.log("BOOKS "+JSON.stringify(dataB) + "     ");
+                    console.log("BOOKS ");
+                    console.log(booksResponse);
                     console.log(booksResponse.responseJSON.content);
                     $.showBooks(booksResponse.responseJSON.content);
                     if (booksResponse.responseJSON.content.length < MAX_BOOKS){
@@ -319,7 +340,8 @@ $.justSearchAuthors = function(dataA){
         success : function() {
             if (authorsResponse!=undefined){
                 if (authorsResponse.responseJSON.content!=undefined){
-                    console.log("AUTHORS "+JSON.stringify(dataA) + "     ");
+                    console.log("AUTHORS ");
+                    console.log(authorsResponse);
                     console.log(authorsResponse.responseJSON.content);
                     $.showAuthors(authorsResponse.responseJSON.content);
                     if (authorsResponse.responseJSON.content.length < MAX_AUTHORS){
@@ -338,7 +360,7 @@ $.justSearchAuthors = function(dataA){
             }
         },
         error : function(){
-            $.checkIfContent(1,1);
+            $.checkIfContent(1,2);
         }
     });
 }
@@ -406,7 +428,8 @@ $.justSearchEvents = function(dataE){
             //console.log(eventsResponse);
             if (eventsResponse != undefined){
                 if (eventsResponse.responseJSON.content != undefined){
-                    console.log("EVENTS "+JSON.stringify(dataE) + "     ");
+                    console.log("EVENTS ");
+                    console.log(eventsResponse);
                     console.log(eventsResponse.responseJSON.content);
                     $.showEvents(eventsResponse.responseJSON.content);
                     if (eventsResponse.responseJSON.content.length < MAX_EVENTS){
@@ -425,7 +448,7 @@ $.justSearchEvents = function(dataE){
             }
         },
         error : function(){
-            $.checkIfContent(2,1);
+            $.checkIfContent(2,2);
         }
     });
 }
