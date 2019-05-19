@@ -48,7 +48,7 @@ $.updateQua = function(item){
             version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
         }),
         success : function(data) {
-            alert("Quantity changed correctly.");
+            alert("Quantity updated correctly.");
             $.setup();
         }
     });
@@ -257,7 +257,7 @@ $.showBooks = function(booksArray){
                                         <div class="col-9 col-md-3">
                                             <button class="btn-light rounded" data-internalid="`+book.ISBN+`">Quantity:</button>
                                             <input class="rounded" type="number" value="`+booksArray[i].quantity+`" min="1" max="10" step="1"/>
-                                            <span><button class="btn-info rounded" data-internalid="\`+book.ISBN+\`">Update</button></span>
+                                            <span><button class="btn-info rounded" data-internalid="`+book.ISBN+`">Update</button></span>
                                         </div>
                                         <div class="col-9 col-md-6 text-right ml-auto">
                                             <button type="button" class="btn btn-danger myButton mr-0" data-internalid="`+book.ISBN+`">Delete from shopping bag</button>
