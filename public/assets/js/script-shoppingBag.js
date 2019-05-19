@@ -144,11 +144,11 @@ $.delItem = function(item){
         crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
         success : function() {
-            alert("book deleted");
+            alert("Book deleted from your Shopping Bag");
             $.setup();
         },
         error : function(){
-            alert("deletion failed");
+            alert("Ops, something went wrong!");
             $.setup();
         }
     });
@@ -293,9 +293,25 @@ $.justSearchShoppingBags = function(userID){
                         NothingHere = false;
 
                     } else {
+
+                        //Case shopping bag is empty
                         $("#checkout").remove();
 
-                        $("#shoppingBagDescr").html("Your Shopping Bag is empty.")
+                        $("#content").empty();
+                        $("#content").append(`
+                        <div class="row">
+                            <div class="col">
+                            <h2>Shopping Bag</h2>
+                        </div>
+                        </div>
+
+                        <div class="row mb-5" id="empty_notlogged">
+                            <div class="col text-center my-auto py-5">
+                            <img src="../assets/img/bag.svg" href="index.html" width="80" height="80" alt="Logo" class="rounded m-3">
+                            <h5 id="shoppingBagDescr">Your Shopping Bag is empty.</h5>
+                        </div>
+                        </div>
+                            `)
 
                     }
                 }
