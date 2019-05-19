@@ -254,7 +254,7 @@ $.showBooks = function(booksArray){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-9 col-md-3">
+                                        <div class="col-9 col-md-5">
                                             <button class="btn-light rounded">Quantity:</button>
                                             <input class="rounded" type="number" value="`+booksArray[i].quantity+`" min="1" max="10" step="1"/>
                                             <button class="btn-info rounded" data-internalid="`+book.ISBN+`">Update</button>

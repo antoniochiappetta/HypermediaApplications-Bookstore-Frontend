@@ -140,65 +140,6 @@
             <h5 id="shoppingBagDescr">Loading...</h5>
         </div>
 
-        <div class="card myCard shoppingCard">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-2 col-md-2">
-                        <img src="`+book.picture+`" height="200" width="140" alt="Book cover">
-                    </div>
-                    <div class="col-12 col-md-12 col-lg-10 mt-3">
-                        <div class="row">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6 my-auto">
-                                        <a href="book.html?isbn=`+book.ISBN+`"><h2>`+book.title+`</h2></a>
-                                    </div>
-                                    <div class="col col-sm-6 text-right my-auto mr-0">
-                                        <h3 class="textVariant2">`+book.price+`$</h3>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="textVariant1"> Author: `+authorsHTML+`</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="textVariant1"> <a href="event.html?id=`+event.ID+`" class="textVariant1"> Presentation event for `+book.title+` </a> </h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col-8 col-md-3 mb-3">
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-bookversion" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                `+version+`
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-bookversion" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item dropdown-item-bookversion" data-internalid="`+book.ISBN+`">Paper Version</a>
-                                                <a class="dropdown-item dropdown-item-bookversion" data-internalid="`+book.ISBN+`">Digital Version</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-9 col-md-3">
-                                        <button class="btn-light rounded">Quantity:</button>
-                                        <input class="rounded" type="number" value="`+booksArray[i].quantity+`" min="1" max="10" step="1"/>
-                                        <button class="btn-info rounded" data-internalid="`+book.ISBN+`">Update</button>
-                                    </div>
-                                    <div class="col-9 col-md-6 text-right ml-auto">
-                                        <button type="button" class="btn btn-danger myButton mr-0" data-internalid="`+book.ISBN+`">Delete from shopping bag</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
 
