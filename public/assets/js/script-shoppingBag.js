@@ -288,15 +288,20 @@ $.justSearchShoppingBags = function(userID){
                     if(shoppingResponse.responseJSON.content.length > 0){
                         uID = shoppingResponse.responseJSON.content[0].U_ID;
 
-                        $("#empty_notlogged").remove();
+                        //Case load book
+                        $("#content").empty();
+                        $("#content").append(`
+                        <div class="row">
+                            <div class="col">
+                            <h2>Shopping Bag</h2>
+                        </div>
+                            `)
 
                         $.showBooks(shoppingResponse.responseJSON.content);
                         NothingHere = false;
 
                     } else {
                         //Case shopping bag is empty
-
-                        //$("#checkout").remove();
 
                         $("#content").empty();
                         $("#content").append(`
