@@ -27,7 +27,7 @@ var response = $.ajax({
         $("#picture").attr("src", author.picture);
         $("#name").text(author.name + " " + author.last_name);
         str = author.short_bio.split("\n").join("<br/>");
-        $("#bio").html("<h5>bio:</h5><p>"+str+"</p>");
+        $("#bio").html("<h5>Short bio:</h5><p>"+str+"</p>");
 
         var fromThisAuthor = $.ajax({
             type: "GET",
