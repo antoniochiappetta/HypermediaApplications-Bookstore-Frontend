@@ -32,7 +32,7 @@ var response = $.ajax({
         $("#picture").attr("href", book.picture);
         $("#picture").attr("src", book.picture);
         $("#title").text(book.title);
-        $("#event").text('Presentation for "'+book.title+'"');
+        $("#event").text('Presentation event for "'+book.title+'"');
         $("#breadcrumbtitle").text(book.title);
         $("#price").text(book.price+"$");
         str = book.abstract.split("\n").join("<br/>");
@@ -81,7 +81,7 @@ var response = $.ajax({
                     }
                     for (let j in author){
                         console.log(j);
-                        $("#authors").append(`<a href="author.html?id=`+author[j].ID+`" class="textVariant1" >`+author[j].name+` `+author[j].last_name+`. </a>`);
+                        $("#authors").append(`<a href="author.html?id=`+author[j].ID+`" class="textVariant1" >`+author[j].name+` `+author[j].last_name+`</a>`);
                     }
                     console.log(author[0].name);
                     
@@ -178,7 +178,7 @@ var response = $.ajax({
                         <div class="card-body text-left">
                         <h5>Rating: `+reviews[i].rating+`/5</h5>
                         <p>`+str+`</p>
-                        <p class="textVariant2">`+reviews[i].date+`</p>
+                        <p class="textVariant2">`+new Date(reviews[i].date).getDate()+`</p>
                         </div>
                         </div>`);
 
