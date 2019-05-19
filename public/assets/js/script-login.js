@@ -22,6 +22,7 @@ $("#log-in").click(function(){
         data: {email: email, password: password},
         async: false,
     });
+
     if (responseUS!= undefined){
         if (responseUS.status == 200){
             $("#inputEmailLogin").val("")
@@ -29,8 +30,13 @@ $("#log-in").click(function(){
             done=true;
         }
     }
+
     if (!done){
-        alert("login unsuccessful");
+        alert("Email or Password not correct, please try again.");
+    }else {
+        //Redirect home
+        window.location.href = "../index.html";
     }
+
     console.log(responseUS);
 });

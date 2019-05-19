@@ -32,26 +32,33 @@ $("#sign-up").click(function(){
                 withCredentials: true
             },
             error: function(){
-                alert("Registration unsuccessful");
-            }
-        });
-
-        var responseUS = $.ajax({
-            type: "POST",
-            contentType: "application/x-www-form-urlencoded",
-            url: apiurl+"/user/login",
-            data: {email: email, password: password1},
-            crossDomain: true,
-            xhrFields: {
-                withCredentials: true
+                alert("Something went wrong, please try again to Sign up");
             },
-            async: false,
-            error: function(){
-                console.log("no-login");
+            success: function () {
+                alert("Welcome on board!")
+                //After sign up in general you're already logged in, so:
+
+                var responseUS = $.ajax({
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    url: apiurl+"/user/login",
+                    data: {email: email, password: password1},
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    async: false,
+                    error: function(){
+                        console.log("Ops, something went wrong after your registration.");
+                    }
+                });
+
+                //Redirect home
+                window.location.href = "../index.html";
             }
         });
 
-                $("#inputEmailSignUp").val("");
+        /*        $("#inputEmailSignUp").val("");
                 $("#inputPasswordSignUp").val("");
                 $("#inputPasswordSignUpAgain").val("");
                 $("#inputNameSignUp").val("");
@@ -60,7 +67,7 @@ $("#sign-up").click(function(){
                 console.log(document.cookie);
     
                 //alert("User Registered Successfully");
-                //console.log("User-Logged");
+                //console.log("User-Logged");*/
     }
     
 });

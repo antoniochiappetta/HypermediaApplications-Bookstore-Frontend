@@ -140,17 +140,23 @@ $(document).ready(function() {
         }
     }).resize();
 
-    //IF USER IS LOGGED...
-    var userID;
+    //Dynamic switch between Login and Logout when user logged or not
+    var texttoShow;
+
     var responseUser = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         xhrFields: {withCredentials: true},
         crossDomain: true,
         url: apiurl+"/user",
-        success: function(){
-            userID = responseUser.responseJSON.content.name;
-            $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+userID);
-        }
+        async: false
     });
+
+    if (responseUser == undefined || responseUser.responseJSON.content == undefined){
+        texttoShow="Log in or Sign up";
+        $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
+    } else {
+        texttoShow = "Log out";
+        $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
+    }
 });
