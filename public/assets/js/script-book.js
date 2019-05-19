@@ -178,7 +178,7 @@ var response = $.ajax({
                         <div class="card-body text-left">
                         <h5>Rating: `+reviews[i].rating+`/5</h5>
                         <p>`+str+`</p>
-                        <p class="textVariant2">`+new Date(reviews[i].date).getDate()+`</p>
+                        <p class="textVariant2">`+new Date(reviews[i].date).toDateString()+`</p>
                         </div>
                         </div>`);
 
