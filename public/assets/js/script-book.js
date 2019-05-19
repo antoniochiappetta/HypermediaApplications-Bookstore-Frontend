@@ -216,32 +216,33 @@ $("#buy").click(function(){
         async: false
     });
 
-    if (responseUser == null || responseUser.responseJSON == null){
+    if (responseUser == undefined || responseUser.responseJSON.content == undefined){
         alert("Item not added: Log in first");
+        window.location.href = "../pages/login&registration.html";
+    } else{
+        userID = responseUser.responseJSON.content.ID;
+
+        var responsePost = $.ajax({
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            xhrFields: {withCredentials: true},
+            crossDomain: true,
+            dataType: "json",
+            url: apiurl+"/user/shoppingBag",
+            data: JSON.stringify({
+                U_ID: userID,
+                B_ISBN: isbnRead,
+                quantity: qua,
+                version: ver
+            }),
+            success : function(data) {
+                alert("Item added to your Shopping Bag");
+            }
+        });
+        console.log("QVI");
+        console.log(responsePost);
     }
-
-    userID = responseUser.responseJSON.content.ID;
-
-    var responsePost = $.ajax({
-        type: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        xhrFields: {withCredentials: true},
-        crossDomain: true,
-        dataType: "json",
-        url: apiurl+"/user/shoppingBag",
-        data: JSON.stringify({
-            U_ID: userID,
-            B_ISBN: isbnRead,
-            quantity: qua,
-            version: ver
-        }),
-        success : function(data) {
-            alert("Item added correctly");
-        }
-    });
-    console.log("QVI");
-    console.log(responsePost);
 });
