@@ -149,8 +149,8 @@ $.delItem = function(item){
 
         },
         error : function(){
-            alert("Ops, something went wrong!");
             $.setup();
+            alert("Ops, something went wrong!");
         }
     });
 };
@@ -294,9 +294,9 @@ $.justSearchShoppingBags = function(userID){
                         NothingHere = false;
 
                     } else {
-
                         //Case shopping bag is empty
-                        $("#checkout").remove();
+
+                        //$("#checkout").remove();
 
                         $("#content").empty();
                         $("#content").append(`
