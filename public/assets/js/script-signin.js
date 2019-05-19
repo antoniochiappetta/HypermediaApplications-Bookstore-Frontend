@@ -68,6 +68,8 @@ $("#sign-up").click(function(){
     
                 //alert("User Registered Successfully");
                 //console.log("User-Logged");*/
+    }else {
+        alert("The two password inserted are not the same, please try again.")
     }
     
 });
