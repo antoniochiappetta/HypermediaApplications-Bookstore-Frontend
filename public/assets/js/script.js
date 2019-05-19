@@ -154,6 +154,10 @@ $(document).ready(function() {
 
     if (responseUser == undefined || responseUser.responseJSON.content == undefined){
         texttoShow="Log in or Sign up";
+
+        //Case Shopping Bag page
+        $("#shoppingBagDescr").html("Log in to have a look at your Shopping Bag.")
+
     } else {
         texttoShow = "Log out";
     }
