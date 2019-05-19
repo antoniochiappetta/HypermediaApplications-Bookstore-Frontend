@@ -139,7 +139,7 @@ var response = $.ajax({
             }
             let authorHTML = "";
             for (k in authorSim){
-                authorHTML = authorHTML + `<a href="author.html?id=`+authorSim[k].ID+`">`+authorSim[k].name+" "+authorSim[k].last_name+`. </a>`
+                authorHTML = authorHTML + `<a href="author.html?id=`+authorSim[k].ID+`">`+authorSim[k].name+" "+authorSim[k].last_name+`</a>`
             }
             $("#content").append(`
                 <div class="card myCard col-8 col-md-4 col-lg-3">
@@ -216,8 +216,8 @@ $("#buy").click(function(){
         async: false
     });
 
-    if (responseUser == undefined || responseUser.responseJSON == undefined){
-        alert("item not added: log in first");
+    if (responseUser == null || responseUser.responseJSON == null){
+        alert("Item not added: Log in first");
     }
 
     userID = responseUser.responseJSON.content.ID;
