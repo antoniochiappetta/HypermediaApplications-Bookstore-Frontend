@@ -126,8 +126,8 @@ var id = $.urlParam('id');
 var notFirstEnter = false;
 
 if(q == null && page == null && genre == null && theme == null){
-    //window.location.href = window.location.href + "?page=1";
-    //page = "1";
+    window.location.href = window.location.href + "?page=1";
+    page = "1";
     notFirstEnter = true;
 }
 
@@ -138,29 +138,29 @@ if ( page !=  null ) {
         page = 1;
     }
 }
-/*else{
+else{
     window.location.href = window.location.href + "&page=1";
     page = 1;
-}*/
+}
 console.log("page="+page);
 //genre
 
 if ( genre!= null ){
     $("#dropdownMenuButtonGenre").text(genre.split("%20").join(" "));
 }
-/*else{
+else{
     window.location.href = (window.location.href + "&genre=All").split("html&").join("html?");
     genre = "All";
-}*/
+}
 //theme
 
 if ( theme!= null ){
     $("#dropdownMenuButtonTheme").text(theme.split("%20").join(" "));
 }
-/*else{
+else{
     window.location.href = (window.location.href + "&theme=All").split("html&").join("html?");
     theme = "All";
-}*/
+}
 
 //SETTING OF LISTS-----------------------------------------------------------------------------------------
 
