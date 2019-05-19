@@ -79,7 +79,7 @@ $.updateVer = function(item){
     console.log({
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
-        quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
+        quantity: parseInt(item.parent().parent().find("input").val()),
         version: $.translateVersion(item.parent().siblings().filter("button").text())
     });
 
@@ -104,7 +104,7 @@ $.updateVer = function(item){
         data: JSON.stringify({
             U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
-            quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
+            quantity: parseInt(item.parent().parent().find("input").val()),
             version: $.translateVersion(item.parent().siblings().filter("button").text())
         }),
         success : function(data) {
@@ -255,7 +255,7 @@ $.showBooks = function(booksArray){
                                             </div>
                                         </div>
                                         <div class="col-9 col-md-3">
-                                            <button class="btn-light rounded" data-internalid="`+book.ISBN+`">Quantity:</button>
+                                            <button class="btn-light rounded">Quantity:</button>
                                             <input class="rounded" type="number" value="`+booksArray[i].quantity+`" min="1" max="10" step="1"/>
                                             <span><button class="btn-info rounded" data-internalid="`+book.ISBN+`">Update</button></span>
                                         </div>
