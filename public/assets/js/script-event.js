@@ -26,7 +26,7 @@ var response = $.ajax({
         console.log(event);
 
         //str = "<p>"+.split("\n").join("</p><p>")+"</p>";
-        $("#description").html("<p>city: "+event.city+"</p><p>address: "+event.address+"</p><p>venue :"+event.venue+"</p><p>from "+event.starting_date+" to "+event.ending_date+"</p>");
+        $("#description").html("<p>City: "+event.city+", "+event.address+"</p><p>Place :"+event.venue+"</p><p>From "+new Date(event.starting_date).toDateString()+" to "+new Date(event.starting_date).toDateString()+"</p>");
 
         
         var eventBook = $.ajax({
