@@ -144,8 +144,9 @@ $.delItem = function(item){
         crossDomain: true,
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
         success : function() {
-            alert("Book deleted from your Shopping Bag");
             $.setup();
+            alert("Book deleted from your Shopping Bag");
+
         },
         error : function(){
             alert("Ops, something went wrong!");
