@@ -216,11 +216,17 @@ $("#buy").click(function(){
         async: false
     });
 
-    if (responseUser == null || responseUser.responseJSON == null){
+    userID = responseUser.responseJSON.content.ID;
+
+    if (userID == null){
         alert("Item not added: Log in first");
     }
 
-    userID = responseUser.responseJSON.content.ID;
+    /*if (responseUser == null || responseUser.responseJSON == null){
+        alert("Item not added: Log in first");
+    }
+
+    userID = responseUser.responseJSON.content.ID;*/
 
     var responsePost = $.ajax({
         type: "POST",
