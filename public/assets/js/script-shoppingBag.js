@@ -234,7 +234,7 @@ $.showBooks = function(booksArray){
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="textVariant1"> Presentation event: <a href="event.html?id=`+event.ID+`" class="textVariant1"> Presentation event for `+book.title+` </a> </h5>
+                                            <h5 class="textVariant1"> <a href="event.html?id=`+event.ID+`" class="textVariant1"> Presentation event for `+book.title+` </a> </h5>
                                         </div>
                                     </div>
                                 </div>
@@ -288,10 +288,18 @@ $.justSearchShoppingBags = function(userID){
                         uID = shoppingResponse.responseJSON.content[0].U_ID;
                         $.showBooks(shoppingResponse.responseJSON.content);
                         NothingHere = false;
+
+                    } else {
+                        $("#checkout").remove();
+
+                        $("#shoppingBagDescr").html("Your Shopping Bag is empty.")
+
                     }
                 }
             }
-        },
+        }
+
+        /*,
         always : function(){
             if(NothingHere){
                 $("#checkout").remove();
@@ -300,7 +308,7 @@ $.justSearchShoppingBags = function(userID){
                 $("#content").html('<div class="col"> <h2>Shopping Bag</h2></br><h3>Empty bag</h3>  </div>');
 
             }
-        }
+        }*/
     });
 }
 
@@ -310,7 +318,7 @@ $.justSearchShoppingBags = function(userID){
 //var uID = 8;
 
 $.setup = function(){
-    $("#content").html('<div class="col"> <h2>Shopping Bag</h2> </div>');
+    //$("#content").html('<div class="col"> <h2>Shopping Bag</h2> </div>');
     $.justSearchShoppingBags();
 }
 

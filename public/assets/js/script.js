@@ -154,9 +154,10 @@ $(document).ready(function() {
 
     if (responseUser == undefined || responseUser.responseJSON.content == undefined){
         texttoShow="Log in or Sign up";
-        $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
     } else {
         texttoShow = "Log out";
-        $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
     }
+    $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
+
+
 });
