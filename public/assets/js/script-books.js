@@ -220,7 +220,7 @@ $("#nextpage-button").wrap( '<a href="'+window.location.href.split("page="+page)
 //----------------------------------------------------------------------------------------------------------------
 
 //EMPTY THE SAMPLE BOOKS LIST
-$("#books").empty();
+//$("#books").empty();
 
 //FILL UP THE BOOKS TO SEE
 
