@@ -286,6 +286,9 @@ $.justSearchShoppingBags = function(userID){
                 if (shoppingResponse.responseJSON.content!= undefined){
                     if(shoppingResponse.responseJSON.content.length > 0){
                         uID = shoppingResponse.responseJSON.content[0].U_ID;
+
+                        $("#empty_notlogged").remove();
+
                         $.showBooks(shoppingResponse.responseJSON.content);
                         NothingHere = false;
 
