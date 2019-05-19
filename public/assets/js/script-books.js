@@ -41,7 +41,7 @@ $.showBooks = function(booksArray){
             <div class="card myCard ">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col col-md">
+                        <div class="col col-md text-center">
                             <img src="`+booksArray[i].picture+`" height="140" width="100" alt="Book cover">
                         </div>
                         <div class="col-12 col-md-12 col-lg-9 mt-3">
