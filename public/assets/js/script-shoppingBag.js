@@ -291,8 +291,7 @@ $.justSearchShoppingBags = function(userID){
                         //Case load book
                         $("#content").empty();
                         $("#content").append(`
-                        <div class="row">
-                            <div class="col">
+                        <div class="col-12">
                             <h2>Shopping Bag</h2>
                         </div>
                             `)
@@ -305,17 +304,13 @@ $.justSearchShoppingBags = function(userID){
 
                         $("#content").empty();
                         $("#content").append(`
-                        <div class="row">
-                            <div class="col">
+                        <div class="col-12">
                             <h2>Shopping Bag</h2>
                         </div>
-                        </div>
 
-                        <div class="row mb-5" id="empty_notlogged">
-                            <div class="col text-center my-auto py-5">
+                        <div class="col-12 text-center mb-5 py-5">
                             <img src="../assets/img/bag.svg" href="index.html" width="80" height="80" alt="Logo" class="rounded m-3">
                             <h5 id="shoppingBagDescr">Your Shopping Bag is empty.</h5>
-                        </div>
                         </div>
                             `)
 
