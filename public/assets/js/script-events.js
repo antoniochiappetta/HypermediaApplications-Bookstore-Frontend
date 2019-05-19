@@ -119,7 +119,7 @@ $("#nextpage-button").wrap( '<a href="'+window.location.href.split("page="+page)
 //----------------------------------------------------------------------------------------------------------------
 
 //EMPTY THE SAMPLE BOOKS LIST
-$("#events").empty();
+//$("#events").empty();
 
 //FILL UP THE events TO SEE
 
