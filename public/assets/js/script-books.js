@@ -322,11 +322,11 @@ if (genre != "All" ){
 if (q != null){
     //favourite books
     if (q == "theme"){
-        data.theme = theme;
+        data.theme = theme.split("%20").join(" ");
         $.justSearch(data);
     }
     else if (q == "genre"){
-        data.genre = genre;
+        data.genre = genre.split("%20").join(" ").split("%27").join("'");
         $.justSearch(data);
     }
     else if (q == "favourite"){  

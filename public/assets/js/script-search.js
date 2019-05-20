@@ -101,7 +101,7 @@ else{
 searchTerm = searchTerm.split("%20").join(" ");
 //possible book search (except with author: user will open author's profile for those) //those books will be added after every found author)
 var bookTitle= {title: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
-var bookISBN=  {ISBN: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
+var bookISBN=  {ISBN: searchTerm/*, order_type: orderType, page: page, limit: MAX_BOOKS*/};
 var bookGenre= {genre: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookTheme= {theme: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookReleaseDate= {release_date: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
@@ -111,8 +111,8 @@ console.log(booksSearches);
 
 //possible author searches
 var authorID = {ID: parseInt(searchTerm), limit: MAX_AUTHORS, page: page};
-var authorName = {name: searchTerm, limit: MAX_AUTHORS, page: page};
-var authorLastName = {last_name: searchTerm, limit: MAX_AUTHORS, page: page};
+var authorName = {name: searchTerm/*, limit: MAX_AUTHORS, page: page*/};
+var authorLastName = {last_name: searchTerm/*, limit: MAX_AUTHORS, page: page*/};
 
 var authorsSearches = [authorName, authorLastName];
 
