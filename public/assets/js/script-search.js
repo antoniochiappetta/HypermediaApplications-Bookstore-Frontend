@@ -374,7 +374,7 @@ $.justSearchAuthors = function(dataA){
                 }
             }
             else{
-                $.checkIfContent(1, 2);
+                $.checkIfContent(1, 1);
             }
         }
         else{
