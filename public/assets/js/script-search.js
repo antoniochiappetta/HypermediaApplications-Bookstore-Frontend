@@ -21,8 +21,10 @@ var page = $.urlParam("page");
 var order = $.urlParam("order");
 var type = $.urlParam("type");
 
+var newURL = window.location.href;
+
 if(searchTerm == null && page == null && order == null){
-    window.location.href = window.location.href + "?page=1";
+    newURL = newURL + "?page=1";
     page = "1";
     notFirstEnter = false;
 }
@@ -35,7 +37,7 @@ if ( page !=  null ) {
     }
 }
 else{
-    window.location.href = (window.location.href + "&page=1").split("html&").join("html?");
+    newURL = (newURL + "&page=1").split("html&").join("html?");
     page = 1;
 }
 
@@ -47,8 +49,12 @@ if (order != null){
     $("#dropdownMenuButton").text(order.split("%20").join(" "));
 }
 else{
-    window.location.href = (window.location.href + "&order=Alphabetical%20Order").split("html&").join("html?");
+    newURL = (newURL + "&order=Alphabetical%20Order").split("html&").join("html?");
     order = "Alphabetical%20Order";
+}
+
+if (newURL != window.location.href){
+    window.location.href = newURL;
 }
 
 //setting for filter searches
