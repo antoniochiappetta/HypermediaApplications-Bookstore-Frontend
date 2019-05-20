@@ -13,7 +13,7 @@ $.urlParam = function(name){
 var isbnRead = $.urlParam('isbn');
 
 $("#showMoreReviews").remove();
-$("#showMoreBooks").attr("href", "./books.html?q=similarto&isbn="+isbnRead);
+$("#showMoreBooks").attr("href", "./books.html?page=1&q=similarto&isbn="+isbnRead);
 
 console.log(isbnRead);
 var book;
