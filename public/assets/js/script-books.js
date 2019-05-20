@@ -7,7 +7,7 @@ const MAX_BOOKS = 3;
 //USEFUL FUNCTIONS
 
 $.showBooks = function(booksArray){
-    $("#books").empty();
+    //$("#books").empty();
     for (let i in booksArray){
         console.log(booksArray[i]);
         let author = [{ID: -1, name: "not", last_name: "found"}];
@@ -62,7 +62,7 @@ $.showBooks = function(booksArray){
 
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="textVariant1"> Presentation event: <a href="event.html?id=`+event.ID+`" class="textVariant1">Presentation Event for "`+booksArray[i].title+`"</a> </h5>
+                                    <h5 class="textVariant1"><a href="event.html?id=`+event.ID+`" class="textVariant1">Presentation Event for "`+booksArray[i].title+`"</a> </h5>
                                 </div>
                             </div>
 
