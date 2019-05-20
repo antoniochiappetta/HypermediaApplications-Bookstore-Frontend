@@ -126,54 +126,7 @@ var id = $.urlParam('id');
 var notFirstEnter = false;
 
 
-//Set the url just one time for a single refresh
-
-var urlString="";
-
-if(q == null && page == null && genre == null && theme == null){
-    urlString = urlString + "?page=1";
-    page = "1";
-    notFirstEnter = true;
-}
-
-//page
-if ( page !=  null ) {
-    page = parseInt(page);
-    if (page<1){
-        page = 1;
-    }
-}
-else{
-    urlString= urlString + "&page=1";
-    page = 1;
-}
-console.log("page="+page);
-//genre
-
-if ( genre!= null ){
-    $("#dropdownMenuButtonGenre").text(genre.split("%20").join(" "));
-}
-else{
-    urlString = (urlString + "&genre=All").split("html&").join("html?");
-    genre = "All";
-}
-//theme
-
-if ( theme!= null ){
-    $("#dropdownMenuButtonTheme").text(theme.split("%20").join(" "));
-}
-else{
-    urlString = (urlString + "&theme=All").split("html&").join("html?");
-    theme = "All";
-}
-
-
-//Set the url just one time for a single refresh here
-
-window.location.href = window.location.href + urlString;
-
-
-/*if(q == null && page == null && genre == null && theme == null){
+f(q == null && page == null && genre == null && theme == null){
     window.location.href = window.location.href + "?page=1";
     page = "1";
     notFirstEnter = true;
@@ -208,7 +161,7 @@ if ( theme!= null ){
 else{
     window.location.href = (window.location.href + "&theme=All").split("html&").join("html?");
     theme = "All";
-}*/
+}
 
 //SETTING OF LISTS-----------------------------------------------------------------------------------------
 
