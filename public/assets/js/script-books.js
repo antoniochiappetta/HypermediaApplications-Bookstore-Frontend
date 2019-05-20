@@ -126,12 +126,14 @@ console.log(q + " " + page);
 //these are stored with %20s instead of spaces
 var genre = $.urlParam('genre');
 if (q!="genre" && genre!= null){
-    newURL = newURL.split("&genre="+genre).join("");
+    console.log("genredeletion");
+    newURL = newURL.split("&genre="+genre).join("").split("&genre="+genre.split("%20").join(" ")).join("");
     genre = null;
 }
 var theme = $.urlParam('theme');
 if(q!= "theme" && theme != null){
-    newUrl = newURL.split("&theme="+theme).join("");
+    console.log("themedeletion");
+    newUrl = newURL.split("&theme="+theme).join("").split("&theme="+theme.split("%20").join(" ")).join("");
     theme = null;
 }
 console.log(genre+ " " + theme);
