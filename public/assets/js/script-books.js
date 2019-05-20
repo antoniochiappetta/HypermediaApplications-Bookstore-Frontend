@@ -7,7 +7,8 @@ const MAX_BOOKS = 3;
 //USEFUL FUNCTIONS
 
 $.showBooks = function(booksArray){
-    //$("#books").empty();
+    $("#books").empty();
+    $("#books").hide();
     for (let i in booksArray){
         console.log(booksArray[i]);
         let author = [{ID: -1, name: "not", last_name: "found"}];
@@ -73,6 +74,7 @@ $.showBooks = function(booksArray){
             </div>
         `);
     }
+    $("#books").show();
 }
 
 $.justSearch = function(data){
