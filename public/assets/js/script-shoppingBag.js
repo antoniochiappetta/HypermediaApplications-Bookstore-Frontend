@@ -336,8 +336,6 @@ $.justSearchShoppingBags = function(userID){
 
 
 //PREPARE-------------------------------------------------------------
-//FIND A WAY TO OBTAIN THE USER ID...?
-//var uID = 8;
 
 $.setup = function(){
     //$("#content").html('<div class="col"> <h2>Shopping Bag</h2> </div>');
