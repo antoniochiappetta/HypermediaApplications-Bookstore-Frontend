@@ -209,8 +209,9 @@ var responseT = $.ajax({
 
         var themes = responseT.responseJSON.content;
 
-        $("#themes").empty();
-        if (q == "theme"){
+        //$("#themes").empty();
+        $("#themes").html(`<a class="dropdown-item dropdown-item-booktheme" href="./books.html?page=1&q=theme&theme=All">All</a>`);
+        /*if (q == "theme"){
             $("#themes").append(`<a class="dropdown-item dropdown-item-booktheme" href="`+window.location.href.split("page="+page).join("page=1").split("theme="+theme).join("theme=All")+`">All</a>`);
         }
         else{
@@ -220,11 +221,12 @@ var responseT = $.ajax({
             else{
                 $("#themes").append(`<a class="dropdown-item dropdown-item-booktheme" href="`+window.location.href.split("page="+page).join("page=1")+"&q=theme"+"&theme=All"+`">All</a>`);
             }
-        }
+        }*/
 
 
         for (i in themes){
-            if (q == "theme"){
+            $("#themes").html(`<a class="dropdown-item dropdown-item-booktheme" href="./books.html?page=1&q=theme&theme=`+themes[i].split(" ").join("%20")+`">`+themes[i]+`</a>`);
+            /*if (q == "theme"){
                 $("#themes").append(`<a class="dropdown-item dropdown-item-booktheme" href=`+window.location.href.split("page="+page).join("page=1").split("theme="+theme).join("theme="+themes[i].split(" ").join("%20"))+`>`+themes[i]+`</a>`);
             }
             else{
@@ -234,7 +236,7 @@ var responseT = $.ajax({
                 else{
                     $("#themes").append(`<a class="dropdown-item dropdown-item-booktheme" href="`+window.location.href.split("page="+page).join("page=1")+ "&q=theme"+"&theme="+themes[i].split(" ").join("%20")+`">`+themes[i]+`</a>`);
                 }
-            }
+            }*/
         }
 
     }
@@ -249,7 +251,8 @@ var responseG = $.ajax({
         
         var genres = responseG.responseJSON.content;
 
-        if(q=="genre"){
+        $("#genres").html(`<a class="dropdown-item dropdown-item-bookgenre" href="./books.html?page=1&q=genre&genre=All">All</a>`);
+        /*if(q=="genre"){
             $("#genres").html(`<a class="dropdown-item dropdown-item-bookgenre" href=`+window.location.href.split("page="+page).join("page=1").split("genre="+genre).join("genre=All")+`>All</a>`);
         }
         else{
@@ -259,10 +262,11 @@ var responseG = $.ajax({
             else{
                 $("#genres").append(`<a class="dropdown-item dropdown-item-bookgenre" href="`+window.location.href.split("page="+page).join("page=1") + "&q=genre"+"&genre=All"+`">All</a>`);
             }
-        }
+        }*/
 
         for (i in genres){
-            if (q=="genre"){
+            $("#genres").append(`<a class="dropdown-item dropdown-item-bookgenre" href="./books.html?page=1&q=genre&genre=`+genres[i].split(" ").join("%20")+`">`+genres[i]+`</a>`);
+            /*if (q=="genre"){
                 $("#genres").append(`<a class="dropdown-item dropdown-item-bookgenre" href=`+window.location.href.split("page="+page).join("page=1").split("genre="+genre).join("genre="+genres[i].split(" ").join("%20"))+`>`+genres[i]+`</a>`);
             }
             else{
@@ -272,7 +276,7 @@ var responseG = $.ajax({
                 else{
                     $("#genres").append(`<a class="dropdown-item dropdown-item-bookgenre" href="`+window.location.href.split("page="+page).join("page=1")+"&q=genre"+"&genre="+genres[i].split(" ").join("%20")+`">`+genres[i]+`</a>`);
                 }
-            }
+            }*/
         }
 
     }
@@ -388,11 +392,11 @@ if (q != null){
 }
 else {
     //only if the book page has not been just opened
-    if (notFirstEnter){
+    /*if (notFirstEnter){
         //normal filtering
-        $.justSearch(data);
+        //$.justSearch(data);
     }
-    else{
+    else{*/
         $("#nextpage-button").remove();
-    }
+    //}
 }
