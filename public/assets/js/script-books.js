@@ -115,20 +115,31 @@ $.urlParam = function(name){
 
 //READ BOOKS PARAMETERS------------------------------------------------------------------------------------------
 
+
+
+var newURL = window.location.href;
+
 var q = $.urlParam('q');
 var page = $.urlParam('page');
+console.log(q + " " + page);
 
 //these are stored with %20s instead of spaces
 var genre = $.urlParam('genre');
+if (q!="genre" && genre!= null){
+    newURL = newURL.split("&genre="+genre).join("");
+    genre = null;
+}
 var theme = $.urlParam('theme');
+if(q!= "theme" && theme != null){
+    newUrl = newURL.split("&theme="+theme).join("");
+    theme = null;
+}
 console.log(genre+ " " + theme);
 
 var isbn = $.urlParam("isbn");
 var id = $.urlParam('id');
 
 var notFirstEnter = false;
-
-var newURL = window.location.href;
 
 if(q == null && page == null ){
     newURL = (newURL + "&page=1").split("html&").join("html?");
@@ -150,19 +161,15 @@ else{
 console.log("page="+page);
 //similarto
 
-if (q!="similarto"){
+if (q!="similarto" && isbn!= null){
     newURL = newURL.split("&isbn="+isbn).join("");
     isbn = null;
 }
 
 //genre
-if (q!="genre"){
-    newURL = newURL.split("&genre="+genre).join("");
-    genre = null;
-}
 
 if ( genre!= null ){
-    $("#dropdownMenuButtonGenre").text(genre.split("%20").join(" "));
+    $("#dropdownMenuButtonGenre").text(genre.split("%20").join(" ").split("%27").join("'"));
 }
 else{
     if (q == "genre"){
@@ -171,11 +178,6 @@ else{
     }
 }
 //theme
-
-if(q != "theme"){
-    newUrl = newURL.split("&theme="+theme).join("");
-    theme = null;
-}
 
 if ( theme!= null ){
     $("#dropdownMenuButtonTheme").text(theme.split("%20").join(" "));
