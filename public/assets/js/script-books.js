@@ -126,7 +126,7 @@ var id = $.urlParam('id');
 var notFirstEnter = false;
 
 
-f(q == null && page == null && genre == null && theme == null){
+if(q == null && page == null && genre == null && theme == null){
     window.location.href = window.location.href + "?page=1";
     page = "1";
     notFirstEnter = true;
