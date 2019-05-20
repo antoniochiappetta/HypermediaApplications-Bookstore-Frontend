@@ -256,7 +256,7 @@ $.showBooks = function(booksArray){
 
 $.justSearchBooks = function(dataB){
     console.log ("requested books:"+JSON.stringify(dataB));
-    let booksResponse = $.ajax({
+    var booksResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/books/",
@@ -346,7 +346,7 @@ $.showAuthors = function(authorsArray){
 
 $.justSearchAuthors = function(dataA){
     console.log ("requested authors:"+JSON.stringify(dataA));
-    let authorsResponse = $.ajax({
+    var authorsResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/authors/",
@@ -440,7 +440,7 @@ $.showEvents = function(eventsArray){
 
 $.justSearchEvents = function(dataE){
     console.log ("requested events:"+JSON.stringify(dataE));
-    let eventsResponse = $.ajax({
+    var eventsResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/events/",
