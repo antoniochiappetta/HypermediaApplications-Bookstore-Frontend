@@ -129,7 +129,7 @@ var eventCity = {city: searchTerm, page: page, limit: MAX_EVENTS}
 
 var eventsSearches = [eventVenue, eventAddress, eventCity];
 
-if (page == 1){
+if (page == 1 && parseInt(searchTerm)!= null){
     booksSearches.push(bookISBN);
     authorsSearches.push(authorID);
     eventsSearches.push(eventID);
