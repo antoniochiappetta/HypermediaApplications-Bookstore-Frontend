@@ -323,7 +323,7 @@ if (q != null){
     //favourite books
     if (q == "theme"){
         data.theme = theme.split("%20").join(" ");
-        $('#info').html("/ All books by theme"+$(".dropdown-toggle-booktheme").text($(this).text()));
+        $('#info').html("/ All books by theme"+$("#theme").text());
         $.justSearch(data);
     }
     else if (q == "genre"){
