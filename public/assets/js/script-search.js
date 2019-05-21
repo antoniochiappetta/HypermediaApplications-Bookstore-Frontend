@@ -21,8 +21,10 @@ var page = $.urlParam("page");
 var order = $.urlParam("order");
 var type = $.urlParam("type");
 
+var newURL = window.location.href;
+
 if(searchTerm == null && page == null && order == null){
-    window.location.href = window.location.href + "?page=1";
+    newURL = newURL + "?page=1";
     page = "1";
     notFirstEnter = false;
 }
@@ -35,7 +37,7 @@ if ( page !=  null ) {
     }
 }
 else{
-    window.location.href = (window.location.href + "&page=1").split("html&").join("html?");
+    newURL = (newURL + "&page=1").split("html&").join("html?");
     page = 1;
 }
 
@@ -47,8 +49,12 @@ if (order != null){
     $("#dropdownMenuButton").text(order.split("%20").join(" "));
 }
 else{
-    window.location.href = (window.location.href + "&order=Alphabetical%20Order").split("html&").join("html?");
+    newURL = (newURL + "&order=Alphabetical%20Order").split("html&").join("html?");
     order = "Alphabetical%20Order";
+}
+
+if (newURL != window.location.href){
+    window.location.href = newURL;
 }
 
 //setting for filter searches
@@ -95,7 +101,7 @@ else{
 searchTerm = searchTerm.split("%20").join(" ");
 //possible book search (except with author: user will open author's profile for those) //those books will be added after every found author)
 var bookTitle= {title: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
-var bookISBN=  {ISBN: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
+var bookISBN=  {ISBN: searchTerm/*, order_type: orderType, page: page, limit: MAX_BOOKS*/};
 var bookGenre= {genre: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookTheme= {theme: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookReleaseDate= {release_date: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
@@ -105,8 +111,8 @@ console.log(booksSearches);
 
 //possible author searches
 var authorID = {ID: parseInt(searchTerm), limit: MAX_AUTHORS, page: page};
-var authorName = {name: searchTerm, limit: MAX_AUTHORS, page: page};
-var authorLastName = {last_name: searchTerm, limit: MAX_AUTHORS, page: page};
+var authorName = {name: searchTerm/*, limit: MAX_AUTHORS, page: page*/};
+var authorLastName = {last_name: searchTerm/*, limit: MAX_AUTHORS, page: page*/};
 
 var authorsSearches = [authorName, authorLastName];
 
@@ -250,7 +256,7 @@ $.showBooks = function(booksArray){
 
 $.justSearchBooks = function(dataB){
     console.log ("requested books:"+JSON.stringify(dataB));
-    let booksResponse = $.ajax({
+    var booksResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/books/",
@@ -340,7 +346,7 @@ $.showAuthors = function(authorsArray){
 
 $.justSearchAuthors = function(dataA){
     console.log ("requested authors:"+JSON.stringify(dataA));
-    let authorsResponse = $.ajax({
+    var authorsResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/authors/",
@@ -368,7 +374,7 @@ $.justSearchAuthors = function(dataA){
                 }
             }
             else{
-                $.checkIfContent(1, 2);
+                $.checkIfContent(1, 1);
             }
         }
         else{
@@ -434,7 +440,7 @@ $.showEvents = function(eventsArray){
 
 $.justSearchEvents = function(dataE){
     console.log ("requested events:"+JSON.stringify(dataE));
-    let eventsResponse = $.ajax({
+    var eventsResponse = $.ajax({
         type: "GET",
         contentType: "application/x-www-form-urlencoded",
         url: apiurl+"/events/",

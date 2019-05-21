@@ -11,7 +11,7 @@ $.urlParam = function(name){
 
 var idRead = $.urlParam('id');
 
-$("#showMore").attr("href", "./books.html?q=fromauthor&id="+idRead);
+$("#showMore").attr("href", "./books.html?page=1&q=fromauthor&id="+idRead);
 
 console.log(idRead);
 console.log(apiurl+"/authors/?id="+idRead);

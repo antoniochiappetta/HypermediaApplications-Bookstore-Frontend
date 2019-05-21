@@ -85,8 +85,10 @@ $.urlParam = function(name){
 var q = $.urlParam('q');
 var page = $.urlParam('page');
 
+var newURL = window.location.href;
+
 if(q == null && page == null){
-    window.location.href = window.location.href + "?page=1";
+    newURL = newURL + "?page=1";
     page = "1";
 }
 
@@ -94,15 +96,19 @@ if(q == null && page == null){
 if ( page !=  null ) {
     page = parseInt(page);
     if (page<1){
-        window.location.href = window.location.href.split("page="+page).join("page=1");
+        newURL = newURL.split("page="+page).join("page=1");
         page = 1;
     }
 }
 else{
-    window.location.href = window.location.href + "&page=1";
+    newURL = newURL + "&page=1";
     page = 1;
 }
 console.log("page="+page);
+
+if (window.location.href != newURL){
+    window.location.href = newURL;
+}
 
 //PAGE BUTTONS----------------------------------------------------------------------------------------------------
 
