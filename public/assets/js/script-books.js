@@ -324,7 +324,7 @@ if (q != null){
     if (q == "theme"){
         data.theme = theme.split("%20").join(" ");
         $.justSearch(data);
-        //$('#info').html("/ All books by theme"+$("#theme").text());
+        $('#info').html("/ All books by theme "+$("#theme").html());
     }
     else if (q == "genre"){
         data.genre = genre.split("%20").join(" ").split("%27").join("'");
@@ -339,7 +339,7 @@ if (q != null){
     else if (q == "bestSellers"){
         data.order_type = "sold_copies";
         $.justSearch(data);
-        $('#info').html("/ Best seller this month")
+        $('#info').html("/ Best sellers this month")
     }
     else if (q == "similarto"){
         var responseSimilarTo = $.ajax({
