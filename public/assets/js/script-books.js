@@ -324,11 +324,12 @@ if (q != null){
     if (q == "theme"){
         data.theme = theme.split("%20").join(" ");
         $.justSearch(data);
-        $('#info').html("/ All books by theme "+$("#theme").html());
+        $('#info').html("/ All books by theme");
     }
     else if (q == "genre"){
         data.genre = genre.split("%20").join(" ").split("%27").join("'");
         $.justSearch(data);
+        $('#info').html("/ All books by genre");
     }
     else if (q == "favourite"){  
         data.order_type = "suggested";
