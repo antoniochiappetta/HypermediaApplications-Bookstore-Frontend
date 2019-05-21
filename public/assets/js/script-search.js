@@ -405,7 +405,7 @@ $.showEvents = function(eventsArray){
                 type: "GET",
                 contentType: "application/x-www-form-urlencoded",
                 async: false,
-                url: apiurl+"/authors/?bookISBN="+eventsArray[i].B_ISBN,
+                url: apiurl+"/books/"+eventsArray[i].B_ISBN+"/authors",
                 success : function() {
                     if (eventsAuthor!= undefined){
                         authorE = eventsAuthor.responseJSON.content[0];
