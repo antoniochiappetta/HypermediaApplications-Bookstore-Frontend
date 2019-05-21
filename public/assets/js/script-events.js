@@ -161,6 +161,8 @@ if (q != null){
                 else{
                     $("#nextpage-button").remove();
                 }
+
+                $('#info').html("/ All events");
             },
             failure: function () {
                 $("#nextpage-button").remove();
@@ -191,6 +193,8 @@ if (q != null){
                 else{
                     $("#nextpage-button").remove();
                 }
+
+                $('#info').html("/ Events in this month");
             },
             failure: function () {
                 $("#nextpage-button").remove();
