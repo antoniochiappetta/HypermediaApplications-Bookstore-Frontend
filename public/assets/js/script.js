@@ -101,12 +101,14 @@ $(document).ready(function() {
         //Case: Book Theme
         if($(this).hasClass("dropdown-item-booktheme")) {
             $(".dropdown-toggle-booktheme").text($(this).text());
+            $('#info').html("/ All books by theme"+$(".dropdown-toggle-booktheme").text($(this).text()));
             $(".dropdown-menu-booktheme").removeClass("show");
         }
 
         //Case: Book Genre
         if($(this).hasClass("dropdown-item-bookgenre")) {
             $(".dropdown-toggle-bookgenre").text($(this).text());
+            $('#info').html("/ All books by genre"+$(".dropdown-toggle-booktheme").text($(this).text()));
             $(".dropdown-menu-bookgenre").removeClass("show");
         }
 
@@ -162,6 +164,20 @@ $(document).ready(function() {
         texttoShow = "Log out";
     }
     $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
+
+
+    //Show orientation info on Click for Books Page
+    $('#ourFavouritesReadings_b').click(function() {
+        $('#info').html("/ Our favourite readings")
+    });
+
+    $('#bestSellerThisMonth_b').click(function() {
+        $('#info').html("/ Best seller this month")
+    });
+
+
+
+
 
 
 });
