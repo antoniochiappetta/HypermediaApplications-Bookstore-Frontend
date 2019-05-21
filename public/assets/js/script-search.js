@@ -21,6 +21,10 @@ var page = $.urlParam("page");
 var order = $.urlParam("order");
 var type = $.urlParam("type");
 
+if (type == "Author" || type == "Books" || type == "Events"){
+    $(".dropdown-toggle-search").text(type);
+}
+
 var newURL = window.location.href;
 
 if(searchTerm == null && page == null && order == null){
@@ -102,12 +106,12 @@ searchTerm = searchTerm.split("%20").join(" ");
 //possible book search (except with author: user will open author's profile for those) //those books will be added after every found author)
 var bookTitle= {title: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookISBN=  {ISBN: searchTerm/*, order_type: orderType, page: page, limit: MAX_BOOKS*/};
-var bookGenre= {genre: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
-var bookTheme= {theme: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
+var bookGenre= {genre: searchTerm.split("%20").join(" ").split("%27").join("'") , order_type: orderType, page: page, limit: MAX_BOOKS};
+var bookTheme= {theme: searchTerm.split("%20").join(" ") , order_type: orderType, page: page, limit: MAX_BOOKS};
 var bookReleaseDate= {release_date: searchTerm, order_type: orderType, page: page, limit: MAX_BOOKS};
 
 var booksSearches= [bookTitle, bookGenre, bookTheme, bookReleaseDate];
-console.log(booksSearches);
+//console.log(booksSearches);
 
 //possible author searches
 var authorID = {ID: parseInt(searchTerm), /*limit: MAX_AUTHORS, page: page*/};
@@ -397,7 +401,7 @@ var shownEvents= [];
 
 $.showEvents = function(eventsArray){
     for (i in eventsArray){
-        if (doesNotContainID(eventsArray[i], shownEvents)){
+        if (doesNotContainID(eventsArray[i], shownEvents) && eventsArray[i]!= undefined && eventsArray[i].ID!= undefined){
             shownEvents.push(eventsArray[i]);
             let authorE = {ID: -1, name: "not", last_name: "found"};
             let bookE = {title: "book-title"};
@@ -407,22 +411,24 @@ $.showEvents = function(eventsArray){
                 async: false,
                 url: apiurl+"/books/"+eventsArray[i].B_ISBN+"/authors",
                 success : function() {
-                    if (eventsAuthor!= undefined){
-                        authorE = eventsAuthor.responseJSON.content[0];
-                    }
+                    
                 }
             });
+            if (eventsAuthor!= undefined){
+                authorE = eventsAuthor.responseJSON.content[0];
+            }
             var eventsBook = $.ajax({
                 type: "GET",
                 contentType: "application/x-www-form-urlencoded",
                 async: false,
                 url: apiurl+"/books/?ISBN="+eventsArray[i].B_ISBN,
                 success : function() {
-                    if (eventsBook!=undefined){
-                        bookE = eventsBook.responseJSON.content[0];
-                    }
+                    
                 }
             });
+            if (eventsBook!=undefined){
+                bookE = eventsBook.responseJSON.content[0];
+            }
             $("#searchContent").append(`
                 <div class="card myCard shoppingCard">
                     <div class="card-body">
@@ -457,7 +463,7 @@ $.justSearchEvents = function(dataE){
     if (eventsResponse != undefined){
         if (eventsResponse.responseJSON != undefined){
             console.log("EVENTS ");
-            console.log(eventsResponse);
+            //console.log(eventsResponse);
             console.log(eventsResponse.responseJSON);
             $.showEvents(eventsResponse.responseJSON);
             if (eventsResponse.responseJSON.length < MAX_EVENTS){
