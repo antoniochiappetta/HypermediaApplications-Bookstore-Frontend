@@ -110,9 +110,9 @@ var booksSearches= [bookTitle, bookGenre, bookTheme, bookReleaseDate];
 console.log(booksSearches);
 
 //possible author searches
-var authorID = {ID: parseInt(searchTerm), limit: MAX_AUTHORS, page: page};
+var authorID = {ID: parseInt(searchTerm), /*limit: MAX_AUTHORS, page: page*/};
 var authorName = {name: searchTerm/*, limit: MAX_AUTHORS, page: page*/};
-var authorLastName = {last_name: searchTerm/*, limit: MAX_AUTHORS, page: page*/};
+var authorLastName = {last_name: searchTerm, limit: MAX_AUTHORS, page: page};
 
 var authorsSearches = [authorName, authorLastName];
 
@@ -196,7 +196,7 @@ $.showBooks = function(booksArray){
                 type: "GET",
                 contentType: "application/x-www-form-urlencoded",
                 async: false,
-                url: apiurl+"/authors/?bookISBN="+booksArray[i].ISBN,
+                url: apiurl+"/books/"+booksArray[i].ISBN+"/authors",
                 success : function() {
                     
                 }
@@ -405,7 +405,7 @@ $.showEvents = function(eventsArray){
                 type: "GET",
                 contentType: "application/x-www-form-urlencoded",
                 async: false,
-                url: apiurl+"/authors/?bookISBN="+eventsArray[i].B_ISBN,
+                url: apiurl+"/books/"+eventsArray[i].B_ISBN+"/authors",
                 success : function() {
                     if (eventsAuthor!= undefined){
                         authorE = eventsAuthor.responseJSON.content[0];
