@@ -203,3 +203,6 @@ if (q != null){
         });
     }
 }
+else{
+    $("#nextpage-button").remove();
+}

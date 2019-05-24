@@ -120,6 +120,14 @@ var authorLastName = {last_name: searchTerm, limit: MAX_AUTHORS, page: page};
 
 var authorsSearches = [authorName, authorLastName];
 
+var words = searchTerm.split(" ");
+if (words.length > 1){
+    for (i in words){
+        authorsSearches.push({name: words[i]});
+        authorsSearches.push({last_name: words[i], limit: MAX_AUTHORS, page: page});
+    }
+}
+
 //possible event searches
 
 var eventID = {ID: parseInt(searchTerm), page: page, limit: MAX_EVENTS};
@@ -444,6 +452,8 @@ $.showEvents = function(eventsArray){
     }
 }
 
+var eventsCheckArray = [];
+
 $.justSearchEvents = function(dataE){
     console.log ("requested events:"+JSON.stringify(dataE));
     var eventsResponse = $.ajax({
@@ -465,8 +475,9 @@ $.justSearchEvents = function(dataE){
             console.log("EVENTS ");
             //console.log(eventsResponse);
             console.log(eventsResponse.responseJSON);
-            $.showEvents(eventsResponse.responseJSON);
-            if (eventsResponse.responseJSON.length < MAX_EVENTS){
+            eventsCheckArray = events.responseJSON.filter(v=> v.ID != undefined);
+            $.showEvents(eventsCheckArray);
+            if (eventsCheckArray < MAX_EVENTS){
                 $.checkIfContent(2, 1);
             }
             else{
