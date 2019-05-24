@@ -477,7 +477,7 @@ $.justSearchEvents = function(dataE){
             console.log(eventsResponse.responseJSON);
             eventsCheckArray = eventsResponse.responseJSON.filter(v=> v.ID != undefined);
             $.showEvents(eventsCheckArray);
-            if (eventsCheckArray < MAX_EVENTS){
+            if (eventsCheckArray.length < MAX_EVENTS){
                 $.checkIfContent(2, 1);
             }
             else{
