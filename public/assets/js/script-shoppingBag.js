@@ -272,11 +272,10 @@ $.showBooks = function(booksArray){
         `);
         //$("button.btn-danger").click(function(){$.delItem($(this));});
         //$("button.btn-info").click(function(){$.updateQua($(this));});
-        //$("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
+        $("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
     }
     $("button.btn-danger").click(function(){$.delItem($(this));});
     $("button.btn-info").click(function(){$.updateQua($(this));});
-    $("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
 }
 
 $.justSearchShoppingBags = function(userID){
