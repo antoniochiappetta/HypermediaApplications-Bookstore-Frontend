@@ -155,8 +155,6 @@ $.delItem = function(item){
     });
 };
 
-$("button.btn-danger").click(function(){$.delItem($(this));});
-
 
 
 $.translateVersion = function(ver){
@@ -276,6 +274,7 @@ $.showBooks = function(booksArray){
         $("button.btn-info").click(function(){$.updateQua($(this));});
         $("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
     }
+    $("button.btn-danger").click(function(){$.delItem($(this));});
 }
 
 $.justSearchShoppingBags = function(userID){
