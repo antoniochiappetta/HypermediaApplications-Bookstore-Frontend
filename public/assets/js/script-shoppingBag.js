@@ -158,6 +158,7 @@ $.delItem = function(item){
 
 
 $.translateVersion = function(ver){
+    console.log(ver);
     if(ver == "DIGITAL") return "Digital Version";
     if(ver == "PAPER") return "Paper Version";
     if(ver == "Digital Version") return "DIGITAL";
