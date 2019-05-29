@@ -33,6 +33,8 @@ $("#log-in").click(function(){
 
     if (!done){
         //alert("Email or Password not correct, please try again.");
+        $("#log-in").attr("data-toggle","modal");
+        $("#log-in").attr("data-target","#exampleModal");
         $("#ModalTitle").html("Attention");
         $("#modalContent").html("Email or Password not correct, please try again.");
     }else {
