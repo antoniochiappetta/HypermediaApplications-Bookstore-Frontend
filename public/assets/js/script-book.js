@@ -220,6 +220,8 @@ $("#buy").click(function(){
         //alert("Item not added: Log in first");
         $("#ModalTitle").html("Attention");
         $("#modalContent").html("Item not added, log in first.");
+        $("#modalFooter").show();
+
 
     } else{
         userID = responseUser.responseJSON.content.ID;

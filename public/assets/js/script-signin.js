@@ -42,6 +42,7 @@ $("#sign-up").click(function(){
                 //alert("Welcome on board!")
                 $("#ModalTitle").html("Welcome on board");
                 $("#modalContent").html("You have successfully registered and logged in.");
+                $("#modalFooter").show();
                 $( "#modalButton" ).trigger( "click" );
                 //After sign up in general you're already logged in, so:
 
