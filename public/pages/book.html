@@ -201,7 +201,7 @@
           </div>
 
           <div class="col-5 col-sm-6 text-right">
-            <button id="buy" type="button" class="btn btn-warning myButton ml-auto"">Add to Shopping Bag</button>
+            <button id="buy" type="button" class="btn btn-warning myButton ml-auto" data-toggle="modal" data-target="#exampleModal">Add to Shopping Bag</button>
           </div>
 
         </div>
@@ -323,18 +323,18 @@
 
 <!-- Modal for Shopping Bag-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div id="modalDialog" class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+        <h5 class="modal-title" id="ModalTitle">Title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        Item not added, log in first.
+      <div  id="modalContent" class="modal-body">
+        ...
       </div>
-      <div class="modal-footer">
+      <div id="modalFooter" class="modal-footer">
         <button id="ModalButton" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
       </div>
     </div>
