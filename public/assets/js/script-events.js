@@ -204,5 +204,7 @@ if (q != null){
     }
 }
 else{
-    $("#nextpage-button").remove();
+    $( "#allEvents" ).trigger( "click" );
+
+    //$("#nextpage-button").remove();
 }
