@@ -397,14 +397,14 @@ if (q != null){
 }
 else {
     $('#info').html("/ All books");
-
+    $.justSearch(data);
     //only if the book page has not been just opened
     /*if (notFirstEnter){
         //normal filtering
         //$.justSearch(data);
     }
     else{*/
-    $("#nextpage-button").remove();
+    //$("#nextpage-button").remove();
 
     //}
 }
