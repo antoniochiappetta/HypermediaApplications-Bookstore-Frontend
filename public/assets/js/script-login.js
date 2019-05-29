@@ -28,17 +28,21 @@ $("#log-in").click(function(){
             $("#inputEmailLogin").val("")
             $("#inputPasswordLogin").val("");
             done=true;
+
+            $("#ModalTitle").html("Attention");
+            $("#modalContent").html("Email or Password not correct, please try again.");
+            $( "#modalButton" ).trigger( "click" );
         }
     }
 
     if (!done){
-        alert("Email or Password not correct, please try again.");
-        //$("#ModalTitle").html("Attention");
-        //$("#modalContent").html("Email or Password not correct, please try again.");
-        //$( "#modalButton" ).trigger( "click" );
+        //alert("Email or Password not correct, please try again.");
+        $("#ModalTitle").html("Attention");
+        $("#modalContent").html("Email or Password not correct, please try again.");
+        $( "#modalButton" ).trigger( "click" );
     }else {
         //Redirect home
-        window.location.href = "../index.html";
+        //window.location.href = "../index.html";
     }
 
     console.log(responseUS);
