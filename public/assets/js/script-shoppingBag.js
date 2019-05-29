@@ -21,7 +21,7 @@ $.updateQua = function(item){
     let versionB;
     for (i in shoppingBag){
         console.log(shoppingBag[i]);
-        if (shoppingBag[i].ISBN == item.attr("data-internalid")){
+        if (shoppingBag[i].B_ISBN == item.attr("data-internalid")){
             versionB = shoppingBag[i].version;
             break;
         }
