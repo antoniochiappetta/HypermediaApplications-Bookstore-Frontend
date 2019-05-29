@@ -79,7 +79,7 @@ $("#sign-up").click(function(){
         $("#ModalTitle").html("Attention");
         $("#modalContent").html("The two password inserted are not the same, please try again.");
         $("#modalFooter").hide();
-        $( "#modalButton" ).trigger( "click" );
+        $( "#modal_Button" ).trigger( "click" );
     }
     
 });
