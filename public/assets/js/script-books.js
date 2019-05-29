@@ -396,12 +396,15 @@ if (q != null){
     }
 }
 else {
+    $('#info').html("/ All books");
+
     //only if the book page has not been just opened
     /*if (notFirstEnter){
         //normal filtering
         //$.justSearch(data);
     }
     else{*/
-        $("#nextpage-button").remove();
+    $("#nextpage-button").remove();
+
     //}
 }
