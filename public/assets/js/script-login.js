@@ -43,7 +43,7 @@ $("#log-in").click(function(){
         //-----------
     }else {
         //Redirect home
-        window.location.href = "../index.html";
+        //window.location.href = "../index.html";
     }
 
     console.log(responseUS);
