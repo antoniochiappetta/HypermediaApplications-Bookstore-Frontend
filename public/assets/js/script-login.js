@@ -23,6 +23,8 @@ $("#log-in").click(function(){
         async: false,
     });
 
+    console.log(responseUS);
+
     if (responseUS!= undefined){
         if (responseUS.status == 200){
             $("#inputEmailLogin").val("")
