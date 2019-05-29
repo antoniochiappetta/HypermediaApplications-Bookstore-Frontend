@@ -24,7 +24,7 @@ $("#log-in").click(function(){
     });
 
     if (responseUS!= undefined){
-        if (responseUS.status == 200){
+        if (responseUS.status === 200){
             $("#inputEmailLogin").val("")
             $("#inputPasswordLogin").val("");
             done=true;
