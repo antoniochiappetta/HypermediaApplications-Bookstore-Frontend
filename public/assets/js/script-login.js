@@ -44,7 +44,7 @@ $("#log-in").click(function(){
         $("#ModalTitle").html("Attention");
         $("#modalContent").html("Email or Password not correct, please try again.");
         $("#modalFooter").hide();
-        $( "#modalButton" ).trigger( "click" );
+        $( "#modal_Button" ).trigger( "click" );
         //-----------
     }else {
         //Redirect home
