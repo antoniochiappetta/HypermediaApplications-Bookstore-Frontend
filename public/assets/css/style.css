@@ -47,7 +47,7 @@ a {
     color: rgba(255,255,255,.6);
 }
 
-/*Fix for Contrast Accessibility*/
+/*Fix for Contrast Accessibility in Chrome*/
 #searchButtonHome , #searchButton{
     color: #ffffff;
     background-color: #28a745b3;
