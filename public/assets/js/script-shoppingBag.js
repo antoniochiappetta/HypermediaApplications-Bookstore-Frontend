@@ -298,6 +298,7 @@ $.justSearchShoppingBags = function(userID){
 
                         //Case load book
                         $("#content").empty();
+                        $("#checkout").show();
                         $("#content").append(`
                         <div class="col-12">
                             <h2>Shopping Bag</h2>
@@ -311,6 +312,7 @@ $.justSearchShoppingBags = function(userID){
                         //Case shopping bag is empty
 
                         $("#content").empty();
+                        $("#checkout").hide();
                         $("#content").append(`
                         <div class="col-12">
                             <h2>Shopping Bag</h2>
