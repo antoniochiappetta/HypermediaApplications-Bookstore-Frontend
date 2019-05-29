@@ -80,7 +80,8 @@ $.updateVer = function(item){
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
         quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
-        version: $.translateVersion(item.parent().siblings().filter("button").text())
+        version: $.translateVersion(item.text())
+        //version: $.translateVersion(item.parent().siblings().filter("button").text())
     });
 
     $.ajax({
@@ -105,7 +106,8 @@ $.updateVer = function(item){
             U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
             quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
-            version: $.translateVersion(item.parent().siblings().filter("button").text())
+            version: $.translateVersion(item.text())
+            //version: $.translateVersion(item.parent().siblings().filter("button").text())
         }),
         success : function(data) {
             alert("Version changed correctly.");
@@ -158,6 +160,7 @@ $.delItem = function(item){
 
 
 $.translateVersion = function(ver){
+    console.log(ver);
     if(ver == "DIGITAL") return "Digital Version";
     if(ver == "PAPER") return "Paper Version";
     if(ver == "Digital Version") return "DIGITAL";
