@@ -110,7 +110,12 @@ $.updateVer = function(item){
             //version: $.translateVersion(item.parent().siblings().filter("button").text())
         }),
         success : function(data) {
-            alert("Version changed correctly.");
+            //alert("Version changed correctly.");
+            $("#ModalTitle").html("Done");
+            $("#modalContent").html("Version changed correctly.");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
+
             $.setup();
         }
     });
@@ -147,12 +152,21 @@ $.delItem = function(item){
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
         success : function() {
             $.setup();
-            alert("Book deleted from your Shopping Bag");
+            //alert("Book deleted from your Shopping Bag");
+            $("#ModalTitle").html("Done");
+            $("#modalContent").html("Book deleted from your Shopping Bag");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
 
         },
         error : function(){
             $.setup();
-            alert("Ops, something went wrong!");
+            //alert("Ops, something went wrong!");
+
+            $("#ModalTitle").html("Attention");
+            $("#modalContent").html("Ops, something went wrong!");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
         }
     });
 };
