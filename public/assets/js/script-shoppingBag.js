@@ -29,7 +29,7 @@ $.updateQua = function(item){
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
         quantity: parseInt(item.siblings().filter("input").val()),
-        version: versionB;
+        version: versionB
         //version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
     });
     $.ajax({
