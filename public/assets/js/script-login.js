@@ -26,10 +26,12 @@ $("#log-in").click(function(){
     console.log(responseUS);
 
     if (responseUS!= undefined){
-        if (responseUS.status == 200){
-            $("#inputEmailLogin").val("")
-            $("#inputPasswordLogin").val("");
-            done=true;
+        if (responseUS.responseJSON != undefined){
+            if (responseUS.responseJSON.status == 200){
+                $("#inputEmailLogin").val("")
+                $("#inputPasswordLogin").val("");
+                done=true;
+            }
         }
     }
 
