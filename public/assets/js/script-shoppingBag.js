@@ -25,6 +25,7 @@ $.updateQua = function(item){
             break;
         }
     }
+    console.log($.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text()));
     console.log({
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
