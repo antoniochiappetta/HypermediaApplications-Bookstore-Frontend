@@ -28,21 +28,22 @@ $("#log-in").click(function(){
             $("#inputEmailLogin").val("")
             $("#inputPasswordLogin").val("");
             done=true;
-
-            $("#ModalTitle").html("Attention");
-            $("#modalContent").html("Email or Password not correct, please try again.");
-            $( "#modalButton" ).trigger( "click" );
         }
     }
 
+    console.log(done);
+
     if (!done){
         //alert("Email or Password not correct, please try again.");
+
+        //--DO NOT TOUCH THIS PART IS CORRECT
         $("#ModalTitle").html("Attention");
         $("#modalContent").html("Email or Password not correct, please try again.");
         $( "#modalButton" ).trigger( "click" );
+        //-----------
     }else {
         //Redirect home
-        //window.location.href = "../index.html";
+        window.location.href = "../index.html";
     }
 
     console.log(responseUS);
