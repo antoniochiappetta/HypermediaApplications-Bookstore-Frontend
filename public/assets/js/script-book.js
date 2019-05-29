@@ -220,7 +220,6 @@ $("#buy").click(function(){
         //alert("Item not added: Log in first");
         $("#buy").attr("data-toggle","modal");
         $("#buy").attr("data-target","#exampleModal");
-        window.location.href = "../pages/login&registration.html";
     } else{
         userID = responseUser.responseJSON.content.ID;
 
@@ -247,4 +246,9 @@ $("#buy").click(function(){
         console.log("QVI");
         console.log(responsePost);
     }
+});
+
+
+$("#ModalButton").click(function() {
+    window.location.href = "../pages/login&registration.html";
 });
