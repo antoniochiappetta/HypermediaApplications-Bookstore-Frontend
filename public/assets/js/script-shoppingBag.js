@@ -48,7 +48,12 @@ $.updateQua = function(item){
             version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
         }),
         success : function(data) {
-            alert("Quantity updated correctly.");
+            //alert("Quantity updated correctly.");
+            $("#ModalTitle").html("Done");
+            $("#modalContent").html("Quantity updated correctly.");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
+
             $.setup();
         }
     });
