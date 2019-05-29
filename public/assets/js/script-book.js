@@ -219,7 +219,7 @@ $("#buy").click(function(){
     if (responseUser == undefined || responseUser.responseJSON.content == undefined){
         //alert("Item not added: Log in first");
         $("#ModalTitle").html("Attention");
-        $("#modalContentd").html("Item not added, log in first.");
+        $("#modalContent").html("Item not added, log in first.");
 
     } else{
         userID = responseUser.responseJSON.content.ID;
@@ -244,7 +244,7 @@ $("#buy").click(function(){
                 //alert("Item added to your Shopping Bag");
                 $("#ModalTitle").html("Done");
                 $("#modalContent").html("Item added to your shopping bag.");
-                $("#modalDialogdown").remove("#modalFooter");
+                $("#modalFooter").hide();
             }
         });
         console.log("QVI");
