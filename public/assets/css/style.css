@@ -37,6 +37,16 @@ a {
     width: 100%;
 }
 
+/*Fix for Contrast Accessibility*/
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,.6);
+}
+
+/*Fix for Contrast Accessibility*/
+.color-me{
+    color: rgba(255,255,255,.6);
+}
+
 /*Pagination*/
 .myPageLink{
     color: #1e1f26;
