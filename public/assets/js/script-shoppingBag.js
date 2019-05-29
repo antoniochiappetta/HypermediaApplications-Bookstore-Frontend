@@ -6,6 +6,7 @@ if (nonseiloggato){
     $("#checkout").remove();
 }
 */
+var shoppingBag = undefined;
 
 $.ajaxSetup({
     crossDomain: true,
@@ -17,11 +18,19 @@ $.ajaxSetup({
 $.updateQua = function(item){
     console.log("updating quantity");
     console.log(item.attr("data-internalid"));
+    let versionB;
+    for (i in shoppingBag){
+        if (shoppingBag[i].ISBN == item.attr("data-internalid")){
+            versionB = shoppingBag[i].version;
+            break;
+        }
+    }
     console.log({
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
         quantity: parseInt(item.siblings().filter("input").val()),
-        version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+        version: versionB;
+        //version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
     });
     $.ajax({
         type: "DELETE",
@@ -45,7 +54,8 @@ $.updateQua = function(item){
             U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
             quantity: parseInt(item.siblings().filter("input").val()),
-            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+            version: versionB
+            //version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
         }),
         success : function(data) {
             //alert("Quantity updated correctly.");
@@ -187,7 +197,6 @@ $.translateVersion = function(ver){
 }
 
 var NothingHere = true;
-var shoppingBag = undefined;
 var uID;
 
 $.showBooks = function(booksArray){
