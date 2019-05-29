@@ -24,10 +24,12 @@ $("#log-in").click(function(){
     });
 
     if (responseUS!= undefined){
-        if (responseUS.status === 200){
+        if (responseUS.status == 200){
             $("#inputEmailLogin").val("")
             $("#inputPasswordLogin").val("");
             done=true;
+        }else {
+            done=false;
         }
     }
 
@@ -36,7 +38,7 @@ $("#log-in").click(function(){
     if (!done){
         //alert("Email or Password not correct, please try again.");
 
-        //--DO NOT TOUCH THIS PART IS CORRECT
+        //--DO NOT TOUCH, THIS PART IS CORRECT
         $("#ModalTitle").html("Attention");
         $("#modalContent").html("Email or Password not correct, please try again.");
         $( "#modalButton" ).trigger( "click" );
