@@ -217,7 +217,7 @@ $("#buy").click(function(){
     });
 
     if (responseUser == undefined || responseUser.responseJSON.content == undefined){
-        alert("Item not added: Log in first");
+        //alert("Item not added: Log in first");
         window.location.href = "../pages/login&registration.html";
     } else{
         userID = responseUser.responseJSON.content.ID;
