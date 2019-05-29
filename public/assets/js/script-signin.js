@@ -36,14 +36,14 @@ $("#sign-up").click(function(){
                 $("#ModalTitle").html("Attention");
                 $("#modalContent").html("Something went wrong, please try again to Sign up.");
                 $("#modalFooter").hide();
-                $( "#modalButton" ).trigger( "click" );
+                $( "#modal_Button" ).trigger( "click" );
             },
             success: function () {
                 //alert("Welcome on board!")
                 $("#ModalTitle").html("Welcome on board");
                 $("#modalContent").html("You have successfully registered and logged in.");
                 $("#modalFooter").show();
-                $( "#modalButton" ).trigger( "click" );
+                $( "#modal_Button" ).trigger( "click" );
                 //After sign up in general you're already logged in, so:
 
                 var responseUS = $.ajax({
