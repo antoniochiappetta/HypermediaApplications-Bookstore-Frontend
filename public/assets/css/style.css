@@ -132,7 +132,7 @@ a {
     width: 100%;
 }
 
-#ourFavouritesReadings_b, #allEvents{
+#ourFavouritesReadings_b, #allEvents, #allAuthors{
     color: white;
     background-color: #283655;
 }
@@ -140,4 +140,13 @@ a {
 #bestSellerThisMonth_b, #eventsInThisMonth{
     color: white;
     background-color: #4d648d;
+}
+
+#newCategories{
+    border-width: 1px;
+    border-color: #0c5460;
+}
+
+#back-button:hover{
+    box-shadow: 1px 10px 20px 2px rgb(210, 210, 210);
 }
