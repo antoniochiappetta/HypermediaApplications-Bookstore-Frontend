@@ -95,7 +95,7 @@ if (q != null){
     //all authors
     if (q == "all"){
         console.log("q=all");
-        let authorsResponse = $.ajax({
+        var authorsResponse = $.ajax({
             type: "GET",
             contentType: "application/x-www-form-urlencoded",
             url: apiurl+"/authors/",
