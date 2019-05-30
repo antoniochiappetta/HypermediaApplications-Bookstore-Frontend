@@ -87,7 +87,7 @@ $("#nextpage-button").wrap( '<a href="'+window.location.href.split("page="+page)
 
 var data = {
     page: page,
-    limit: MAX_authors
+    limit: MAX_AUTHORS
 };
 
 //research cases:
