@@ -86,8 +86,8 @@ $("#nextpage-button").wrap( '<a href="'+window.location.href.split("page="+page)
 //FILL UP THE authors TO SEE
 
 var data = {
-    page: page,
-    limit: MAX_AUTHORS
+    //page: page,
+    //limit: MAX_AUTHORS
 };
 
 //research cases:
@@ -107,9 +107,9 @@ if (q != null){
                         if (authorsResponse.responseJSON.content != undefined){
                             console.log(authorsResponse.responseJSON.content);
                             $.showAutors(authorsResponse.responseJSON.content);
-                            if (authorsResponse.responseJSON.content.length<MAX_AUTHORS){
+                            //if (authorsResponse.responseJSON.content.length<MAX_AUTHORS){
                                 $("#nextpage-button").remove();
-                            }
+                            //}
                         } 
                         else{
                             $("#nextpage-button").remove();
