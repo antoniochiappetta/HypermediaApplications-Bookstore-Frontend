@@ -217,8 +217,12 @@ $("#buy").click(function(){
     });
 
     if (responseUser == undefined || responseUser.responseJSON.content == undefined){
-        alert("Item not added: Log in first");
-        window.location.href = "../pages/login&registration.html";
+        //alert("Item not added: Log in first");
+        $("#ModalTitle").html("Attention");
+        $("#modalContent").html("Item not added, log in first.");
+        $("#modalFooter").show();
+
+
     } else{
         userID = responseUser.responseJSON.content.ID;
 
@@ -239,10 +243,18 @@ $("#buy").click(function(){
                 version: ver
             }),
             success : function(data) {
-                alert("Item added to your Shopping Bag");
+                //alert("Item added to your Shopping Bag");
+                $("#ModalTitle").html("Done");
+                $("#modalContent").html("Item added to your shopping bag.");
+                $("#modalFooter").hide();
             }
         });
         console.log("QVI");
         console.log(responsePost);
     }
+});
+
+
+$("#ModalButton").click(function() {
+    window.location.href = "../pages/login&registration.html";
 });

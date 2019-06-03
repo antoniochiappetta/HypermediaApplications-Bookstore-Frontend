@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eCommerce</title>
+    <title>KooB</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="navbar navbar-expand-lg navbar-dark py-0">
 
         <a class="navbar-brand col ml-3 my-3 mr-lg-5" href="../index.html">
-            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Logo" class="rounded">
+            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Company Logo" class="rounded">
         </a>
 
 
@@ -40,7 +40,7 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded color-me" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
                     <div class="dropdown-menu dropdown-menu-search">
                         <a class="dropdown-item dropdown-item-search">Books</a>
                         <a class="dropdown-item dropdown-item-search">Authors</a>
@@ -81,6 +81,10 @@
 
                 <li class="nav-item text-center px-2">
                     <a class="nav-link" href="books.html">Books</a>
+                </li>
+
+                <li class="nav-item text-center px-2">
+                    <a class="nav-link" href="authors.html">Authors</a>
                 </li>
 
                 <li class="nav-item text-center px-2">
@@ -136,7 +140,7 @@
         </div>
 
         <div class="col-12 text-center mb-5 py-5">
-            <img src="../assets/img/bag.svg" href="index.html" width="80" height="80" alt="Logo" class="rounded m-3">
+            <img src="../assets/img/bag.svg" href="index.html" width="80" height="80" alt="Logo Shopping Bag" class="rounded m-3">
             <h5 id="shoppingBagDescr">Loading...</h5>
         </div>
 
@@ -168,6 +172,31 @@
     </div>
     <!-- /.container -->
 </footer>
+
+<!-- Button trigger modal -->
+<button id="modal_Button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" hidden>
+    Launch demo modal
+</button>
+
+<!-- Modal for Login/Sign up error-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="modalDialogdown" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modalContent" class="modal-body">
+                ...
+            </div>
+            <div id="modalFooter" class="modal-footer">
+                <button id="ModalButton" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Scripts -->
 

@@ -113,6 +113,8 @@
 
 
 
+
+
 <!-- Page Content -->
 <div class="container">
 
@@ -128,23 +130,34 @@
 
     <!-- Intro Content -->
     <div class="row">
-        <div class="col">
+        <div class="col col-md-10">
+            <h2 class="textVariant1" id="pageTitle">Authors <span id="info" class="textVariant2"></span></h2>
 
+        </div>
 
-            <div class="row">
-                <div class="col">
-                    <h2>Contact us</h2>
-                </div>
-            </div>
+    </div>
 
-            <div class="row">
-                <div class="col">
-                    <h5 class="textVariant1">Have you placed an order on our website and would like to contact our customer service?</h5>
-                    <ul>
-                        <li class="my-5"><h5>Antonio Chiappetta</h5> <span><a href="mailto:antonio.chiappetta@mail.polimi.it">antonio.chiappetta@mail.polimi.it</a></span></li>
-                        <li class="my-5"><h5>Gabriele Gullì</h5> <span><a href="mailto:gabriele.gulli@mail.polimi.it">gabriele.gulli@mail.polimi.it</a></span></li>
-                        <li class="my-5"><h5>Michele Marabelli</h5> <span><a href="mailto:michele.marabelli@mail.polimi.it">michele.marabelli@mail.polimi.it</a></span></li>
-                    </ul>
+    <!-- Content -->
+    <div class="row">
+
+        <div class="col col-md-6 col-lg-4">
+
+            <div class="card myCard">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <h5>Categories</h5>
+                            <a href="">
+                                <button id="allAuthors" class="btn myButton btn-block" type="submit">All authors</button>
+                            </a>
+                            <a href="">
+                                <button id="newCategories" class="btn  myButton btn-block" type="submit">New categories coming soon..</button>
+                            </a>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -152,8 +165,49 @@
 
 
 
+        <div class="col-md-6 col-lg-8 my-auto" id="authors">
+
+            <div class="card myCard ">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col col-md text-center">
+                            <img src="../assets/img/AuthorFace.jpg" height="100" width="100" alt="Author picture">
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-9 mt-3">
+                            <div class="row">
+                                <div class="col-12 col-lg-8 my-auto">
+                                    <a href=""><h2>Name LastName</h2></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+
+
     </div>
     <!-- /.row -->
+
+    <div class="row text-right">
+        <div class="col">
+            <button id="previouspage-button" class="btn btn-outline-secondary myButton">
+                Previous page
+            </button>
+
+            <button id="nextpage-button" class="btn btn-outline-secondary myButton">
+                Next page
+            </button>
+        </div>
+    </div>
 
 </div>
 <!-- /.container -->
@@ -180,6 +234,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-authors.js"></script>
 
 </body>
 

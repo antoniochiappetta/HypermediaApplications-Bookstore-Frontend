@@ -32,10 +32,18 @@ $("#sign-up").click(function(){
                 withCredentials: true
             },
             error: function(){
-                alert("Something went wrong, please try again to Sign up");
+                //alert("Something went wrong, please try again to Sign up");
+                $("#ModalTitle").html("Attention");
+                $("#modalContent").html("Something went wrong, please try again to Sign up.");
+                $("#modalFooter").hide();
+                $( "#modal_Button" ).trigger( "click" );
             },
             success: function () {
-                alert("Welcome on board!")
+                //alert("Welcome on board!")
+                $("#ModalTitle").html("Welcome on board");
+                $("#modalContent").html("You have successfully registered and logged in.");
+                $("#modalFooter").show();
+                $( "#modal_Button" ).trigger( "click" );
                 //After sign up in general you're already logged in, so:
 
                 var responseUS = $.ajax({
@@ -53,8 +61,6 @@ $("#sign-up").click(function(){
                     }
                 });
 
-                //Redirect home
-                window.location.href = "../index.html";
             }
         });
 
@@ -69,7 +75,16 @@ $("#sign-up").click(function(){
                 //alert("User Registered Successfully");
                 //console.log("User-Logged");*/
     }else {
-        alert("The two password inserted are not the same, please try again.")
+        //alert("The two password inserted are not the same, please try again.")
+        $("#ModalTitle").html("Attention");
+        $("#modalContent").html("The two password inserted are not the same, please try again.");
+        $("#modalFooter").hide();
+        $( "#modal_Button" ).trigger( "click" );
     }
     
+});
+
+$("#ModalButton").click(function() {
+    //Redirect home
+    window.location.href = "../index.html";
 });

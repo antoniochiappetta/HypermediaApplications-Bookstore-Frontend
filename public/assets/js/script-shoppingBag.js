@@ -6,6 +6,7 @@ if (nonseiloggato){
     $("#checkout").remove();
 }
 */
+var shoppingBag = undefined;
 
 $.ajaxSetup({
     crossDomain: true,
@@ -17,11 +18,21 @@ $.ajaxSetup({
 $.updateQua = function(item){
     console.log("updating quantity");
     console.log(item.attr("data-internalid"));
+    let versionB;
+    for (i in shoppingBag){
+        console.log(shoppingBag[i]);
+        if (shoppingBag[i].B_ISBN == item.attr("data-internalid")){
+            versionB = shoppingBag[i].version;
+            break;
+        }
+    }
+    console.log($.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text()));
     console.log({
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
         quantity: parseInt(item.siblings().filter("input").val()),
-        version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+        version: versionB
+        //version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
     });
     $.ajax({
         type: "DELETE",
@@ -45,10 +56,16 @@ $.updateQua = function(item){
             U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
             quantity: parseInt(item.siblings().filter("input").val()),
-            version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
+            version: versionB
+            //version: $.translateVersion(item.parent().parent().find(".dropdown-toggle-bookversion").text())
         }),
         success : function(data) {
-            alert("Quantity updated correctly.");
+            //alert("Quantity updated correctly.");
+            $("#ModalTitle").html("Done");
+            $("#modalContent").html("Quantity updated correctly.");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
+
             $.setup();
         }
     });
@@ -80,7 +97,8 @@ $.updateVer = function(item){
         U_ID: parseInt(uID),
         B_ISBN: item.attr("data-internalid"),
         quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
-        version: $.translateVersion(item.parent().siblings().filter("button").text())
+        version: $.translateVersion(item.text())
+        //version: $.translateVersion(item.parent().siblings().filter("button").text())
     });
 
     $.ajax({
@@ -105,10 +123,16 @@ $.updateVer = function(item){
             U_ID: parseInt(uID),
             B_ISBN: item.attr("data-internalid"),
             quantity: parseInt(item.parent().parent().parent().parent().find("input").val()),
-            version: $.translateVersion(item.parent().siblings().filter("button").text())
+            version: $.translateVersion(item.text())
+            //version: $.translateVersion(item.parent().siblings().filter("button").text())
         }),
         success : function(data) {
-            alert("Version changed correctly.");
+            //alert("Version changed correctly.");
+            $("#ModalTitle").html("Done");
+            $("#modalContent").html("Version changed correctly.");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
+
             $.setup();
         }
     });
@@ -145,12 +169,21 @@ $.delItem = function(item){
         url: apiurl+"/user/shoppingBag/"+item.attr("data-internalid"),
         success : function() {
             $.setup();
-            alert("Book deleted from your Shopping Bag");
+            //alert("Book deleted from your Shopping Bag");
+            $("#ModalTitle").html("Done");
+            $("#modalContent").html("Book deleted from your Shopping Bag");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
 
         },
         error : function(){
             $.setup();
-            alert("Ops, something went wrong!");
+            //alert("Ops, something went wrong!");
+
+            $("#ModalTitle").html("Attention");
+            $("#modalContent").html("Ops, something went wrong!");
+            $("#modalFooter").show();
+            $( "#modal_Button" ).trigger( "click" );
         }
     });
 };
@@ -158,6 +191,7 @@ $.delItem = function(item){
 
 
 $.translateVersion = function(ver){
+    console.log(ver);
     if(ver == "DIGITAL") return "Digital Version";
     if(ver == "PAPER") return "Paper Version";
     if(ver == "Digital Version") return "DIGITAL";
@@ -165,7 +199,6 @@ $.translateVersion = function(ver){
 }
 
 var NothingHere = true;
-var shoppingBag = undefined;
 var uID;
 
 $.showBooks = function(booksArray){
@@ -235,7 +268,7 @@ $.showBooks = function(booksArray){
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="textVariant1"> <a href="event.html?id=`+event.ID+`" class="textVariant1"> Presentation event for `+book.title+` </a> </h5>
+                                            <h5 class="textVariant2"> <a href="event.html?id=`+event.ID+`" class="textVariant2"> Presentation event for `+book.title+` </a> </h5>
                                         </div>
                                     </div>
                                 </div>
@@ -270,10 +303,13 @@ $.showBooks = function(booksArray){
                 </div>
             </div>
         `);
-        $("button.btn-danger").click(function(){$.delItem($(this));});
-        $("button.btn-info").click(function(){$.updateQua($(this));});
-        $("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
+        //$("button.btn-danger").click(function(){$.delItem($(this));});
+        //$("button.btn-info").click(function(){$.updateQua($(this));});
+        //$("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
     }
+    $("button.btn-danger").click(function(){$.delItem($(this));});
+    $("button.btn-info").click(function(){$.updateQua($(this));});
+    $("a.dropdown-item-bookversion").click(function(){$.updateVer($(this));});
 }
 
 $.justSearchShoppingBags = function(userID){
@@ -292,6 +328,7 @@ $.justSearchShoppingBags = function(userID){
 
                         //Case load book
                         $("#content").empty();
+                        $("#checkout").show();
                         $("#content").append(`
                         <div class="col-12">
                             <h2>Shopping Bag</h2>
@@ -305,6 +342,7 @@ $.justSearchShoppingBags = function(userID){
                         //Case shopping bag is empty
 
                         $("#content").empty();
+                        $("#checkout").hide();
                         $("#content").append(`
                         <div class="col-12">
                             <h2>Shopping Bag</h2>

@@ -62,7 +62,7 @@ $.showBooks = function(booksArray){
 
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="textVariant1"><a href="event.html?id=`+event.ID+`" class="textVariant1">Presentation Event for "`+booksArray[i].title+`"</a> </h5>
+                                    <h5 class="textVariant2"><a href="event.html?id=`+event.ID+`" class="textVariant2">Presentation Event for "`+booksArray[i].title+`"</a> </h5>
                                 </div>
                             </div>
 
@@ -396,12 +396,15 @@ if (q != null){
     }
 }
 else {
+    $('#info').html("/ All books");
+    $.justSearch(data);
     //only if the book page has not been just opened
     /*if (notFirstEnter){
         //normal filtering
         //$.justSearch(data);
     }
     else{*/
-        $("#nextpage-button").remove();
+    //$("#nextpage-button").remove();
+
     //}
 }

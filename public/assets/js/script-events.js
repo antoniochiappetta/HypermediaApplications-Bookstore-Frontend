@@ -88,8 +88,9 @@ var page = $.urlParam('page');
 var newURL = window.location.href;
 
 if(q == null && page == null){
-    newURL = newURL + "?page=1";
+    newURL = newURL + "?page=1&q=all";
     page = "1";
+    q="all";
 }
 
 //page
@@ -116,16 +117,12 @@ if(page>1){
     $("#previouspage-button").wrap( '<a href="'+window.location.href.split("page="+page).join("page="+(page-1))+'" style="display: inline-block"></a>' );
 }
 else{
-    //$("#previouspage-button").wrap( '<a style="display: inline-block"></a>' );
     $("#previouspage-button").remove();
 }
 
 $("#nextpage-button").wrap( '<a href="'+window.location.href.split("page="+page).join("page="+(page+1))+'" style="display: inline-block"></a>' );
 
 //----------------------------------------------------------------------------------------------------------------
-
-//EMPTY THE SAMPLE BOOKS LIST
-//$("#events").empty();
 
 //FILL UP THE events TO SEE
 
@@ -136,7 +133,7 @@ var data = {
 
 //research cases:
 if (q != null){
-    //favourite books
+    //all events
     if (q == "all"){
         console.log("q=all");
         let eventsResponse = $.ajax({
@@ -145,7 +142,6 @@ if (q != null){
             url: apiurl+"/events/",
             data: data,
             success : function() {
-                //console.log(eventsResponse);
                 if (eventsResponse!=undefined){
                     if (eventsResponse.responseJSON!= undefined){
                         console.log(eventsResponse.responseJSON);
@@ -170,7 +166,7 @@ if (q != null){
             }
         });
     }
-    //month best sellers
+    //month events
     else if (q == "current"){
         let eventsResponse = $.ajax({
             type: "GET",
@@ -204,5 +200,7 @@ if (q != null){
     }
 }
 else{
-    $("#nextpage-button").remove();
+    $( "#allEvents" ).trigger( "click" );
+
+    //$("#nextpage-button").remove();
 }
