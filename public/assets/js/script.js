@@ -161,7 +161,7 @@ $(document).ready(function() {
 
     } else {
         texttoShow = "Log out";
-        $("#user").attr("href", "");
+        $("#user").removeAttr("href");
         $("#user").click(function(){
 
             $.ajax({
