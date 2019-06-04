@@ -157,13 +157,27 @@ $(document).ready(function() {
 
         //Case Shopping Bag page
         $("#checkout").hide();
-        $("#shoppingBagDescr").html("Log in to have a look at your Shopping Bag.")
+        $("#shoppingBagDescr").html("Log in to have a look at your Shopping Bag.");
 
     } else {
         texttoShow = "Log out";
+        $("#user").click(function(){
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: apiurl+"/user/logout",
+                xhrFields: {withCredentials: true},
+                success : function(){
+                    window.location.href = "../index.html";
+                }
+            });
+    
+        });
     }
     $("#user").html('<span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>'+texttoShow);
 
+   
 
 
 });
