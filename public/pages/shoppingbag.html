@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eCommerce</title>
+    <title>KooB</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="navbar navbar-expand-lg navbar-dark py-0">
 
         <a class="navbar-brand col ml-3 my-3 mr-lg-5" href="../index.html">
-            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Logo" class="rounded">
+            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Company Logo" class="rounded">
         </a>
 
 
@@ -40,11 +40,11 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Books</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Events</a>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded color-me" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <div class="dropdown-menu dropdown-menu-search">
+                        <a class="dropdown-item dropdown-item-search">Books</a>
+                        <a class="dropdown-item dropdown-item-search">Authors</a>
+                        <a class="dropdown-item dropdown-item-search">Events</a>
                     </div>
                 </div>
                 <input id="navbarSearchField" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="What are you searching for?">
@@ -57,7 +57,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-auto py-2">
                     <div class="btn">
-                        <a class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
+                        <a id="user" class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
 
                     </div>
 
@@ -81,6 +81,10 @@
 
                 <li class="nav-item text-center px-2">
                     <a class="nav-link" href="books.html">Books</a>
+                </li>
+
+                <li class="nav-item text-center px-2">
+                    <a class="nav-link" href="authors.html">Authors</a>
                 </li>
 
                 <li class="nav-item text-center px-2">
@@ -121,8 +125,8 @@
         </div>
 
         <!-- Checkout -->
-        <div id="checkout" class="col col-md text-right">
-            <button type="button" class="btn btn-warning myButton">Proceed to Checkout</button>
+        <div class="col col-md text-right">
+            <button id="checkout" type="button" class="btn btn-warning myButton">Proceed to Checkout</button>
         </div>
 
     </div>
@@ -130,159 +134,21 @@
 
 
     <!-- Intro Content -->
-    <div class="row">
-
-        <div class="card myCard shoppingCard">
-            <div class="card-body">
-
-                <div class="row">
-
-                    <div class="col-2 col-md-2">
-                        <img src="../assets/img/bookfront.jpg" height="200" width="140" alt="Book cover">
-                    </div>
-
-
-                    <div class="col-12 col-md-12 col-lg-10 mt-3">
-
-                        <div class="row">
-                            <div class="col">
-
-                                <div class="row">
-                                    <div class="col-8 col-sm-6 my-auto">
-                                        <a href="book.html"><h2>Book Title</h2></a>
-                                    </div>
-                                    <div class="col col-sm-6 text-right my-auto mr-0">
-                                        <h3 class="textVariant2">29,99$</h3>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="textVariant1"> Author: <a href="author.html" class="textVariant1"> Name LastName </a> </h5>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="textVariant1"> Presentation event: <a href="event.html" class="textVariant1"> Event </a> </h5>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-
-                                <div class="row">
-                                    <div class="col-6 col-md-3 my-auto">
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Paper Version
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item">Paper Version</a>
-                                                <a class="dropdown-item">Digital Version</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-6 col-md-3 my-auto">
-                                        <button class="btn-light">Quantity:</button><input class="rounded" type="number" value="1" min="1" max="10" step="1"/>
-                                    </div>
-
-                                    <div class="col-9 col-md-6 text-right ml-auto">
-                                        <button type="button" class="btn btn-danger myButton mr-0">Delete from shopping bag</button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
+    <div class="row" id ="content">
+        <div class="col-12">
+            <h2>Shopping Bag</h2>
         </div>
 
-        <div class="card myCard shoppingCard">
-            <div class="card-body">
-
-                <div class="row">
-
-                    <div class="col-2 col-md-2">
-                        <img src="../assets/img/bookfront.jpg" height="200" width="140" alt="Book cover">
-                    </div>
-
-
-                    <div class="col-12 col-md-12 col-lg-10 mt-3">
-
-                        <div class="row">
-                            <div class="col">
-
-                                <div class="row">
-                                    <div class="col-8 col-sm-6 my-auto">
-                                        <a href="book.html"><h2>Book Title</h2></a>
-                                    </div>
-                                    <div class="col col-sm-6 text-right my-auto mr-0">
-                                        <h3 class="textVariant2">29,99$</h3>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="textVariant1"> Author: <a href="author.html" class="textVariant1"> Name LastName </a> </h5>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <h5 class="textVariant1"> Presentation event: <a href="event.html" class="textVariant1"> Event </a> </h5>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-
-                                <div class="row">
-                                    <div class="col-6 col-md-3 my-auto">
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Paper Version
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item">Paper Version</a>
-                                                <a class="dropdown-item">Digital Version</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-6 col-md-3 my-auto">
-                                        <button class="btn-light">Quantity:</button><input class="rounded" type="number" value="1" min="1" max="10" step="1"/>
-                                    </div>
-
-                                    <div class="col-9 col-md-6 text-right ml-auto">
-                                        <button type="button" class="btn btn-danger myButton mr-0">Delete from shopping bag</button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
+        <div class="col-12 text-center mb-5 py-5">
+            <img src="../assets/img/bag.svg" href="index.html" width="80" height="80" alt="Logo Shopping Bag" class="rounded m-3">
+            <h5 id="shoppingBagDescr">Loading...</h5>
         </div>
+
+    </div>
+
+
+
+
 
 
 
@@ -307,6 +173,31 @@
     <!-- /.container -->
 </footer>
 
+<!-- Button trigger modal -->
+<button id="modal_Button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" hidden>
+    Launch demo modal
+</button>
+
+<!-- Modal for Login/Sign up error-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="modalDialogdown" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modalContent" class="modal-body">
+                ...
+            </div>
+            <div id="modalFooter" class="modal-footer">
+                <button id="ModalButton" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Scripts -->
 
 <!-- Bootstrap core JavaScript -->
@@ -316,6 +207,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-shoppingBag.js"></script>
 
 </body>
 

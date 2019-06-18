@@ -3,6 +3,7 @@ body {
     color: #1e1f26;
     font-size: 1em;
     font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
 }
 
 h1{
@@ -34,6 +35,23 @@ a {
 .navbar {
     background-color: #283655;
     width: 100%;
+}
+
+/*Fix for Contrast Accessibility*/
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,.6);
+}
+
+/*Fix for Contrast Accessibility*/
+.color-me{
+    color: rgba(255,255,255,.6);
+}
+
+/*Fix for Contrast Accessibility in Chrome*/
+#searchButtonHome , #searchButton{
+    color: #ffffff;
+    background-color: #28a745b3;
+    border-color: #28a745b3;
 }
 
 /*Pagination*/
@@ -90,6 +108,7 @@ a {
 
 .horizontalScroll{
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .textVariant1{
@@ -113,7 +132,7 @@ a {
     width: 100%;
 }
 
-#ourFavouritesReadings_b, #allEvents{
+#ourFavouritesReadings_b, #allEvents, #allAuthors{
     color: white;
     background-color: #283655;
 }
@@ -121,4 +140,13 @@ a {
 #bestSellerThisMonth_b, #eventsInThisMonth{
     color: white;
     background-color: #4d648d;
+}
+
+#newCategories{
+    border-width: 1px;
+    border-color: #0c5460;
+}
+
+#back-button:hover{
+    box-shadow: 1px 10px 20px 2px rgb(210, 210, 210);
 }

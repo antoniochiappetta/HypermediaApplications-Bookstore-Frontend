@@ -19,6 +19,7 @@
   "homepage": "https://github.com/antoniochiappetta/Hypermedia-eCommerce#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "xmlhttprequest": "^1.8.0"
   }
 }

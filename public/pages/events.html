@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eCommerce</title>
+    <title>KooB</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="navbar navbar-expand-lg navbar-dark py-0">
 
         <a class="navbar-brand col ml-3 my-3 mr-lg-5" href="../index.html">
-            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Logo" class="rounded">
+            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Company Logo" class="rounded">
         </a>
 
 
@@ -40,11 +40,11 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Books</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Events</a>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded color-me" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <div class="dropdown-menu dropdown-menu-search">
+                        <a class="dropdown-item dropdown-item-search">Books</a>
+                        <a class="dropdown-item dropdown-item-search">Authors</a>
+                        <a class="dropdown-item dropdown-item-search">Events</a>
                     </div>
                 </div>
                 <input id="navbarSearchField" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="What are you searching for?">
@@ -57,7 +57,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-auto py-2">
                     <div class="btn">
-                        <a class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
+                        <a id="user" class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
 
                     </div>
 
@@ -81,6 +81,10 @@
 
                 <li class="nav-item text-center px-2">
                     <a class="nav-link" href="books.html">Books</a>
+                </li>
+
+                <li class="nav-item text-center px-2">
+                    <a class="nav-link" href="authors.html">Authors</a>
                 </li>
 
                 <li class="nav-item text-center px-2">
@@ -126,8 +130,9 @@
 
     <!-- Intro Content -->
     <div class="row">
-        <div class="col-8 col-md-6">
-            <h2 class="textVariant1">Events</h2>
+        <div class="col col-md-10">
+            <h2 class="textVariant1" id="pageTitle">Events <span id="info" class="textVariant2"></span></h2>
+
         </div>
 
     </div>
@@ -143,8 +148,12 @@
                     <div class="row">
                         <div class="col">
                             <h5>Categories</h5>
-                            <button id="allEvents" class="btn myButton btn-block" type="submit">All events</button>
-                            <button id="eventsInThisMonth" class="btn  myButton btn-block" type="submit">Events in this month</button>
+                            <a href="events.html?page=1&q=all">
+                                <button id="allEvents" class="btn myButton btn-block" type="submit">All events</button>
+                            </a>
+                            <a href="events.html?page=1&q=current">
+                                <button id="eventsInThisMonth" class="btn  myButton btn-block" type="submit">Events in this month</button>
+                            </a>
                         </div>
 
                     </div>
@@ -156,35 +165,8 @@
 
 
 
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-6 col-lg-8 my-auto" id="events">
 
-            <div class="card myCard ">
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col my-auto">
-                            <a href="event.html"><h2>Event Name</h2></a>
-                            <a href="book.html"><h3 class="textVariant1">Book Title</h3></a>
-                            <a href="author.html"><h5 class="textVariant2">Name LastName</h5></a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="card myCard ">
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col my-auto">
-                            <a href="event.html"><h2>Event Name</h2></a>
-                            <a href="book.html"><h3 class="textVariant1">Book Title</h3></a>
-                            <a href="author.html"><h5 class="textVariant2">Name LastName</h5></a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
 
         </div>
 
@@ -194,21 +176,17 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
-        <div class="col co-md-8"></div>
-        <div class="col col-md-6 col-lg-4">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item myPageItem left-rounded"><a class="page-link myPageLink" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link myPageLink" href="#">Next</a></li>
-                </ul>
-            </nav>
+    <div class="row text-right">
+        <div class="col">
+            <button id="previouspage-button" class="btn btn-outline-secondary myButton">
+                Previous page
+            </button>
+
+            <button id="nextpage-button" class="btn btn-outline-secondary myButton">
+                Next page
+            </button>
         </div>
     </div>
-
 
 </div>
 <!-- /.container -->
@@ -235,6 +213,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-events.js"></script>
 
 </body>
 

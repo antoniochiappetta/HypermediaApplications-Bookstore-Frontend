@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eCommerce</title>
+    <title>KooB</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="navbar navbar-expand-lg navbar-dark py-0">
 
         <a class="navbar-brand col ml-3 my-3 mr-lg-5" href="../index.html">
-            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Logo" class="rounded">
+            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Company Logo" class="rounded">
         </a>
 
 
@@ -40,11 +40,11 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Books</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Events</a>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded color-me" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <div class="dropdown-menu dropdown-menu-search">
+                        <a class="dropdown-item dropdown-item-search">Books</a>
+                        <a class="dropdown-item dropdown-item-search">Authors</a>
+                        <a class="dropdown-item dropdown-item-search">Events</a>
                     </div>
                 </div>
                 <input id="navbarSearchField" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="What are you searching for?">
@@ -57,7 +57,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-auto py-2">
                     <div class="btn">
-                        <a class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
+                        <a id="user" class="nav-link" href="login&registration.html"> <span><img src="../assets/img/user.svg" alt="User logo" width="30" height="30" class="my-1"></span><br>Log in or Sign up</a>
 
                     </div>
 
@@ -81,6 +81,10 @@
 
                 <li class="nav-item text-center px-2">
                     <a class="nav-link" href="books.html">Books</a>
+                </li>
+
+                <li class="nav-item text-center px-2">
+                    <a class="nav-link" href="authors.html">Authors</a>
                 </li>
 
                 <li class="nav-item text-center px-2">
@@ -123,7 +127,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb myBreadcrumb">
                     <li class="breadcrumb-item"><a href="events.html">Events</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Event Name</li>
+                    <li class="breadcrumb-item active" aria-current="page" id="breadcrumbname">Event Name</li>
                 </ol>
             </nav>
         </div>
@@ -132,30 +136,24 @@
 
 
     <!-- Intro Content -->
-    <div class="row">
+    <div class="row mb-5">
         <div class="col">
 
 
             <div class="row">
                <div class="col">
-                   <h2>Event name</h2>
+                   <h2 id="name">Event name</h2>
                </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <h5 class="textVariant1"> Book presented: <a href="book.html" class="textVariant1"> Book Title </a> </h5>
+                    <h5 class="textVariant1"> Book presented: <a href="book.html" class="textVariant1" id="title"> Book Title </a> </h5>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <p>Event description</p>
-                    <p>Event description</p>
-                    <p>Event description</p>
-                    <p>Event description</p>
-                    <p>Event description</p>
-                    <p>Event description</p>
+                <div class="col" id="description">
                     <p>Event description</p>
                 </div>
             </div>
@@ -193,6 +191,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
+<script src="../assets/js/script-event.js"></script>
 
 </body>
 

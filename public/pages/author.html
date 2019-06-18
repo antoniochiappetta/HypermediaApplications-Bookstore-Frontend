@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eCommerce</title>
+    <title>KooB</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="navbar navbar-expand-lg navbar-dark py-0">
 
         <a class="navbar-brand col ml-3 my-3 mr-lg-5" href="../index.html">
-            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Logo" class="rounded">
+            <img src="../assets/img/Logo.svg" href="index.html" width="60" height="60" alt="Company Logo" class="rounded">
         </a>
 
 
@@ -40,11 +40,11 @@
 
             <div class="input-group mx-sm-0">
                 <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary dropdown-toggle ml-5 left-rounded" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Books</a>
-                        <a class="dropdown-item" href="#">Authors</a>
-                        <a class="dropdown-item" href="#">Events</a>
+                    <button class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-search ml-5 left-rounded color-me" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Books</button>
+                    <div class="dropdown-menu dropdown-menu-search">
+                        <a class="dropdown-item dropdown-item-search">Books</a>
+                        <a class="dropdown-item dropdown-item-search">Authors</a>
+                        <a class="dropdown-item dropdown-item-search">Events</a>
                     </div>
                 </div>
                 <input id="navbarSearchField" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="What are you searching for?">
@@ -81,6 +81,10 @@
 
                 <li class="nav-item text-center px-2">
                     <a class="nav-link" href="books.html">Books</a>
+                </li>
+
+                <li class="nav-item text-center px-2">
+                    <a class="nav-link" href="authors.html">Authors</a>
                 </li>
 
                 <li class="nav-item text-center px-2">
@@ -129,7 +133,7 @@
             <div class="card myCard">
                 <div class="card-body m-lg-2 mx-auto">
                     <div>
-                        <img src="../assets/img/AuthorFace.jpg" height="240" width="240" alt="Book cover">
+                        <img id="picture" height="240" width="240" alt="Author Picture">
                     </div>
                 </div>
             </div>
@@ -139,12 +143,12 @@
 
             <div class="row">
                 <div class="col col-sm-6 my-auto">
-                    <h2>Name LastName</h2>
+                    <h2 id="name">Name LastName</h2>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
+                <div class="col" id="bio">
                     <h5>Short bio</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
@@ -167,7 +171,7 @@
             <h2>Books from this author</h2>
         </div>
         <div class="col col-sm-3 text-right my-auto">
-            <a href="#"><h5 class="textVariant2">Show more</h5></a>
+            <a href="#" id="showMore"><h5 class="textVariant2">Show more</h5></a>
         </div>
     </div>
 
@@ -175,37 +179,6 @@
     <!-- Cards -->
     <div id="content" class="row flex-row flex-nowrap horizontalScroll">
 
-        <div class="card myCard col-8 col-md-4 col-lg-3">
-            <img class="card-img-top bookCover my-3" src="../assets/img/bookfront.jpg" alt="Book cover">
-            <div class="card-body text-center">
-                <h5><a href="book.html">Book title</a></h5>
-                <p class="textVariant2">10,99$</p>
-            </div>
-        </div>
-
-        <div class="card myCard col-8 col-md-4 col-lg-3">
-            <img class="card-img-top bookCover my-3" src="../assets/img/bookfront.jpg" alt="Book cover">
-            <div class="card-body text-center">
-                <h5><a href="book.html">Book title</a></h5>
-                <p class="textVariant2">10,99$</p>
-            </div>
-        </div>
-
-        <div class="card myCard col-8 col-md-4 col-lg-3">
-            <img class="card-img-top bookCover my-3" src="../assets/img/bookfront.jpg" alt="Book cover">
-            <div class="card-body text-center">
-                <h5><a href="book.html">Book title</a></h5>
-                <p class="textVariant2">10,99$</p>
-            </div>
-        </div>
-
-        <div class="card myCard col-8 col-md-4 col-lg-3">
-            <img class="card-img-top bookCover my-3" src="../assets/img/bookfront.jpg" alt="Book cover">
-            <div class="card-body text-center">
-                <h5><a href="book.html">Book title</a></h5>
-                <p class="textVariant2">10,99$</p>
-            </div>
-        </div>
 
         <!-- Eventually another card-->
         <div class="col-1 col-sm-1">
@@ -248,7 +221,7 @@
 
 <!-- JavaScript Scripts -->
 <script src="../assets/js/script.js"></script>
-
+<script src="../assets/js/script-author.js"></script>
 
 </body>
 
